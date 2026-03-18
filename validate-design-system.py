@@ -1,0 +1,223 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Iterable
+
+
+@dataclass
+class Issue:
+    level: str  # PASS / FAIL / WARN
+    code: str
+    message: str
+    file: str | None = None
+
+
+def load_json(path: Path) -> Any:
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def flatten_token_leaves(obj: Any, path: str = "") -> list[tuple[str, dict[str, Any]]]:
+    leaves: list[tuple[str, dict[str, Any]]] = []
+    if isinstance(obj, dict):
+        if "$value" in obj:
+            leaves.append((path, obj))
+        for key, value in obj.items():
+            if key.startswith("$"):
+                continue
+            next_path = f"{path}.{key}" if path else key
+            leaves.extend(flatten_token_leaves(value, next_path))
+    return leaves
+
+
+def get_in(obj: Any, path: str) -> Any:
+    cur = obj
+    for part in path.split("."):
+        if not isinstance(cur, dict) or part not in cur:
+            raise KeyError(path)
+        cur = cur[part]
+    return cur
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def expect_contains(issues: list[Issue], text: str, needle: str, file: str, code: str, msg: str) -> None:
+    if needle in text:
+        issues.append(Issue("PASS", code, msg, file))
+    else:
+        issues.append(Issue("FAIL", code, f"Missing expected text: {needle}", file))
+
+
+def expect_not_contains(issues: list[Issue], text: str, needle: str, file: str, code: str, msg: str) -> None:
+    if needle in text:
+        issues.append(Issue("FAIL", code, f"Found forbidden text: {needle}", file))
+    else:
+        issues.append(Issue("PASS", code, msg, file))
+
+
+def build_issues(root: Path) -> list[Issue]:
+    issues: list[Issue] = []
+
+    json_path = root / "design-system-all.json"
+    progress_path = root / "design-system-progress.md"
+    skill_path = root / "SKILL.md"
+    governance_path = root / "design-system-governance.md"
+    migration_path = root / "token-migration-map.md"
+    viewer_live_path = root / "design-system-viewer-live.html"
+    viewer_snapshot_path = root / "design-system-viewer.html"
+    script_path = root / "create-text-styles.js"
+
+    data = load_json(json_path)
+    leaves = flatten_token_leaves(data)
+    ref_count = sum(1 for p, _ in leaves if p.startswith("ref."))
+    sys_count = sum(1 for p, _ in leaves if p.startswith("sys."))
+    comp_count = sum(1 for p, _ in leaves if p.startswith("comp."))
+    total_count = len(leaves)
+    expected_text_styles = 130
+
+    # --- Source of truth JSON checks ---
+    ext = data.get("$extensions", {}) if isinstance(data, dict) else {}
+    version = ext.get("ruten.version")
+    status = ext.get("ruten.status")
+    source = ext.get("ruten.sourceOfTruth")
+    if version == "v1.0.0" and status == "sealed-baseline" and source == "design-system-all.json":
+        issues.append(Issue("PASS", "JSON_METADATA", "Baseline metadata is present and correct.", str(json_path.name)))
+    else:
+        issues.append(Issue("FAIL", "JSON_METADATA", f"Unexpected metadata: version={version}, status={status}, sourceOfTruth={source}", str(json_path.name)))
+
+    checks = [
+        ("ref.typography.font-size.label-2xs.$value", 8, "LABEL_2XS_RAW", "label-2xs raw size is 8px."),
+        ("ref.typography.font-size.body-md-alt.$value", 13, "BODY_MD_ALT_RAW", "body-md-alt raw size is 13px."),
+        ("sys.typography.label.2xs.$value", "{ref.typography.font-size.label-2xs}", "LABEL_2XS_ALIAS", "sys.typography.label.2xs points to label-2xs raw token."),
+        ("sys.typography.body.md-alt.$value", "{ref.typography.font-size.body-md-alt}", "BODY_MD_ALT_ALIAS", "sys.typography.body.md-alt points to body-md-alt raw token."),
+        ("sys.color.price.$value", "{ref.color.red.500}", "PRICE_COLOR_ALIAS", "sys.color.price exists and points to red.500."),
+        ("comp.product-card.price.current.color.$value", "{sys.color.price}", "PRODUCT_PRICE_COLOR", "product-card current price uses sys.color.price."),
+    ]
+    for path, expected, code, ok_message in checks:
+        try:
+            value = get_in(data, path)
+            if value == expected:
+                issues.append(Issue("PASS", code, ok_message, str(json_path.name)))
+            else:
+                issues.append(Issue("FAIL", code, f"{path} = {value!r}, expected {expected!r}", str(json_path.name)))
+        except KeyError:
+            issues.append(Issue("FAIL", code, f"Missing path: {path}", str(json_path.name)))
+
+    mono_paths = [p for p, _ in leaves if ".mono" in p or p.endswith("mono")]
+    if mono_paths:
+        preview = ", ".join(mono_paths[:5])
+        issues.append(Issue("FAIL", "MONO_REMOVED", f"Mono token paths still exist: {preview}", str(json_path.name)))
+    else:
+        issues.append(Issue("PASS", "MONO_REMOVED", "No Mono token paths remain in source of truth.", str(json_path.name)))
+
+    # --- Derived file checks ---
+    progress = read_text(progress_path)
+    skill = read_text(skill_path)
+    governance = read_text(governance_path)
+    migration = read_text(migration_path)
+    viewer_live = read_text(viewer_live_path)
+    viewer_snapshot = read_text(viewer_snapshot_path)
+    script = read_text(script_path)
+
+    # Required truths in docs
+    expect_contains(issues, progress, f"**總量：** {total_count} tokens + {expected_text_styles} Text Styles", progress_path.name, "PROGRESS_TOTAL", "Progress total matches source of truth.")
+    expect_contains(issues, progress, f"## ✅ ref 層 — {ref_count} tokens", progress_path.name, "PROGRESS_REF", "Progress ref count matches source of truth.")
+    expect_contains(issues, progress, f"## ✅ sys 層 — {sys_count} tokens", progress_path.name, "PROGRESS_SYS", "Progress sys count matches source of truth.")
+    expect_contains(issues, progress, f"| `design-system-all.json` | ✅ 唯一真實來源 | ref({ref_count}) + sys({sys_count}) + comp({comp_count}) |", progress_path.name, "PROGRESS_SOT", "Progress source-of-truth summary matches counts.")
+
+    expect_contains(issues, skill, f"**Total:** {total_count} tokens + {expected_text_styles} Text Styles", skill_path.name, "SKILL_TOTAL", "SKILL total matches source of truth.")
+    expect_contains(issues, skill, f"## ref Layer — {ref_count} tokens ✅", skill_path.name, "SKILL_REF", "SKILL ref count matches source of truth.")
+    expect_contains(issues, skill, f"## sys Layer — {sys_count} tokens ✅", skill_path.name, "SKILL_SYS", "SKILL sys count matches source of truth.")
+
+    expect_contains(issues, governance, f"- ref: {ref_count}", governance_path.name, "GOV_REF", "Governance ref count matches source of truth.")
+    expect_contains(issues, governance, f"- sys: {sys_count}", governance_path.name, "GOV_SYS", "Governance sys count matches source of truth.")
+    expect_contains(issues, governance, f"- comp: {comp_count}", governance_path.name, "GOV_COMP", "Governance comp count matches source of truth.")
+    expect_contains(issues, governance, f"- total: {total_count}", governance_path.name, "GOV_TOTAL", "Governance total count matches source of truth.")
+    expect_contains(issues, governance, f"- total: {expected_text_styles}", governance_path.name, "GOV_TEXT_STYLES", "Governance text style count is 130.")
+
+    if 'design-system-all.json' in migration and '唯一真實來源' in migration:
+        issues.append(Issue("PASS", "MIGRATION_SOT", "Migration map declares the source of truth.", migration_path.name))
+    else:
+        issues.append(Issue("FAIL", "MIGRATION_SOT", "Migration map does not clearly declare design-system-all.json as source of truth.", migration_path.name))
+
+    if ('body-md-alt' in migration or 'body/md-alt' in migration) and '13px' in migration:
+        issues.append(Issue("PASS", "MIGRATION_13PX", "Migration map uses body-md-alt for 13px.", migration_path.name))
+    else:
+        issues.append(Issue("FAIL", "MIGRATION_13PX", "Migration map does not clearly map 13px to body-md-alt.", migration_path.name))
+
+    if 'comp/product-card/price-color' in migration and 'sys/color/price' in migration:
+        issues.append(Issue("PASS", "MIGRATION_PRICE", "Migration map points product-card price-color to sys/color/price.", migration_path.name))
+    else:
+        issues.append(Issue("FAIL", "MIGRATION_PRICE", "Migration map does not clearly map product-card price-color to sys/color/price.", migration_path.name))
+
+    if 'fetch(`${DATA_SOURCE}?v=${Date.now()}`' in viewer_live or 'fetch("design-system-all.json"' in viewer_live or "fetch('design-system-all.json'" in viewer_live:
+        issues.append(Issue("PASS", "VIEWER_LIVE_FETCH", "Live viewer fetches design-system-all.json.", viewer_live_path.name))
+    else:
+        issues.append(Issue("FAIL", "VIEWER_LIVE_FETCH", "Live viewer does not appear to fetch design-system-all.json.", viewer_live_path.name))
+    expect_contains(issues, viewer_live, f"130 個 Text Styles", viewer_live_path.name, "VIEWER_LIVE_STYLES", "Live viewer shows 130 text styles.")
+
+    expect_contains(issues, viewer_snapshot, f'"ruten.version": "v1.0.0"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_VERSION", "Snapshot viewer carries the sealed baseline version.")
+    expect_contains(issues, viewer_snapshot, f'"ruten.status": "sealed-baseline"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_STATUS", "Snapshot viewer carries the sealed baseline status.")
+    # Snapshot viewer is sealed at baseline; verify it contains ref/sys token data
+    expect_contains(issues, viewer_snapshot, "ref tokens", viewer_snapshot_path.name, "VIEWER_SNAPSHOT_TOTAL", "Snapshot viewer contains ref token display.")
+
+    # Forbidden legacy text in docs
+    forbidden = {
+        progress_path.name: ["523 tokens", "483 tokens", "481 tokens", "218 comp", "178 comp"],
+        skill_path.name: ["523 tokens", "483 tokens", "481 tokens"],
+        governance_path.name: ["- comp: 218", "- total: 523", "- comp: 178", "- total: 483", "- total: 481"],
+    }
+    file_text = {
+        progress_path.name: progress,
+        skill_path.name: skill,
+        governance_path.name: governance,
+    }
+    for file_name, needles in forbidden.items():
+        for needle in needles:
+            expect_not_contains(issues, file_text[file_name], needle, file_name, f"NO_LEGACY::{file_name}::{needle}", f"{file_name} does not contain legacy value {needle!r}.")
+
+    # Script sanity check
+    expect_not_contains(issues, script, "SF Mono", script_path.name, "SCRIPT_NO_MONO", "Text style script no longer generates SF Mono styles.")
+    expect_contains(issues, script, "130", script_path.name, "SCRIPT_130", "Text style script references the 130-style baseline.")
+
+    return issues
+
+
+def print_report(issues: Iterable[Issue]) -> int:
+    issues = list(issues)
+    fail_count = sum(1 for i in issues if i.level == "FAIL")
+    warn_count = sum(1 for i in issues if i.level == "WARN")
+    pass_count = sum(1 for i in issues if i.level == "PASS")
+
+    for issue in issues:
+        icon = {"PASS": "✅", "FAIL": "❌", "WARN": "⚠️"}[issue.level]
+        suffix = f" [{issue.file}]" if issue.file else ""
+        print(f"{icon} {issue.code}{suffix}: {issue.message}")
+
+    print("\n---")
+    print(f"PASS: {pass_count}  FAIL: {fail_count}  WARN: {warn_count}")
+    if fail_count:
+        print("Validation failed.")
+        return 1
+    print("Validation passed.")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate the sealed Ruten design-system baseline.")
+    parser.add_argument("--root", default=".", help="Directory containing design-system files.")
+    args = parser.parse_args()
+    root = Path(args.root).resolve()
+    return print_report(build_issues(root))
+
+
+if __name__ == "__main__":
+    sys.exit(main())

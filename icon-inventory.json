@@ -1,0 +1,1741 @@
+{
+  "$schema": "icon-inventory/v1.0",
+  "$description": "Ruten Design System icon inventory. Tracks all icons, their sizing tokens, and Figma status.",
+  "$updated": "2026-03-17",
+  "sizing_tokens": {
+    "sys": {
+      "icon-xs": {
+        "value": 12,
+        "alias": "{ref.sizing.3}",
+        "usage": "Compact tag icons, inline micro-indicators"
+      },
+      "icon-sm": {
+        "value": 16,
+        "alias": "{ref.sizing.4}",
+        "usage": "Inline indicators, status dots, compact UI icons"
+      },
+      "icon-md": {
+        "value": 24,
+        "alias": "{ref.sizing.6}",
+        "usage": "Navigation icons, action icons, form field icons (default)"
+      },
+      "icon-lg": {
+        "value": 32,
+        "alias": "{ref.sizing.8}",
+        "usage": "Empty state icons, feature highlight icons"
+      }
+    },
+    "comp": {
+      "icon/xs": {
+        "size": "{sys.sizing.icon-xs}",
+        "color": "{sys.color.on-surface-variant}"
+      },
+      "icon/sm": {
+        "size": "{sys.sizing.icon-sm}",
+        "color": "{sys.color.on-surface}"
+      },
+      "icon/md": {
+        "size": "{sys.sizing.icon-md}",
+        "color": "{sys.color.on-surface}"
+      },
+      "icon/lg": {
+        "size": "{sys.sizing.icon-lg}",
+        "color": "{sys.color.on-surface}"
+      }
+    }
+  },
+  "icon_consumers": {
+    "comp/button": {
+      "sm/icon-size": "{comp.icon.sm.size} (16px)",
+      "md/icon-size": "{comp.icon.md.size} (24px)",
+      "lg/icon-size": "{comp.icon.md.size} (24px)",
+      "xl/icon-size": "{comp.icon.md.size} (24px)"
+    },
+    "comp/tag/base": {
+      "icon-size": "{sys.sizing.icon-xs} (12px)",
+      "icon-gap": "2px (hardcoded, below spacing scale)"
+    },
+    "comp/tag/action/dismissible": {
+      "close-icon-size": "{sys.sizing.icon-sm} (16px)",
+      "close-icon-color": "{sys.color.on-surface-variant}"
+    },
+    "comp/product-card/tag-brand": {
+      "icon-size": "{comp.tag.base.icon-size} (12px)",
+      "gap": "{comp.tag.base.icon-gap} (2px)"
+    }
+  },
+  "figma": {
+    "file_key": "JntRm8aTeyw1HPdowgSBk4",
+    "icons_page_node_id": "45:19481",
+    "tag_section_node_id": null,
+    "tag_new_icon_source_node_id": "81:2872764",
+    "_note": "All in DS測試 file (JntRm8aTeyw1HPdowgSBk4)."
+  },
+  "icons": [
+    {
+      "name": "2-user",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "3-user",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "account",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "activity",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "ad",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "ad-click",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "add",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "add-user",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "advanced-edit",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "ai-message",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "alarm",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "align-center",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "align-left",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "align-right",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "analytic",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "announcement",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "archive",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "archive-book",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "arrow-down",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "arrow-down-large",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-down-small",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-left",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "arrow-left-large",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-left-small",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-right",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "arrow-right-large",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-right-small",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-two-way",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "arrow-up",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "arrow-up-large",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrow-up-small",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrows-diagonal-maximize",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "arrows-diagonal-minimize",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "award",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "bad",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "badge",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "bag",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "basket",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "best-seller-01",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "best-seller-02",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "best-seller-fill",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "bill",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "bold",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "bolt",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "book",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "bookmark",
+      "outline": false,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "bookmark-01",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "bookmark-02",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "box",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "building-circus",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "bulleted-list",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "businessplan",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "buy",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "buy-globe",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "calendar",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "calendar-alarm-mono",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "call",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "call-center",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "camera",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "camera-selfie",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "card",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "castle",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "category",
+      "outline": false,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "category-01",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "category-02",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "celebrate-fill",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "celebrate-line",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "change",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "chart",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "chat",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "chat-01",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "chat-02",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "check",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "check-in",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "chevron-compact-down",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "circle-danger",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "circle-edit",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "circle-info",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "circle-more",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "close",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "cloud-upload",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "collection-fee",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "computer",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "contract",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "copy",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "corner-down-right",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "count",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "danger",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "delete",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "delivery",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "discount",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "discovery",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "document",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "dots-center",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "drop",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "edit",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "edit-round",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "email",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "emoji-happy",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "emoji-normal",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "emoji-sad",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "event-hot",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "event-new",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "event-sale",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "exchange",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "fall",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "filter",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "filter-switch",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "fire",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "flag",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "flash",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "folder",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "free-delivery",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "free-shipping",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "game",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "gamepad",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "gavel",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "gift",
+      "outline": false,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "gift-01",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "gift-02",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "gift-03",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "globe",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "good",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "hash",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "heart",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "help",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "help-bear",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "hide",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "home",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "home-heart",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ik",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ik-logo",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "image",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "increase",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "infinite-loading",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "invite",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "is-auth",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "is-official-certification",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "italic",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "layout",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "light-heart",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "lightning",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "link",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "location",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "lock",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "login",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "logout",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "market",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "maximize",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "menu",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "message",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "minus",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "mood-smile",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "more",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "more-check",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "moving",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "my-store",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "notification",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "notification-open",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "order",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "order-list",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "package",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "paint",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "palette",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "paper",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "paper-close",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "paper-download",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "paper-minus",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "paper-plus",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "paper-upload",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "password",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "payment",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "payment-flow",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "pchome-store",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "pie-chart",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "pin",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "play",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "plus",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "plus-square",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "popular-discussion",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "post",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "post-template",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "preorder",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "produce",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "profile",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "puzzle",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "question",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "quote",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "r-coin-01",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "r-coin-02",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "ranking",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "receipt-text",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "refund",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "resale",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "rise",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "rosette-discount",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ruru-chat",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ruten-community",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "ruten-gallery",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "ruten-point",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "scan",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "search",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "seller-central",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "send",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "send-01",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "send-02",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "setting",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "share",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "share-01",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "share-02",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "share-2",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "shield-fail",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "shield-pass",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "shield-verify",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "shipping",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "shopping-car",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "show",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "sparkles",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "spinning",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "square-close",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "square-more",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "star",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "stars",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "store",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "store-vip",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "sun",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "swap",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "tablet",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "tag",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "text-size",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "thumb-up",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ticket",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "ticket-currency",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "ticket-ruten",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "ticket-star",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "time",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "tips",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "top-choice",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "translate",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "treasurebox",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "trend",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "triangle-danger",
+      "outline": true,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "trophy",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "turn-off-flash",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "underline",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "unlock",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "user-tag",
+      "outline": false,
+      "solid": false,
+      "bulk": true
+    },
+    {
+      "name": "verified",
+      "outline": true,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "video",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "voice",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "volume-down",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "volume-off",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "volume-up",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "vote",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "wallet",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "web-view",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "windmill",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "work",
+      "outline": true,
+      "solid": true,
+      "bulk": true
+    },
+    {
+      "name": "youtube",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "zoom-question",
+      "outline": false,
+      "solid": true,
+      "bulk": false
+    }
+  ],
+  "summary": {
+    "total_unique_icons": 260,
+    "outline": 183,
+    "solid": 155,
+    "bulk": 111,
+    "outline_only": 81,
+    "solid_only": 53,
+    "all_three": 76
+  },
+  "category_menu_icons": {
+    "_source_node": "81:2872764",
+    "_description": "分類館首頁分類選單 — 23 category icons, all renamed with -lite suffix, 24x24px in new outline frame",
+    "already_in_icons_page": [
+      {
+        "name": "heart-lite",
+        "note": "was frame (detached)"
+      },
+      {
+        "name": "home-lite"
+      },
+      {
+        "name": "computer-lite"
+      },
+      {
+        "name": "book-lite"
+      },
+      {
+        "name": "video-lite"
+      },
+      {
+        "name": "game-lite"
+      },
+      {
+        "name": "bag-lite"
+      },
+      {
+        "name": "star-lite"
+      }
+    ],
+    "missing_from_icons_page": [
+      {
+        "name": "camping-lite",
+        "label": "休閒旅遊"
+      },
+      {
+        "name": "car-lite",
+        "label": "交通工具"
+      },
+      {
+        "name": "phone-lite",
+        "label": "手機通訊"
+      },
+      {
+        "name": "t-shirt-lite",
+        "label": "男裝配件"
+      },
+      {
+        "name": "sport-lite",
+        "label": "運動健身"
+      },
+      {
+        "name": "bag-01-lite",
+        "label": "名產食品"
+      },
+      {
+        "name": "makeup-lite",
+        "label": "保養彩妝"
+      },
+      {
+        "name": "dress-lite",
+        "label": "流行女裝"
+      },
+      {
+        "name": "shoe-lite",
+        "label": "鞋包精品"
+      },
+      {
+        "name": "baby-lite",
+        "label": "嬰幼母親"
+      },
+      {
+        "name": "music-lite",
+        "label": "音樂電影"
+      },
+      {
+        "name": "time-square-lite",
+        "label": "鐘錶眼鏡"
+      },
+      {
+        "name": "china-lite",
+        "label": "古董收藏"
+      },
+      {
+        "name": "18-plus-lite",
+        "label": "成人專區"
+      },
+      {
+        "name": "category-lite",
+        "label": "百業服務"
+      }
+    ],
+    "new_outline_frame_node_id": "87:15521",
+    "total_in_new_outline": 23,
+    "color_binding": "comp/icon/md/color ✅ confirmed"
+  }
+}
