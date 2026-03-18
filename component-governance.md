@@ -1,7 +1,8 @@
 # Ruten Design System — Component 治理規則
 
-> 版本：v1.0.0
+> 版本：v1.1.0
 > 建立：2026-03-18
+> 更新：2026-03-18（擴充功能類別 + 全產品 Component Registry）
 > 狀態：已確認
 > 適用對象：AI Agent、UX 設計師、前端工程師
 
@@ -36,20 +37,35 @@
 
 ## 3. 維度一：功能類別
 
-按用途分類，對 e-commerce 場景優化。設計師和 AI 找 component 時先看這個分類。
+按用途分類，對 e-commerce 全產品場景優化。八大類別：
 
-| 功能類別 | 說明 | 目前的 Component |
-|---------|------|-----------------|
-| **Action** | 觸發操作的互動元件 | Button |
-| **Display** | 展示商品或內容資訊 | ProductCard, FeatureCard, Banner (Container) |
-| **Navigation** | 頁面或區域間的導航 | NavigationBar, BottomNav, Tab, SearchBar |
-| **Feedback** | 狀態回饋、標記、通知 | Badge, Tag |
-| **Layout** | 結構佈局、區域分隔 | Divider, SectionHeader, HorizontalScroll, CategoryGrid |
-| **Media** | 媒體元素（圖像、圖示） | Avatar, Icon |
+| 功能類別 | 說明 | 範例 |
+|---------|------|------|
+| **Action** | 觸發操作的互動元件 | Button, Link, FAB |
+| **Input** | 使用者輸入資料 | TextField, Checkbox, Radio, Switch, Select, Stepper, DatePicker |
+| **Display** | 展示商品或內容資訊 | ProductCard, FeatureCard, Banner, Table, List, Carousel, Image |
+| **Navigation** | 頁面或區域間的導航 | NavigationBar, BottomNav, Tab, SearchBar, Breadcrumb, Pagination, Sidebar |
+| **Feedback** | 狀態回饋、標記、通知 | Badge, Tag, Toast, Snackbar, ProgressBar, Spinner, Skeleton, EmptyState |
+| **Overlay** | 覆蓋在頁面上的浮層元件 | Modal, Dialog, BottomSheet, Drawer, Popover, Tooltip, Dropdown |
+| **Layout** | 結構佈局、區域分隔 | Divider, SectionHeader, Accordion, Grid, Spacer |
+| **Media** | 媒體元素（圖像、圖示） | Avatar, Icon, Logo |
+
+### 與 Material Design 3 的對照
+
+| MD3 類別 | 露天類別 | 差異 |
+|---------|---------|------|
+| Action | Action | 一致 |
+| Text Input | Input（擴大涵蓋選擇元件） | 擴充 |
+| Containment | Display + Layout | 拆分：展示歸 Display，結構歸 Layout |
+| Communication | Feedback | 重新命名，更直覺 |
+| Navigation | Navigation | 一致 |
+| Selection | Input（合併） | MD3 的 Checkbox/Radio/Switch 歸入 Input |
+| — | Overlay（新增） | MD3 沒有獨立此類，露天的電商場景大量用 Modal/BottomSheet |
+| — | Media（新增） | Icon/Avatar/Logo 獨立管理 |
 
 ### 新增功能類別的條件
 
-只有在現有六大類別都無法合理歸入時，才新增類別。新增前需經過討論確認。
+只有在現有八大類別都無法合理歸入時，才新增類別。新增前需經過討論確認。
 
 ---
 
@@ -75,18 +91,32 @@
 - Main Component + size Variants
 - Variable binding 到 comp/ token
 
-**目前的 Primitive**：
+**全產品 Primitive Registry**：
 
-| Component | 功能類別 | Tokens | 說明 |
-|-----------|---------|--------|------|
-| Button | Action | 49 | sm/md/lg/xl × primary/secondary/ghost × states |
-| Tab | Navigation | 28 | sm/md/lg/xl × active/inactive/hover |
-| Tag | Feedback | 61 | filter/display/action × sm/md/lg/xl |
-| Badge | Feedback | 11 | dot/count |
-| Icon | Media | 8 | xs/sm/md/lg × size + color |
-| Avatar | Media | 待定義 | sm/md/lg × circle/square |
-| Divider | Layout | 待定義 | horizontal/vertical |
-| SearchBar | Navigation | 待定義 | default/focus/disabled |
+| Component | 功能類別 | Tokens | 狀態 | 說明 |
+|-----------|---------|--------|------|------|
+| Button | Action | 49 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
+| Link | Action | — | 🔲 Future | text link, underline/no-underline |
+| Tab | Navigation | 28 | ✅ Done | sm/md/lg/xl × active/inactive/hover |
+| Tag | Feedback | 61 | ✅ Done | filter/display/action × sm/md/lg/xl |
+| Badge | Feedback | 11 | ✅ Done | dot/count |
+| Icon | Media | 8 | ✅ Done | xs/sm/md/lg × size + color |
+| Avatar | Media | — | 🔲 This week | sm/md/lg × circle |
+| Divider | Layout | — | 🔲 This week | horizontal/vertical |
+| SearchBar | Navigation | — | 🔲 This week | default/focus/disabled |
+| TextField | Input | — | 🔲 Backlog | default/focus/error/disabled × label + helper text |
+| Checkbox | Input | — | 🔲 Backlog | default/checked/indeterminate × disabled |
+| Radio | Input | — | 🔲 Backlog | default/selected × disabled |
+| Switch | Input | — | 🔲 Backlog | on/off × disabled |
+| Select (Dropdown) | Input | — | 🔲 Backlog | default/open/disabled |
+| Stepper | Input | — | 🔲 Backlog | 數量加減（商品購買） |
+| Spinner | Feedback | — | 🔲 Backlog | sm/md/lg |
+| Skeleton | Feedback | — | 🔲 Backlog | text/rect/circle placeholder |
+| ProgressBar | Feedback | — | 🔲 Backlog | determinate/indeterminate |
+| Logo | Media | — | 🔲 Future | Ruten/Ichiban/Resell brand logos |
+| Image | Display | — | 🔲 Future | placeholder + loading + error states |
+
+> **狀態說明**：✅ Done = token 已定義 | 🔲 This week = 本週定義 | 🔲 Backlog = 有 UI 時再定義 | 🔲 Future = 規劃中
 
 ### 4.2 Compound（組合元件）
 
@@ -108,16 +138,32 @@
 - Container 屬性綁 comp/ token
 - 子 Primitive 用 Instance，繼承子 Primitive 的 token
 
-**目前的 Compound**：
+**全產品 Compound Registry**：
 
-| Component | 功能類別 | Tokens | 組成 |
-|-----------|---------|--------|------|
-| ProductCard | Display | 51 | Image + Tag + Badge + 文字 + 價格 |
-| SectionHeader | Layout | 待定義 | Icon + 標題文字 (+副標/日期) |
-| FeatureCard | Display | 待定義 | Image + SectionHeader + Button |
-| NavigationBar | Navigation | 待定義 | SearchBar + Icon × 2 |
-| BottomNav | Navigation | 待定義 | Icon × 5 + Badge + 文字 |
-| Banner (Container) | Display | 待定義 | 固定外框結構，內容為 Pattern |
+| Component | 功能類別 | Tokens | 狀態 | 組成 |
+|-----------|---------|--------|------|------|
+| ProductCard | Display | 51 | ✅ Done | Image + Tag + Badge + 文字 + 價格 |
+| SectionHeader | Layout | — | 🔲 This week | Icon + 標題文字 (+副標/日期) |
+| FeatureCard | Display | — | 🔲 This week | Image + SectionHeader + Button |
+| NavigationBar | Navigation | — | 🔲 This week | SearchBar + Icon × 2 |
+| BottomNav | Navigation | — | 🔲 This week | Icon × 5 + Badge + 文字 |
+| Banner (Container) | Display | — | 🔲 This week | 固定外框，Content 為 Pattern |
+| Form Field | Input | — | 🔲 Backlog | TextField/Select + Label + HelperText + ErrorText |
+| Modal | Overlay | — | 🔲 Backlog | Header + Body + Footer (Button × 2) |
+| Dialog | Overlay | — | 🔲 Backlog | Title + Message + Button × 2 |
+| BottomSheet | Overlay | — | 🔲 Backlog | Handle + Header + scrollable Body |
+| Toast / Snackbar | Feedback | — | 🔲 Backlog | Icon + Message + Action Button |
+| Table | Display | — | 🔲 Backlog | Header Row + Body Rows + Pagination |
+| List Item | Display | — | 🔲 Backlog | Avatar/Icon + Text + Action |
+| Breadcrumb | Navigation | — | 🔲 Backlog | Link × N + Separator |
+| Pagination | Navigation | — | 🔲 Backlog | Button × N + Prev/Next |
+| Accordion | Layout | — | 🔲 Backlog | Header (Icon + Title) + collapsible Body |
+| EmptyState | Feedback | — | 🔲 Future | Image + Title + Description + Button |
+| Tooltip | Overlay | — | 🔲 Future | Arrow + Content |
+| Popover | Overlay | — | 🔲 Future | Arrow + rich Content |
+| Dropdown Menu | Overlay | — | 🔲 Future | List Item × N |
+| Drawer (Side Panel) | Overlay | — | 🔲 Future | Header + scrollable Body |
+| Carousel | Display | — | 🔲 Future | Image × N + indicator dots |
 
 ### 4.3 Pattern（佈局模式）
 
@@ -137,15 +183,20 @@
 - Section-level frame，不是 Main Component
 - 不做 Variable binding（用手動或 Auto Layout 設定）
 
-**目前的 Pattern**：
+**全產品 Pattern Registry**：
 
-| Pattern | 組成 | RWD 行為 |
-|---------|------|---------|
-| CategoryGrid | Avatar × N + Button | 3→4 columns |
-| HorizontalScroll | ProductCard × N 或 Avatar × N | gap + scroll-snap |
-| Banner Content | 文字 + 圖片 + CTA（在 Banner Container 內） | 內容自由排版 |
-| QuickInfoBar | Icon × 3 + 文字 | 橫排自適應 |
-| Ranking Section | SectionHeader + LeaderboardCard × N | 橫滑 |
+| Pattern | 功能類別 | 狀態 | 組成 | RWD 行為 |
+|---------|---------|------|------|---------|
+| CategoryGrid | Layout | 🔲 This week | Avatar × N + Button | 3→4 columns |
+| HorizontalScroll | Layout | 🔲 This week | ProductCard × N 或 Avatar × N | gap + scroll-snap |
+| Banner Content | Display | 🔲 This week | 文字 + 圖片 + CTA（在 Banner Container 內） | 內容自由排版 |
+| QuickInfoBar | Layout | 🔲 This week | Icon × 3 + 文字 | 橫排自適應 |
+| Ranking Section | Display | 🔲 This week | SectionHeader + LeaderboardCard × N | 橫滑 |
+| Form Layout | Input | 🔲 Backlog | Form Field × N + Button | 單/雙欄切換 |
+| Product Grid | Display | 🔲 Backlog | ProductCard × N in grid | 2→3→4 columns |
+| Filter Bar | Input | 🔲 Backlog | Tag × N + sort Select | 橫排自適應 |
+| Order Summary | Display | 🔲 Future | List Item × N + Divider + 金額 | 單欄 |
+| Checkout Flow | Input | 🔲 Future | Form Layout × N + steps | 多步驟 |
 
 ---
 
@@ -252,7 +303,7 @@ Step 1: 已有 component 可以覆蓋嗎？
   └─ 功能完全不同 → 新 Component，可能新功能類別（規則 C）
 
 Step 2: 功能類別是什麼？
-  → 歸入 Action / Display / Navigation / Feedback / Layout / Media
+  → 歸入 Action / Input / Display / Navigation / Feedback / Overlay / Layout / Media
 
 Step 3: 包含其他 DS component 嗎？
   │
@@ -310,6 +361,12 @@ Step 5: 定義 RWD
 | LeaderboardCard | **Compound（ProductCard variant）** | 結構像 ProductCard 但視覺差異大 | 共用 ProductCard 的佈局結構，用 Variant + Slot Override 處理差異。避免重複定義類似結構。 |
 | Banner | **Compound (Container) + Pattern (Content)** | 每檔活動內容不同，未來有 AI 產生內容 | Container 提供固定外框（圓角、尺寸、padding），Content 自由排版。AI 產內容時只需遵守 Container 的 token 約束。 |
 | HorizontalScroll | **Pattern** | 它是容器還是 component？ | 只是佈局行為（橫向滾動 + gap），不是有視覺身份的 component。用 CSS 實現，不需 comp/ token。 |
+| TextField | **Primitive (Input)** | 含 Label 和 HelperText，像 Compound | Label 和 HelperText 不是獨立的 DS component，是 TextField 的內部結構。TextField 作為完整輸入單元歸 Primitive。 |
+| Form Field | **Compound (Input)** | 跟 TextField 重疊？ | Form Field = TextField/Select + validation logic + error state 的外框容器。多個 Form Field 組合成 Form Layout (Pattern)。 |
+| Table | **Compound (Display)** | 太大太複雜？ | Table 是 Header Row + Body Row + Pagination 的組合。每個 Row 是 Compound，Table 本身也是 Compound（跨頁面大量複用）。 |
+| Modal | **Compound (Overlay)** | 歸 Overlay 還是 Layout？ | Modal 的核心行為是「覆蓋頁面、阻斷互動」，這是 Overlay 的定義。Layout 不阻斷互動。 |
+| BottomSheet | **Compound (Overlay)** | App 才有，Web 不用？ | React Native 大量使用，Vue Web 可用 Drawer 替代。兩者都歸 Overlay，用不同 component 名。 |
+| Dropdown Menu | **Compound (Overlay)** | 跟 Select 什麼關係？ | Select 是 Primitive（輸入控制），Dropdown Menu 是 Overlay（浮層呈現選項列表）。Select 內部可用 Dropdown Menu 實現。 |
 
 ### 新增邊界案例的時機
 
@@ -334,15 +391,20 @@ Step 5: 定義 RWD
 ```
 讀取 component 資訊時：
 1. 看功能類別 → 知道這個 component 做什麼用
+   Action / Input / Display / Navigation / Feedback / Overlay / Layout / Media
 2. 看組合深度 → 知道 token 規則
-   - Primitive: 用 comp/{name}/ token
+   - Primitive: 用 comp/{name}/ token（完整集）
    - Compound: 用 comp/{name}/ token（佈局）+ 子 Primitive 的 token
-   - Pattern: 用 sys/ token + CSS layout
+   - Pattern: 用 sys/ token + CSS layout（不建 comp/）
 3. 看 $description → 知道設計意圖
    - "Slot override." 開頭 = 此 context 的特殊覆寫
 4. 生成 RWD 時：
-   - Primitive/Compound: 切 size variant
+   - Primitive/Compound: 切 size variant（sm/md/lg/xl）
    - Pattern: 用 CSS grid/media query
+5. 新 component 進來時：
+   - 先查 Registry（§4 的三張表）看有沒有已定義的
+   - 沒有 → 走決策流程（§7）
+   - 有邊界爭議 → 查邊界案例表（§8）
 ```
 
 ---
