@@ -1,6 +1,6 @@
 # Ruten Design System — Cowork Instructions
 
-> 版本：v2.0.0 | 更新：2026-03-17
+> 版本：v2.1.0 | 更新：2026-03-18
 > 這份文件是 Cowork Claude 的唯一進入點。讀完這份就夠了。
 
 ---
@@ -44,6 +44,7 @@
 | `RUTEN_TODO.md` | Phase 1-4 全域待辦 | Kay（進度追蹤） |
 | `validate-design-system.py` | 驗證腳本 | Claude（每次改 JSON 後跑） |
 | `design-system-governance.md` | 治理規則、鎖定決策 | Claude（查規則用） |
+| `component-governance.md` | Component 分類 + token 規則 + RWD 治理 | Claude, 設計師, 工程師 |
 | `design-system-progress.md` | 建置進度筆記、決策紀錄 | Claude, Kay |
 | `tag-badge-usage-guideline.md` | Tag/Badge 使用規範 | Claude, 設計師 |
 | `token-migration-map.md` | 舊 token 遷移對照 | 工程師 |
@@ -70,13 +71,25 @@ Figma Variables → Text Styles（130）
 - comp → comp 引用合法（如 product-card/tag-brand → comp/tag/base）
 - 目前：529 tokens + 130 Text Styles
 
-### 元件分類
+### 元件分類（v2 三維體系）
 
-| Type | 說明 | 範例 |
-|------|------|------|
-| A Standard | 完全 token 化 | Button, Tab, Tag, Card |
-| B Composite | 部分 token + 部分 hardcode | 免運角標, 露天心選 badge |
-| C Assets | token 管尺寸，SVG 由 Figma 管 | Icons, Logos |
+詳細規則見 `component-governance.md`。以下為摘要：
+
+**維度一：功能類別**（按用途分）
+Action | Display | Navigation | Feedback | Layout | Media
+
+**維度二：組合深度**（決定 token 規則）
+
+| 深度 | 定義 | Token 規則 | RWD 規則 |
+|------|------|-----------|---------|
+| Primitive | 不含其他 DS component | 完整 comp/ token 集 | size variant (sm/md/lg/xl) |
+| Compound | 由 2+ Primitive 組合 | comp/ token 只管佈局 + Slot Override | size 或 layout variant |
+| Pattern | 頁面區域，不發布為 Main Component | 用 sys/ token，不建 comp/ | CSS grid/media query |
+
+**維度三：Token 擁有權**
+Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）| Inherited（用 sys/）
+
+> 舊分類對照：Type A → Primitive + Compound、Type B → Compound (Slot Override)、Type C → Primitive (Media 類)
 
 ---
 
@@ -137,11 +150,22 @@ Figma Variables → Text Styles（130）
 
 ## 9. RWD 策略（已確認：路線 C 混合）
 
-- **Component level**：Figma Variant `size = sm/md/lg/xl`
-- **Page level**：375px（手機）+ 768px（平板）兩版 frame
-- Token 的 sm/md/lg/xl = RWD 方案，不需額外 RWD token
-- Web：CSS media query 切 size variant
-- App：Dimensions API 判斷裝置類別
+### 各層級 RWD 治理邊界
+
+| 組合深度 | RWD 機制 | Token 層 | 工程實作 | Figma 表達 |
+|---------|---------|---------|---------|-----------|
+| Primitive | size variant (sm/md/lg/xl) | comp/ token 每個 size 有值 | CSS class 或 RN prop | Variant `size` |
+| Compound | size/layout variant | comp/ token 管佈局 | CSS class 或 RN prop | Variant |
+| Pattern | CSS layout (columns + gap) | sys/ token | CSS media query / grid auto-fit | 兩版 frame |
+| Page | breakpoint frame | sys/grid + sys/spacing | CSS media query / RN Dimensions | 375 / 768 frame |
+
+### 斷點（已鎖定）
+sm(375) / md(768) / lg(992) / xl(1200)
+
+### 決策口訣
+- 元件本身大小變了 → Primitive/Compound 的 size variant
+- 元件排列方式變了 → Pattern 的 CSS layout
+- 頁面結構變了 → Page 的 breakpoint frame
 
 ---
 
@@ -184,17 +208,22 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 
 ## 13. 新增元件的標準流程
 
-每個新 component 照這個流程走（詳見 EXECUTION_PLAN.md）：
+每個新 component 照這個流程走（決策規則詳見 `component-governance.md` §7）：
 
 ```
-1. Figma 截圖     get_design_context / get_screenshot → 確認設計
-2. 定義 token     comp/{component}/{property} → 寫入 JSON
-                   每個 token 必須有 $description（imperative-style）
-3. 驗證           python3 validate-design-system.py --root .
-4. 同步衍生檔     progress.md, governance.md, SKILL.md 數字
-5. Figma 匯入     Thierry plugin overlay import
-6. Figma Component Main Component + Variant (size = sm/md/lg/xl)
-7. 驗證 binding   get_variable_defs 確認綁定正確
+1. 決策分類     component-governance.md 決策流程 → 確認功能類別 + 組合深度
+2. Figma 截圖   get_design_context / get_screenshot → 確認設計
+3. 定義 token   Primitive: 完整 comp/ token 集
+                 Compound: comp/ 佈局 token + Slot Override（如需要）
+                 Pattern: 不建 comp/ token
+                 每個 token 必須有 $description（imperative-style）
+                 Slot Override 的 $description 以 "Slot override." 開頭
+4. 驗證         python3 validate-design-system.py --root .
+5. 同步衍生檔   progress.md, governance.md, SKILL.md, component-governance.md
+6. Figma 匯入   Thierry plugin overlay import
+7. Figma Component  Primitive/Compound: Main Component + Variant
+                    Pattern: section frame（不做 Main Component）
+8. 驗證 binding get_variable_defs 確認綁定正確
 ```
 
 ---

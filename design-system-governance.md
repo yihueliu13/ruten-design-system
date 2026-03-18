@@ -3,6 +3,7 @@
 > Baseline: **v1.0.0**  
 > Status: **sealed-baseline**  
 > Date: **2026-03-07**
+> Component Governance: **v1.0.0** (2026-03-18)
 
 ## Source of Truth
 
@@ -17,7 +18,17 @@
 - sys: 153
 - comp: 221
 - total: 529
-- total: 130
+- Text Styles: 130
+
+## Component 治理
+
+Component 分類、token 規則、RWD 治理邊界、新增 component 決策流程，
+詳見 **`component-governance.md`**（2026-03-18 建立）。
+
+摘要：
+- 功能類別：Action | Display | Navigation | Feedback | Layout | Media
+- 組合深度：Primitive（完整 comp/ token）| Compound（佈局 token + Slot Override）| Pattern（sys/ token only）
+- RWD：Primitive/Compound = size variant、Pattern = CSS layout、Page = breakpoint frame
 
 ## Text Styles
 
@@ -49,6 +60,7 @@
 - `design-system-viewer-live.html`
 - `design-system-viewer.html`
 - `create-text-styles.js`
+- `component-governance.md`
 
 ## Rule
 

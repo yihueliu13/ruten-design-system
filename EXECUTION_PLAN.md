@@ -1,9 +1,10 @@
 # Ruten Design System — 執行計畫
 
-> 更新：2026-03-17
+> 更新：2026-03-18
 > 範圍：分類館首頁 19 個 component
 > 目前：529 tokens (ref 155 + sys 153 + comp 221) + 130 Text Styles
 > 策略決策見 COWORK_INSTRUCTIONS.md §9-10
+> Component 治理見 component-governance.md
 
 ---
 
@@ -11,34 +12,35 @@
 
 ### A. 已有 token（需收尾 + 建 Figma Component）
 
-| # | Component | Tokens | 狀態 | 待做 |
-|---|-----------|--------|------|------|
-| 1 | ProductCard | 51 | ✅ Binding 大致完成 | 轉 Main Component + Variants |
-| 2 | Button | 49 | ✅ Token 完成 | 建 Figma Main Component (size × style) |
-| 3 | Tab | 28 | ✅ Token 完成 | 建 Figma Main Component (size × state) |
-| 4 | Tag (Filter) | 61 | ✅ 清理完成 | 無舊路徑殘留（2026-03-17 驗證） |
-| 5 | Tag (Display) | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |
-| 6 | Tag (Promo Corner) | 含 #4 | ✅ | — |
-| 7 | Icon | 8 | ✅ outline 完成 | 23 icon detach + -lite + color binding（2026-03-17） |
-| 8 | Badge | 11 | ✅ Token 完成 | 建 Figma Main Component (dot/count) |
+| # | Component | 類別 | 深度 | Tokens | 狀態 | 待做 |
+|---|-----------|------|------|--------|------|------|
+| 1 | ProductCard | Display | Compound | 51 | ✅ Binding 大致完成 | 轉 Main Component + Variants |
+| 2 | Button | Action | Primitive | 49 | ✅ Token 完成 | 建 Figma Main Component (size × style) |
+| 3 | Tab | Navigation | Primitive | 28 | ✅ Token 完成 | 建 Figma Main Component (size × state) |
+| 4 | Tag (Filter) | Feedback | Primitive | 61 | ✅ 清理完成 | 無舊路徑殘留（2026-03-17 驗證） |
+| 5 | Tag (Display) | Feedback | Primitive | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |
+| 6 | Tag (Promo Corner) | Feedback | Primitive | 含 #4 | ✅ | — |
+| 7 | Icon | Media | Primitive | 8 | ✅ outline 完成 | 23 icon detach + -lite + color binding（2026-03-17） |
+| 8 | Badge | Feedback | Primitive | 11 | ✅ Token 完成 | 建 Figma Main Component (dot/count) |
 
 ### B. 需全新定義 token（按執行優先序）
 
-| 優先 | # | Component | 出現位置 | 預估 tokens |
-|------|---|-----------|----------|-------------|
-| P1 | 9 | SectionHeader | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | ~12 |
-| P1 | 10 | NavigationBar (Top) | 頂部橘色導航列 | ~10 |
-| P1 | 11 | SearchBar | 頂部搜尋框（嵌在 NavBar 內） | ~10 |
-| P1 | 12 | BottomNav | 底部五 tab 導航 | ~12 |
-| P2 | 13 | CategoryGrid | 熱門分類 icon+文字 快捷入口 | ~8 |
-| P2 | 14 | HorizontalScroll | 大家都在玩 / 焦點主題 橫滑 | ~5 |
-| P2 | 15 | FeatureCard | 焦點主題大圖卡片 | ~8 |
-| P3 | 16 | QuickInfoBar | 保障購物（評價/出貨/退貨） | ~8 |
-| P3 | 17 | Divider | 各區塊間分隔線 | ~3 |
-| P3 | 18 | Banner (Ad) | 廣告輪播區 | ~4 |
-| P3 | 19 | Avatar (Round) | 圓形角色圖 | ~2 |
+| 優先 | # | Component | 類別 | 深度 | 出現位置 | 預估 tokens |
+|------|---|-----------|------|------|----------|-------------|
+| P1 | 9 | SectionHeader | Layout | Compound | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | ~12 |
+| P1 | 10 | NavigationBar (Top) | Navigation | Compound | 頂部橘色導航列 | ~10 |
+| P1 | 11 | SearchBar | Navigation | Primitive | 頂部搜尋框（嵌在 NavBar 內） | ~10 |
+| P1 | 12 | BottomNav | Navigation | Compound | 底部五 tab 導航 | ~12 |
+| P2 | 13 | CategoryGrid | Layout | Pattern | 熱門分類 icon+文字 快捷入口 | 0（用 sys/） |
+| P2 | 14 | HorizontalScroll | Layout | Pattern | 大家都在玩 / 焦點主題 橫滑 | 0（用 sys/） |
+| P2 | 15 | FeatureCard | Display | Compound | 焦點主題大圖卡片 | ~8 |
+| P3 | 16 | QuickInfoBar | Layout | Pattern | 保障購物（評價/出貨/退貨） | 0（用 sys/） |
+| P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | ~3 |
+| P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | ~4（Container only） |
+| P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ~6 |
 
-**預估新增 ~82 tokens → 總量 ~595**
+**預估新增 ~65 tokens → 總量 ~594**
+（較先前估計 ~82 減少，因 Pattern 層不建 comp/ token）
 
 ---
 

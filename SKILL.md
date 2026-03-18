@@ -49,6 +49,37 @@ Semantic aliases to ref. Includes sys/color/price (red, for promotional prices).
 - **tab (28):** sm/md/lg/xl × active/inactive/hover
 - **tag (61):** filter/display/action × sm/md/lg/xl + promo-corner
 
+## Component Governance (v1.0.0)
+
+Full rules: `component-governance.md`. Summary for AI:
+
+**Classification: [Category] × [Depth] × [Ownership]**
+- Category: Action | Display | Navigation | Feedback | Layout | Media
+- Depth: Primitive | Compound | Pattern
+- Ownership: Owned | Slot Override | Inherited
+
+**Token rules by depth:**
+- Primitive: full comp/ token set, alias to sys only, no comp→comp reference
+- Compound: comp/ tokens for layout only (padding, gap, bg, radius). Child styles controlled by child's comp/ tokens. Slot Override allowed when child needs context-specific visuals.
+- Pattern: no comp/ tokens. Use sys/ tokens + CSS layout.
+
+**Slot Override convention:**
+- Path: `comp/{compound}/{slot}/{property}`
+- $description MUST start with `"Slot override."`
+- MUST alias to sys layer (not to child primitive's comp/ token)
+
+**RWD by depth:**
+- Primitive/Compound: Figma Variant `size = sm/md/lg/xl`, comp/ tokens per size
+- Pattern: CSS grid/flex, sys/ tokens for gap/columns
+- Page: breakpoint frames 375/768
+
+**New component decision flow:**
+1. Existing component covers it? → Variant (same structure) or new comp (different structure)
+2. Assign category → Action/Display/Navigation/Feedback/Layout/Media
+3. Contains other DS components? → No: Primitive | Yes + reusable: Compound | Yes + section-only: Pattern
+4. Define tokens per depth rule
+5. Define RWD per depth rule
+
 ## Text Styles — 130 styles ✅
 CH/PingFang TC (65) + EN/SF Pro (65)
 Built with Scripter plugin script: create-text-styles.js
@@ -76,3 +107,4 @@ Built with Scripter plugin script: create-text-styles.js
 | SKILL.md | This file |
 | design-system-progress.md | Decision log |
 | design-system-governance.md | Governance and update rules |
+| component-governance.md | Component classification, token rules, RWD governance |
