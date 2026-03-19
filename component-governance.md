@@ -1,8 +1,8 @@
 # Ruten Design System — Component 治理規則
 
-> 版本：v1.1.0
+> 版本：v1.2.0
 > 建立：2026-03-18
-> 更新：2026-03-18（擴充功能類別 + 全產品 Component Registry）
+> 更新：2026-03-19（Compound 規則修正 + control-height 體系 + Registry 狀態更新）
 > 狀態：已確認
 > 適用對象：AI Agent、UX 設計師、前端工程師
 
@@ -82,6 +82,49 @@
 - 所有 token alias 到 sys 層（不跳層到 ref）
 - Primitive 的 token **不引用**其他 Primitive 的 comp/ token
 
+**互動控件高度（control-height 體系）**：
+
+參考 Ant Design v5 的 controlHeight Map Token，所有互動控件的 min-height 統一由 `sys/sizing/control-height/*` 管理。
+
+| sys token | 值 | 對應元件 |
+|-----------|---|---------|
+| control-height/xs | 16px | Tag s |
+| control-height/sm | 20px | Tag m |
+| control-height/md | 28px | Tag l |
+| control-height/default | 32px | Button sm, Tab sm, SearchBar |
+| control-height/lg | 36px | Tag lg-alt |
+| control-height/xl | 40px | Button md, Tab md（= WCAG 最小觸碰目標） |
+| control-height/2xl | 44px | Tab lg |
+| control-height/3xl | 48px | Button lg, Tab xl, NavigationBar |
+| control-height/4xl | 52px | Button xl |
+
+工程端垂直 padding 計算公式（參考 Ant Design）：
+```
+paddingBlock = (controlHeight - fontHeight) / 2 - borderWidth
+```
+controlHeight 是固定高度（設計決策），padding 是反推的（工程實作）。
+
+**高度計算範例（Button sm = 32px）**：
+```
+controlHeight = 32px（← token 控制，設計師決定）
+fontHeight    = fontSize 14px × lineHeight 1.57 ≈ 22px（← Text Style 控制）
+borderWidth   = 1px（← token 控制）
+
+paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 token）
+
+驗算：1(上邊框) + 4(上padding) + 22(文字) + 4(下padding) + 1(下邊框) = 32px ✅
+```
+
+**controlHeight 常見問題**：
+
+| 問題 | 答案 |
+|------|------|
+| controlHeight 是固定高度還是最小高度？ | **固定高度。** 工程端用 CSS `height` 或 `min-height` + `flex align-items: center` 實作 |
+| line-height 會撐開嗎？ | **不會。** padding 是反推的，保證總高度 = controlHeight |
+| padding-v 需要 token 嗎？ | **不需要。** 工程端用公式算。但既有的 Button/Tab padding-v token 保留，Figma Auto Layout 需要 |
+| fontSize 改了怎麼辦？ | padding 自動重新計算，controlHeight 不變 |
+| fontHeight > controlHeight 怎麼辦？ | **不允許。** 每個 control-height 階級配對固定的 Text Style，設計師不能任意把大字塞進小控件 |
+
 **RWD 規則**：
 - 透過 Figma Variant `size = sm/md/lg/xl` 實現
 - 每個 size variant 有獨立的 token 值
@@ -101,9 +144,9 @@
 | Tag | Feedback | 61 | ✅ Done | filter/display/action × sm/md/lg/xl |
 | Badge | Feedback | 11 | ✅ Done | dot/count |
 | Icon | Media | 8 | ✅ Done | xs/sm/md/lg × size + color |
-| Avatar | Media | — | 🔲 This week | sm/md/lg × circle |
-| Divider | Layout | — | 🔲 This week | horizontal/vertical |
-| SearchBar | Navigation | — | 🔲 This week | default/focus/disabled |
+| Avatar | Media | 11 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
+| Divider | Layout | 5 | ✅ Done | hairline/default/heavy thickness |
+| SearchBar | Navigation | 11 | ✅ Done | default/focus × pill shape |
 | TextField | Input | — | 🔲 Backlog | default/focus/error/disabled × label + helper text |
 | Checkbox | Input | — | 🔲 Backlog | default/checked/indeterminate × disabled |
 | Radio | Input | — | 🔲 Backlog | default/selected × disabled |
@@ -123,10 +166,14 @@
 **定義**：由 2 個以上 Primitive 組合而成，有獨立功能，在多個頁面或場景中複用。
 
 **Token 規則**：
-- 擁有自己的 `comp/{compound}/` token，**只管佈局屬性**：container padding、gap、background、border-radius、elevation
-- 子 Primitive 的樣式由子 Primitive 的 comp/ token 控制
+- 擁有自己的 `comp/{compound}/` token，管這個元件**所有不屬於獨立子 Primitive 的屬性**
+- 包含容器佈局（padding、gap、border-radius、elevation）**和**非獨立子元素的外觀（icon color/size、label color、indicator 等）
+- 判斷標準：**子元素有沒有自己獨立的 comp/ token 集？**
+  - 有（如 SearchBar、Button、Tag）→ 子 Primitive 自己管，需要覆寫走 Slot Override（§5）
+  - 沒有（如 BottomNav 的 tab item、NavigationBar 的 back arrow icon）→ Compound 直接管
+- 參考 Material Design 3 component token 做法：每個 component token 管該元件所有對外暴露的設計決策，不區分佈局與視覺
 - 允許 comp → comp 引用
-- **Slot Override**（規則 3a）：當子 Primitive 在此 context 有特殊視覺需求時，允許定義覆寫 token（見第 5 節詳細說明）
+- **Slot Override**（規則 3a）：當**獨立**子 Primitive 在此 context 有特殊視覺需求時，允許定義覆寫 token（見第 5 節詳細說明）
 
 **RWD 規則**：
 - 可有 size variant（如 ProductCard sm/md）
@@ -143,10 +190,10 @@
 | Component | 功能類別 | Tokens | 狀態 | 組成 |
 |-----------|---------|--------|------|------|
 | ProductCard | Display | 51 | ✅ Done | Image + Tag + Badge + 文字 + 價格 |
-| SectionHeader | Layout | — | 🔲 This week | Icon + 標題文字 (+副標/日期) |
+| SectionHeader | Layout | 7 | ✅ Done | Icon + 標題文字 (+副標/日期) |
 | FeatureCard | Display | — | 🔲 This week | Image + SectionHeader + Button |
-| NavigationBar | Navigation | — | 🔲 This week | SearchBar + Icon × 2 |
-| BottomNav | Navigation | — | 🔲 This week | Icon × 5 + Badge + 文字 |
+| NavigationBar | Navigation | 6 | ✅ Done | SearchBar + Icon × 2 |
+| BottomNav | Navigation | 12 | ✅ Done | Icon × 5 + Badge + 文字 + center button |
 | Banner (Container) | Display | — | 🔲 This week | 固定外框，Content 為 Pattern |
 | Form Field | Input | — | 🔲 Backlog | TextField/Select + Label + HelperText + ErrorText |
 | Modal | Overlay | — | 🔲 Backlog | Header + Body + Footer (Button × 2) |
@@ -394,7 +441,7 @@ Step 5: 定義 RWD
    Action / Input / Display / Navigation / Feedback / Overlay / Layout / Media
 2. 看組合深度 → 知道 token 規則
    - Primitive: 用 comp/{name}/ token（完整集）
-   - Compound: 用 comp/{name}/ token（佈局）+ 子 Primitive 的 token
+   - Compound: 用 comp/{name}/ token（所有非獨立子元素屬性）+ 獨立子 Primitive 的 token
    - Pattern: 用 sys/ token + CSS layout（不建 comp/）
 3. 看 $description → 知道設計意圖
    - "Slot override." 開頭 = 此 context 的特殊覆寫

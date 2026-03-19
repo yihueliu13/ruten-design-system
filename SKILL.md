@@ -14,7 +14,7 @@ description: |
 ## Overview
 AI-readable, multi-brand design system for Ruten e-commerce (露天市集, 一抽入魂, 預購市場).
 
-**Total:** 529 tokens + 130 Text Styles
+**Total:** 597 tokens + 130 Text Styles
 
 **Workflow:**
 ```
@@ -32,13 +32,13 @@ Figma export → AI transform/validate → JSON → Import to Figma → Bind Var
 | Typography in Figma | Text Styles | One-click apply, not one-by-one Variable binding |
 | Typography in JSON | Keep as semantic/component-readable tokens | AI and engineers read from JSON |
 
-## ref Layer — 155 tokens ✅
+## ref Layer — 159 tokens ✅
 Raw atomic values. Never used directly.
 - color(45), spacing(13), sizing(11), radius(9), typography(36), elevation(6), opacity(8), border(9), breakpoint(5), z-index(8), duration(4)
 - Font-size: 8px (label-2xs) → 64px (display-3xl)
 - Breakpoint: sm(375) · md(768) · lg(992) · xl(1200) · 2xl(1440)
 
-## sys Layer — 153 tokens ✅
+## sys Layer — 165 tokens ✅
 Semantic aliases to ref. Includes sys/color/price (red, for promotional prices).
 - color(42), spacing(10), sizing(11), radius(6), typography(38), elevation(6), opacity(8), border(8), grid(8), z-index(8), duration(4)
 

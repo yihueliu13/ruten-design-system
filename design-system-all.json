@@ -651,6 +651,26 @@
           ],
           "com.figma.isOverride": true
         }
+      },
+      "7": {
+        "$type": "number",
+        "$value": 28,
+        "$description": "28px. Base sizing unit."
+      },
+      "9": {
+        "$type": "number",
+        "$value": 36,
+        "$description": "36px. Base sizing unit."
+      },
+      "11": {
+        "$type": "number",
+        "$value": 44,
+        "$description": "44px. Base sizing unit."
+      },
+      "13": {
+        "$type": "number",
+        "$value": 52,
+        "$description": "52px. Base sizing unit."
       }
     },
     "z-index": {
@@ -2593,6 +2613,68 @@
           ],
           "com.figma.isOverride": true
         }
+      },
+      "control-height": {
+        "xs": {
+          "$type": "number",
+          "$value": "{ref.sizing.4}",
+          "$description": "16px. Control extra-small height. Use for tag s, compact inline elements."
+        },
+        "sm": {
+          "$type": "number",
+          "$value": "{ref.sizing.5}",
+          "$description": "20px. Control small height. Use for tag m, small chips."
+        },
+        "md": {
+          "$type": "number",
+          "$value": "{ref.sizing.7}",
+          "$description": "28px. Control medium height. Use for tag l."
+        },
+        "default": {
+          "$type": "number",
+          "$value": "{ref.sizing.8}",
+          "$description": "32px. Control default height. Base controlHeight per Ant Design convention. Use for button sm, tab sm, search bar."
+        },
+        "lg": {
+          "$type": "number",
+          "$value": "{ref.sizing.9}",
+          "$description": "36px. Control large height. Use for tag lg-alt."
+        },
+        "xl": {
+          "$type": "number",
+          "$value": "{ref.sizing.10}",
+          "$description": "40px. Control extra-large height. Minimum touch target per WCAG/HIG. Use for button md, tab md, bottom-nav center button."
+        },
+        "2xl": {
+          "$type": "number",
+          "$value": "{ref.sizing.11}",
+          "$description": "44px. Control 2x-large height. Use for tab lg."
+        },
+        "3xl": {
+          "$type": "number",
+          "$value": "{ref.sizing.12}",
+          "$description": "48px. Control 3x-large height. Use for button lg, tab xl, navigation bar."
+        },
+        "4xl": {
+          "$type": "number",
+          "$value": "{ref.sizing.13}",
+          "$description": "52px. Control 4x-large height. Use for button xl."
+        }
+      },
+      "avatar-xs": {
+        "$type": "number",
+        "$value": "{ref.sizing.6}",
+        "$description": "24px. Avatar extra-small. Use for inline mentions, notification lists."
+      },
+      "avatar-xl": {
+        "$type": "number",
+        "$value": "{ref.sizing.20}",
+        "$description": "80px. Avatar extra-large. Use for featured topics, seller grid, category highlights."
+      },
+      "avatar-2xl": {
+        "$type": "number",
+        "$value": "{ref.sizing.24}",
+        "$description": "96px. Avatar 2x-large. Use for category index hero thumbnails."
       }
     },
     "radius": {
@@ -4320,7 +4402,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 32,
+          "$value": "{sys.sizing.control-height.default}",
           "$description": "Button sm minimum height. 32px. Compact touch target.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14460",
@@ -4394,7 +4476,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 40,
+          "$value": "{sys.sizing.control-height.xl}",
           "$description": "Button md minimum height. 40px. Standard touch target.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14466",
@@ -4468,7 +4550,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 48,
+          "$value": "{sys.sizing.control-height.3xl}",
           "$description": "Button lg minimum height. 48px. Large touch target.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14472",
@@ -4542,7 +4624,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 52,
+          "$value": "{sys.sizing.control-height.4xl}",
           "$description": "Button xl minimum height. 52px. Prominent touch/click target.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14478",
@@ -4944,7 +5026,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 32,
+          "$value": "{sys.sizing.control-height.default}",
           "$description": "Tab sm height. 32px.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14482",
@@ -4994,7 +5076,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 40,
+          "$value": "{sys.sizing.control-height.xl}",
           "$description": "Tab md height. 40px.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14486",
@@ -5044,7 +5126,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 44,
+          "$value": "{sys.sizing.control-height.2xl}",
           "$description": "Tab lg height. 44px.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14490",
@@ -5144,7 +5226,7 @@
         },
         "min-height": {
           "$type": "number",
-          "$value": 48,
+          "$value": "{sys.sizing.control-height.3xl}",
           "$description": "Tab xl height. 48px.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14495",
@@ -5222,7 +5304,7 @@
         },
         "s": {
           "min-height": {
-            "$value": 16,
+            "$value": "{sys.sizing.control-height.xs}",
             "$description": "Tag s min-height. 16px. Shipping badges, discount corners on product card.",
             "$type": "number"
           },
@@ -5244,7 +5326,7 @@
         },
         "m": {
           "min-height": {
-            "$value": 20,
+            "$value": "{sys.sizing.control-height.sm}",
             "$description": "Tag m min-height. 20px. Brand badges on product card, prize level tags.",
             "$type": "number"
           },
@@ -5271,7 +5353,7 @@
         },
         "l": {
           "min-height": {
-            "$value": 28,
+            "$value": "{sys.sizing.control-height.md}",
             "$description": "Tag l min-height. 28px. Default interactive size. Filter chips, search history, Web filter. Core size for Ichiban filter tags.",
             "$type": "number"
           },
@@ -5299,7 +5381,7 @@
         "lg-alt": {
           "min-height": {
             "$type": "number",
-            "$value": 36,
+            "$value": "{sys.sizing.control-height.lg}",
             "$description": "Tag lg-alt minimum height. 36px. Use for Action Sheet filter tags requiring larger touch targets.",
             "$extensions": {
               "com.figma.scopes": [
@@ -6559,6 +6641,300 @@
         "$value": -4,
         "$description": "Badge position offset-y. -4px. Overlaps parent element's top-right corner.",
         "$type": "number"
+      }
+    },
+    "divider": {
+      "color": {
+        "$type": "color",
+        "$value": "{sys.color.outline-variant}",
+        "$description": "Divider line color. Light grey. Default for horizontal and vertical dividers."
+      },
+      "thickness-hairline": {
+        "$type": "number",
+        "$value": "{sys.border.width.hairline}",
+        "$description": "Divider hairline thickness. 0.5px. Use for subtle separation between list items."
+      },
+      "thickness-default": {
+        "$type": "number",
+        "$value": "{sys.border.width.default}",
+        "$description": "Divider default thickness. 1px. Use for standard section separation."
+      },
+      "thickness-heavy": {
+        "$type": "number",
+        "$value": "{sys.border.width.focus}",
+        "$description": "Divider heavy thickness. 2px. Use for strong visual separation between major sections."
+      },
+      "spacing": {
+        "$type": "number",
+        "$value": "{sys.spacing.xs}",
+        "$description": "Divider surrounding spacing. 8px. Margin above and below the divider line."
+      }
+    },
+    "avatar": {
+      "xs": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-xs}",
+          "$description": "Avatar xs size. 24px. Use for inline mentions, compact lists."
+        }
+      },
+      "sm": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-sm}",
+          "$description": "Avatar sm size. 32px. Use for comment authors, chat bubbles."
+        }
+      },
+      "md": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-md}",
+          "$description": "Avatar md size. 40px. Use for navigation bar, list items."
+        }
+      },
+      "lg": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-lg}",
+          "$description": "Avatar lg size. 48px. Use for seller info, profile sections."
+        }
+      },
+      "xl": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-xl}",
+          "$description": "Avatar xl size. 80px. Use for featured topic grid, seller highlights."
+        }
+      },
+      "2xl": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.avatar-2xl}",
+          "$description": "Avatar 2xl size. 96px. Use for category index hero thumbnails."
+        }
+      },
+      "border-radius": {
+        "$type": "number",
+        "$value": "{sys.radius.full}",
+        "$description": "Avatar shape. Circle (9999px). All avatars are circular."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "Avatar fallback background. White. Show when image is loading or missing."
+      },
+      "active": {
+        "border-width": {
+          "$type": "number",
+          "$value": "{sys.border.width.focus}",
+          "$description": "Avatar active border width. 2px. Use for selected/highlighted avatar."
+        },
+        "border-color": {
+          "$type": "color",
+          "$value": "{sys.color.primary}",
+          "$description": "Avatar active border color. Brand orange. Use for selected/highlighted avatar. Pair with comp/avatar/active/border-width."
+        }
+      },
+      "default": {
+        "border-width": {
+          "$type": "number",
+          "$value": "{sys.border.width.none}",
+          "$description": "Avatar default border width. 0px. No border in default state."
+        }
+      }
+    },
+    "search-bar": {
+      "height": {
+        "$type": "number",
+        "$value": "{sys.sizing.control-height.default}",
+        "$description": "SearchBar input field height. 32px. Use for default search input on navigation bar."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "SearchBar input field background. White. Use for default state input area."
+      },
+      "border-color": {
+        "$type": "color",
+        "$value": "{sys.color.outline-variant}",
+        "$description": "SearchBar input field border color. Light grey. Use for default state border."
+      },
+      "border-width": {
+        "$type": "number",
+        "$value": "{sys.border.width.default}",
+        "$description": "SearchBar input field border width. 1px."
+      },
+      "border-radius": {
+        "$type": "number",
+        "$value": "{sys.radius.full}",
+        "$description": "SearchBar input field border radius. Pill shape (9999px)."
+      },
+      "padding-h": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "SearchBar input field horizontal padding. 16px."
+      },
+      "placeholder-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-variant}",
+        "$description": "SearchBar placeholder text color. Subdued grey. Use for hint text when empty."
+      },
+      "icon-size": {
+        "$type": "number",
+        "$value": "{sys.sizing.icon-md}",
+        "$description": "SearchBar icon size. 24px. Use for search and action icons."
+      },
+      "icon-gap": {
+        "$type": "number",
+        "$value": "{sys.spacing.sm}",
+        "$description": "Gap between left icon and input field. 12px."
+      },
+      "focus": {
+        "border-color": {
+          "$type": "color",
+          "$value": "{sys.color.primary}",
+          "$description": "SearchBar focused state border color. Brand orange. Use when user taps the search field."
+        },
+        "border-width": {
+          "$type": "number",
+          "$value": "{sys.border.width.focus}",
+          "$description": "SearchBar focused state border width. 2px. Thicker border to indicate active focus."
+        }
+      }
+    },
+    "nav-bar": {
+      "height": {
+        "$type": "number",
+        "$value": "{sys.sizing.control-height.3xl}",
+        "$description": "NavigationBar row height. 48px. Excludes system StatusBar. Use for the main action bar below status bar."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface-brand}",
+        "$description": "NavigationBar background color. Brand orange. Use for primary navigation context (home, category). Pair with on-surface-brand for icon/text color."
+      },
+      "padding-h": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "NavigationBar horizontal padding. 16px. Both left and right."
+      },
+      "icon-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "NavigationBar icon color on brand background. White. Use for back arrow, cart, notification icons."
+      },
+      "icon-size": {
+        "$type": "number",
+        "$value": "{sys.sizing.icon-md}",
+        "$description": "NavigationBar action icon size. 24px."
+      },
+      "gap": {
+        "$type": "number",
+        "$value": "{sys.spacing.sm}",
+        "$description": "Gap between NavigationBar child elements. 12px."
+      }
+    },
+    "bottom-nav": {
+      "height": {
+        "$type": "number",
+        "$value": "{sys.sizing.thumbnail-md}",
+        "$description": "BottomNav total height. 80px. Includes safe area for gesture navigation."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.inverse-surface}",
+        "$description": "BottomNav background. Dark surface (neutral/900)."
+      },
+      "border-radius": {
+        "$type": "number",
+        "$value": "{sys.radius.md}",
+        "$description": "BottomNav top corner radius. 16px. Top-left and top-right only."
+      },
+      "elevation": {
+        "$type": "string",
+        "$value": "{sys.elevation.low}",
+        "$description": "BottomNav upward shadow. Floating effect above content."
+      },
+      "padding-top": {
+        "$type": "number",
+        "$value": "{sys.spacing.lg}",
+        "$description": "BottomNav top padding. 24px. Space from top edge to tab icons."
+      },
+      "item": {
+        "icon-size": {
+          "$type": "number",
+          "$value": "{sys.sizing.icon-md}",
+          "$description": "BottomNav tab icon size. 24px."
+        },
+        "icon-text-gap": {
+          "$type": "number",
+          "$value": "{sys.spacing.2xs}",
+          "$description": "Gap between tab icon and label. 4px."
+        },
+        "text-color": {
+          "$type": "color",
+          "$value": "{sys.color.primary-container}",
+          "$description": "BottomNav tab label default color. Light orange on dark background."
+        },
+        "text-color-active": {
+          "$type": "color",
+          "$value": "{sys.color.primary}",
+          "$description": "BottomNav active tab label color. Brand orange."
+        }
+      },
+      "center-button": {
+        "size": {
+          "$type": "number",
+          "$value": "{sys.sizing.control-height.xl}",
+          "$description": "BottomNav center action button size. 40px. The prominent listing/create button."
+        },
+        "border-radius": {
+          "$type": "number",
+          "$value": "{sys.radius.full}",
+          "$description": "BottomNav center button shape. Circle (9999px)."
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{sys.color.primary}",
+          "$description": "BottomNav center button background. Brand orange. Primary CTA."
+        }
+      }
+    },
+    "section-header": {
+      "icon-size": {
+        "$type": "number",
+        "$value": "{sys.sizing.icon-md}",
+        "$description": "SectionHeader leading icon size. 24px. Decorative brand icon before title."
+      },
+      "icon-text-gap": {
+        "$type": "number",
+        "$value": "{sys.spacing.2xs}",
+        "$description": "Gap between icon and title text. 4px."
+      },
+      "title-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface}",
+        "$description": "SectionHeader title color. Dark grey. Use on white/light surface sections."
+      },
+      "title-color-inverse": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "SectionHeader title color on brand surface. White. Use on orange background sections like leaderboard."
+      },
+      "subtitle-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "SectionHeader subtitle color. White. Use for date range or secondary info on brand surface."
+      },
+      "padding-h": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "SectionHeader horizontal padding. 16px. Aligns with page-level content padding."
+      },
+      "height": {
+        "$type": "number",
+        "$value": "{sys.sizing.icon-md}",
+        "$description": "SectionHeader row height. 24px. Matches icon size and title line-height for single-line vertical alignment."
       }
     }
   },
