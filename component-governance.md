@@ -43,7 +43,7 @@
 |---------|------|------|
 | **Action** | 觸發操作的互動元件 | Button, Link, FAB |
 | **Input** | 使用者輸入資料 | TextField, Checkbox, Radio, Switch, Select, Stepper, DatePicker |
-| **Display** | 展示商品或內容資訊 | ProductCard, FeatureCard, Banner, Table, List, Carousel, Image |
+| **Display** | 展示商品或內容資訊 | ProductCard, SectionModule, Banner, Table, List, Carousel, Image |
 | **Navigation** | 頁面或區域間的導航 | NavigationBar, BottomNav, Tab, SearchBar, Breadcrumb, Pagination, Sidebar |
 | **Feedback** | 狀態回饋、標記、通知 | Badge, Tag, Toast, Snackbar, ProgressBar, Spinner, Skeleton, EmptyState |
 | **Overlay** | 覆蓋在頁面上的浮層元件 | Modal, Dialog, BottomSheet, Drawer, Popover, Tooltip, Dropdown |
@@ -191,10 +191,10 @@ paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 
 |-----------|---------|--------|------|------|
 | ProductCard | Display | 51 | ✅ Done | Image + Tag + Badge + 文字 + 價格 |
 | SectionHeader | Layout | 7 | ✅ Done | Icon + 標題文字 (+副標/日期) |
-| FeatureCard | Display | — | 🔲 This week | Image + SectionHeader + Button |
+| SectionModule | Display | 7 | ✅ Done | SectionHeader + Slot A (filter) + Slot B (content) + Footer |
 | NavigationBar | Navigation | 6 | ✅ Done | SearchBar + Icon × 2 |
 | BottomNav | Navigation | 12 | ✅ Done | Icon × 5 + Badge + 文字 + center button |
-| Banner (Container) | Display | — | 🔲 This week | 固定外框，Content 為 Pattern |
+| Banner (Container) | Display | 4 | ✅ Done | 固定外框，Content 為 Pattern |
 | Form Field | Input | — | 🔲 Backlog | TextField/Select + Label + HelperText + ErrorText |
 | Modal | Overlay | — | 🔲 Backlog | Header + Body + Footer (Button × 2) |
 | Dialog | Overlay | — | 🔲 Backlog | Title + Message + Button × 2 |

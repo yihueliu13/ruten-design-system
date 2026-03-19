@@ -2,7 +2,7 @@
 
 > 更新：2026-03-18
 > 範圍：分類館首頁 19 個 component
-> 目前：529 tokens (ref 155 + sys 153 + comp 221) + 130 Text Styles
+> 目前：608 tokens (ref 159 + sys 165 + comp 284) + 130 Text Styles
 > 策略決策見 COWORK_INSTRUCTIONS.md §9-10
 > Component 治理見 component-governance.md
 
@@ -33,10 +33,10 @@
 | P1 | 12 | BottomNav | Navigation | Compound | 底部五 tab 導航 | ~12 |
 | P2 | 13 | CategoryGrid | Layout | Pattern | 熱門分類 icon+文字 快捷入口 | 0（用 sys/） |
 | P2 | 14 | HorizontalScroll | Layout | Pattern | 大家都在玩 / 焦點主題 橫滑 | 0（用 sys/） |
-| P2 | 15 | FeatureCard | Display | Compound | 焦點主題大圖卡片 | ~8 |
+| P2 | 15 | SectionModule | Display | Compound | 區塊容器（SectionHeader + Slots + Footer） | 7 ✅ |
 | P3 | 16 | QuickInfoBar | Layout | Pattern | 保障購物（評價/出貨/退貨） | 0（用 sys/） |
 | P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | ~3 |
-| P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | ~4（Container only） |
+| P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | 4 ✅ |
 | P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ~6 |
 
 **預估新增 ~65 tokens → 總量 ~594**
@@ -98,12 +98,12 @@ Chat 下一個元件（或回來修正）
 - [ ] #8 Badge：Main Component (dot/count)
 - [ ] #13 CategoryGrid
 - [ ] #14 HorizontalScroll
-- [ ] #15 FeatureCard
+- [x] #15 SectionModule（token 完成 7 tokens）
 
 ### Sprint 5：P3 剩餘元件
 - [ ] #16 QuickInfoBar
 - [ ] #17 Divider
-- [ ] #18 Banner (Ad)
+- [x] #18 Banner Container（token 完成 4 tokens）
 
 ### Sprint 6：Variable Binding 審核 + Library 發布
 - [ ] 所有元件 binding 完整度審核

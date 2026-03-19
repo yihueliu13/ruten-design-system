@@ -6936,6 +6936,65 @@
         "$value": "{sys.sizing.icon-md}",
         "$description": "SectionHeader row height. 24px. Matches icon size and title line-height for single-line vertical alignment."
       }
+    },
+    "section-module": {
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "Section module container background. White."
+      },
+      "border-radius": {
+        "$type": "number",
+        "$value": "{sys.radius.md}",
+        "$description": "Section module top/bottom cap corner radius. 16px."
+      },
+      "padding-h": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "Section module horizontal content padding. 16px. Aligns with page-level grid."
+      },
+      "cap-height": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "Section module top/bottom decorative cap height. 16px."
+      },
+      "gap-header-to-content": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "Gap between SectionHeader and first content slot. 16px."
+      },
+      "gap-content-to-footer": {
+        "$type": "number",
+        "$value": "{sys.spacing.lg}",
+        "$description": "Gap between last content slot and footer action. 24px."
+      },
+      "gap-between-slots": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "Gap between Slot A (filter) and Slot B (content). 16px."
+      }
+    },
+    "banner": {
+      "border-radius": {
+        "$type": "number",
+        "$value": "{sys.radius.sm}",
+        "$description": "Banner container corner radius. 12px. Use for all banner variants."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "Banner container default background. White. Override with brand color or image for themed banners."
+      },
+      "padding": {
+        "$type": "number",
+        "$value": "{sys.spacing.md}",
+        "$description": "Banner container inner padding. 16px. For full-bleed image banners, set to 0 in implementation."
+      },
+      "min-height": {
+        "$type": "number",
+        "$value": "{sys.sizing.control-height.3xl}",
+        "$description": "Banner container minimum height. 48px. Prevents collapsed empty state. Actual height determined by content or explicit height prop."
+      }
     }
   },
   "$extensions": {
