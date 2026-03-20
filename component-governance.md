@@ -2,7 +2,7 @@
 
 > 版本：v1.2.0
 > 建立：2026-03-18
-> 更新：2026-03-19（Compound 規則修正 + control-height 體系 + Registry 狀態更新）
+> 更新：2026-03-20（Thumbnail component added + token count update）
 > 狀態：已確認
 > 適用對象：AI Agent、UX 設計師、前端工程師
 
@@ -140,11 +140,12 @@ paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 
 |-----------|---------|--------|------|------|
 | Button | Action | 60 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
 | Link | Action | — | 🔲 Future | text link, underline/no-underline |
-| Tab | Navigation | 29 | ✅ Done | sm/md/lg/xl × active/inactive/hover |
+| Tab | Navigation | 33 | ✅ Done | sm/md/lg/xl × active/inactive/hover + secondary emphasis |
 | Tag | Feedback | 74 | ✅ Done | filter/display/action × sm/md/lg/xl |
 | Badge | Feedback | 11 | ✅ Done | dot/count |
 | Icon | Media | 8 | ✅ Done | xs/sm/md/lg × size + color |
 | Avatar | Media | 11 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
+| Thumbnail | Media | 11 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
 | Divider | Layout | 5 | ✅ Done | hairline/default/heavy thickness |
 | SearchBar | Navigation | 11 | ✅ Done | default/focus × pill shape |
 | TextField | Input | — | 🔲 Backlog | default/focus/error/disabled × label + helper text |
@@ -414,6 +415,8 @@ Step 5: 定義 RWD
 | Modal | **Compound (Overlay)** | 歸 Overlay 還是 Layout？ | Modal 的核心行為是「覆蓋頁面、阻斷互動」，這是 Overlay 的定義。Layout 不阻斷互動。 |
 | BottomSheet | **Compound (Overlay)** | App 才有，Web 不用？ | React Native 大量使用，Vue Web 可用 Drawer 替代。兩者都歸 Overlay，用不同 component 名。 |
 | Dropdown Menu | **Compound (Overlay)** | 跟 Select 什麼關係？ | Select 是 Primitive（輸入控制），Dropdown Menu 是 Overlay（浮層呈現選項列表）。Select 內部可用 Dropdown Menu 實現。 |
+| Toggle/業務狀態按鈕 | **不是 Component，是 Wrapper Pattern** | 要不要為每個業務狀態建獨立 component？ | Toggle 行為是業務邏輯，不是設計系統的視覺元件。Wrapper 只傳 props 給 base button（role/form/iconPosition/size/width/state），不建新 token。參考 button-usage-guideline.md §11。 |
+| Thumbnail vs Avatar | **兩個獨立 Primitive** | 視覺結構相同（圓形 + size + active border），要不要合併成一個 component？ | 語義不同：Avatar = 人/商家，Thumbnail = IP/主題/分類。行為不同：Thumbnail 有 selector 互動。參考 Shopify Polaris 的拆法。Token 結構相同但路徑獨立（comp/avatar/ vs comp/thumbnail/），未來 Thumbnail 可能擴充方形變體。 |
 
 ### 新增邊界案例的時機
 

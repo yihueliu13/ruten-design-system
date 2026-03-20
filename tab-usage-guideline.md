@@ -141,6 +141,31 @@ inactive  →  hover   →  active
 
 ---
 
+## 3.5 Emphasis（層級）
+
+Tab 有兩種 emphasis，由 Figma Component Property `emphasis = primary | secondary` 控制。
+
+| emphasis | active indicator | active text | active font-weight | inactive text | inactive font-weight | 使用場景 |
+|----------|-----------------|-------------|-------------------|--------------|---------------------|---------|
+| primary（預設）| sys/color/primary (#FF963B) | sys/color/primary | semibold 600 | sys/color/on-surface-variant (#73747B) | medium 500 | 白底頁面一級導航 |
+| secondary | sys/color/on-surface (#33343B) | sys/color/on-surface | bold 700 | sys/color/on-surface-medium (#47484D) | regular 400 | ① 同頁二級分類 Tab ② 橘色背景上 |
+
+hover 狀態不分 emphasis，共用現有 token。
+
+### Token 路徑
+
+```
+sys/color/on-surface-medium → {ref.color.neutral.700}（新增）
+comp/tab/secondary/active/indicator-color → {sys.color.on-surface}
+comp/tab/secondary/active/text-color → {sys.color.on-surface}
+comp/tab/secondary/active/background → {sys.color.surface}
+comp/tab/secondary/inactive/text-color → {sys.color.on-surface-medium}
+```
+
+橘色背景上的 secondary emphasis active/background 需要覆寫為 transparent，由 Phase 3 Variable Mode 處理。與 button-usage-guideline.md §10 深色表面處理邏輯一致。
+
+---
+
 ## 5. Indicator（底線）
 
 底線是 Tab 最重要的視覺暗示——它告訴使用者「你現在在這裡」。

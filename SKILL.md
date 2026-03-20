@@ -14,7 +14,7 @@ description: |
 ## Overview
 AI-readable, multi-brand design system for Ruten e-commerce (露天市集, 一抽入魂, 預購市場).
 
-**Total:** 620 tokens + 130 Text Styles
+**Total:** 636 tokens + 130 Text Styles
 
 **Workflow:**
 ```
@@ -38,16 +38,17 @@ Raw atomic values. Never used directly.
 - Font-size: 8px (label-2xs) → 64px (display-3xl)
 - Breakpoint: sm(375) · md(768) · lg(992) · xl(1200) · 2xl(1440)
 
-## sys Layer — 165 tokens ✅
+## sys Layer — 166 tokens ✅
 Semantic aliases to ref. Includes sys/color/price (red, for promotional prices).
 - color(42), spacing(10), sizing(11), radius(6), typography(38), elevation(6), opacity(8), border(8), grid(8), z-index(8), duration(4)
 
-## comp Layer — 232 tokens ✅
+## comp Layer — 311 tokens ✅
 - **icon (8):** xs/sm/md/lg × size + color. Other comps reference comp/icon instead of sys/sizing directly.
 - **product-card (51):** container, image, badge, title, price(red), meta(8px), tag-shipping(blue), tag-brand(red+icon), promo-corner(免運角標)
 - **button (60):** sm/md/lg/xl × primary/secondary/ghost × states
-- **tab (29):** sm/md/lg/xl × active/inactive/hover
+- **tab (33):** sm/md/lg/xl × active/inactive/hover + secondary emphasis
 - **tag (74):** filter/display/action × sm/md/lg/xl + promo-corner
+- **other components (74):** badge, avatar, divider, search-bar, nav-bar, bottom-nav, section-header, section-module, banner
 
 ## Component Governance (v1.0.0)
 
@@ -100,7 +101,7 @@ Built with Scripter plugin script: create-text-styles.js
 ## File Inventory
 | File | Tokens/Styles |
 |------|---------------|
-| design-system-all.json | 620 tokens (ref 159 + sys 165 + comp 296) |
+| design-system-all.json | 636 tokens (ref 159 + sys 166 + comp 311) |
 | design-system-viewer.html | Snapshot viewer aligned to current baseline |
 | token-migration-map.md | Old→new token mapping |
 | create-text-styles.js | Scripter script aligned to 130 Text Styles |

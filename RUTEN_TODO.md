@@ -11,7 +11,7 @@
 ### 1.1 Token 定義
 - [x] ref 159 tokens
 - [x] sys 165 tokens
-- [x] comp 296 tokens（icon 8, product-card 51, button 60, tab 29, tag 74, badge 11, avatar 11, divider 5, search-bar 11, nav-bar 6, bottom-nav 12, section-header 7, section-module 7, banner 4）
+- [x] comp 311 tokens（icon 8, product-card 51, button 60, tab 33, tag 74, badge 11, avatar 11, thumbnail 11, divider 5, search-bar 11, nav-bar 6, bottom-nav 12, section-header 7, section-module 7, banner 4）
 - [ ] 新增更多 tokens for #9-19 剩餘 Figma Component（見 EXECUTION_PLAN Sprint 2-5）
 
 ### 1.2 Figma Component 建置

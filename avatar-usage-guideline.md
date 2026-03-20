@@ -10,22 +10,26 @@
 
 ## 1. 元件定義
 
-Avatar 是圓形圖像元件，用於展示使用者頭像、賣家照片或分類圖示。Media 類 Primitive，6 種尺寸。
+Avatar 是圓形圖像元件，專用於展示「人」或「商家」的代表圖像。Media 類 Primitive，6 種尺寸。
+
+**判斷邏輯：代表的是人或商家 → Avatar。代表的是 IP 主題、分類、商品 → Thumbnail。**
+
+參考 Shopify Polaris：Avatar 和 Thumbnail 是兩個獨立 component，語義不同，token 結構相同。
 
 ---
 
 ## 2. 使用情境
 
-### 什麼時候用
+### 什麼時候用 Avatar
 - 使用者頭像（登入後的 profile、評論列表、聊天氣泡）
-- 賣家資訊（賣家 spotlight、商品頁賣家欄）
-- 分類入口圖（熱門分類 icon grid、分類首頁 hero）
+- 賣家資訊（賣家 spotlight、商品頁賣家欄、優質賣家）
 - 社群內容（關注的人、推薦賣家、話題圈）
 
-### 什麼時候不用
-- 商品圖片（用 ProductCard 的 Image slot）
-- 品牌 Logo（用 Icon / Logo component）
-- 方形縮圖（用 sys/sizing/thumbnail-*）
+### 什麼時候不用 Avatar
+- IP 主題圖（焦點主題的 hololive、咒術迴戰）→ 用 Thumbnail
+- 分類入口圖（熱門分類 icon grid、分類首頁）→ 用 Thumbnail
+- 商品圖片 → 用 ProductCard 的 Image slot
+- 品牌 Logo → 用 Icon / Logo component
 
 ---
 

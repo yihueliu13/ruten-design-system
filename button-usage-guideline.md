@@ -87,6 +87,29 @@ comp/button/ghost/default/text-color       → {sys.color.primary}
 Icon size 跟 button size 走：xs=12, sm=16, md=20, lg=24, xl=24。
 Icon-only 用正方形容器（24/32/40/48/52px）。
 
+### 4.1 Icon 位置（iconPosition）
+
+Base button 內建兩個 icon slot，由 Figma Component Property `iconPosition` 控制：
+
+| Property | 值 | 說明 | 範例 |
+|----------|---|------|------|
+| iconPosition | leading | icon 在文字左邊（預設） | ＋關注、✓已完成 |
+| iconPosition | trailing | icon 在文字右邊 | 查看賣場→、我要出價🔨、展開▼ |
+
+**Figma Auto Layout 結構：**
+
+```
+Container (horizontal): [leadingIcon] ← iconPosition=leading 時 visible [Label] [trailingIcon] ← iconPosition=trailing 時 visible
+```
+
+顯示規則：
+- form=label → 兩個 icon 都 hidden
+- form=label-icon + iconPosition=leading → leadingIcon visible, trailingIcon hidden
+- form=label-icon + iconPosition=trailing → leadingIcon hidden, trailingIcon visible
+- form=icon → 只顯示一個 icon，Label hidden
+
+不需要新 token。icon size 和 gap 已由 comp/button/{size}/icon-size 和 comp/button/{size}/gap 控制，icon 位置不影響數值。
+
 ---
 
 ## 5. Size（尺寸）
@@ -198,17 +221,43 @@ comp/button/tertiary/disabled/border-width          → {sys.border.width.hairli
 
 ---
 
-## 11. 業務狀態按鈕
+## 11. 業務狀態按鈕（Wrapper Component）
 
 Button token 只管外觀。業務邏輯在 wrapper component 層處理。
+wrapper 根據業務狀態傳不同 props 給 base button。
 
-| 業務場景 | Wrapper | 傳給 Base Button 的 props |
-|---------|---------|------------------------|
-| 競標 — 即將開始 | AuctionButton | role=secondary, disabled=true |
-| 競標 — 我要出價 | AuctionButton | role=primary, form=label-icon |
-| 競標 — 競標結束 | AuctionButton | role=secondary, disabled=true |
-| 轉售 — 一鍵轉售 | ResellButton | role=primary, form=label-icon |
-| 轉售 — 已發佈 | ResellButton | role=tertiary, form=label-icon |
+### 11.1 Wrapper 定義
+
+| Wrapper | 業務場景 | toggle 行為 |
+|---------|---------|------------|
+| FollowButton | 關注/取消關注 | 是（二態切換） |
+| ExpandButton | 展開/收合 | 是（二態切換，icon 方向翻轉） |
+| AuctionButton | 競標生命週期 | 否（三態：即將開始→進行中→結束） |
+| ResellButton | 轉售發佈 | 是（二態切換） |
+
+### 11.2 Props 對照表
+
+| 業務場景 | Wrapper | role | form | iconPosition | size | width | state |
+|---------|---------|------|------|-------------|------|-------|-------|
+| 關注 — 未關注 | FollowButton | tertiary | label-icon | leading | xs(pill) | fixed | default |
+| 關注 — 已關注 | FollowButton | secondary | label | — | xs(pill) | fixed | default |
+| 展開 — 收合中 | ExpandButton | tertiary | label-icon | trailing(▼) | sm | hug | default |
+| 展開 — 展開中 | ExpandButton | tertiary | label-icon | trailing(▲) | sm | hug | default |
+| 競標 — 即將開始 | AuctionButton | secondary | label-icon | trailing | md | fixed | disabled |
+| 競標 — 我要出價 | AuctionButton | primary | label-icon | trailing | md | fixed | default |
+| 競標 — 競標結束 | AuctionButton | secondary | label-icon | trailing | md | fixed | disabled |
+| 轉售 — 一鍵轉售 | ResellButton | primary | label-icon | leading | md | fixed | default |
+| 轉售 — 已發佈 | ResellButton | tertiary | label-icon | leading | md | fixed | default |
+
+### 11.3 Wrapper 設計規則
+
+1. 業務狀態按鈕是 toggle 行為——同一個按鈕根據業務狀態切換外觀
+2. 同一個 Wrapper 內所有狀態的按鈕必須等寬（width=fixed），切換時不跳動
+3. Figma：Wrapper frame width = fixed，內部 base button width = fill container
+4. 工程：Wrapper 設 min-width 或固定寬度，取所有狀態中最長文字的寬度
+5. ExpandButton 的箭頭翻轉用 CSS transform: rotate(180deg) 或 icon instance swap
+6. Button token 不需要為業務狀態新增，所有外觀都用現有 role × size × form × iconPosition 組合
+7. iconPosition 由 base button 的 Component Property 控制，wrapper 只傳 props，不改結構
 
 ### 11.5 設計師 Do / Don't
 

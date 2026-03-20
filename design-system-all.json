@@ -3902,6 +3902,11 @@
           "com.figma.isOverride": true
         }
       },
+      "on-surface-medium": {
+        "$type": "color",
+        "$value": "{ref.color.neutral.700}",
+        "$description": "Medium emphasis foreground. Neutral/700 (#47484D). Between on-surface (#33343B) and on-surface-variant (#73747B). Use for secondary tab inactive text, or any context needing medium-emphasis text on both white and brand surfaces."
+      },
       "surface-dim": {
         "$type": "color",
         "$value": "{ref.color.neutral.50}",
@@ -5358,6 +5363,32 @@
           "$value": "{sys.color.on-surface}",
           "$description": "Tab hover text color. Darker than inactive, lighter than active. Desktop only. Pair with comp/tab/hover/background."
         }
+      },
+      "secondary": {
+        "active": {
+          "indicator-color": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Secondary emphasis active indicator. Neutral/800 (#33343B). Two use cases: (1) second-level tabs when primary emphasis exists on same page, (2) tabs on orange/brand-color background where primary indicator is invisible."
+          },
+          "text-color": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Secondary emphasis active text. Neutral/800 (#33343B), font-weight bold. Pairs with secondary indicator."
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{sys.color.surface}",
+            "$description": "Secondary emphasis active background. No brand tint, stays neutral white. On orange backgrounds, override to transparent via Variable Mode (Phase 3)."
+          }
+        },
+        "inactive": {
+          "text-color": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface-medium}",
+            "$description": "Secondary emphasis inactive text. Neutral/700 (#47484D), font-weight regular. Readable on both white and orange backgrounds."
+          }
+        }
       }
     },
     "tag": {
@@ -6810,6 +6841,79 @@
           "$type": "number",
           "$value": "{sys.border.width.none}",
           "$description": "Avatar default border width. 0px. No border in default state."
+        }
+      }
+    },
+    "thumbnail": {
+      "xs": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-xs}",
+          "$description": "Thumbnail xs size. 24px. Use for compact grids, inline category icons."
+        }
+      },
+      "sm": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-sm}",
+          "$description": "Thumbnail sm size. 32px. Use for small category lists."
+        }
+      },
+      "md": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-md}",
+          "$description": "Thumbnail md size. 40px. Use for standard category grids."
+        }
+      },
+      "lg": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-lg}",
+          "$description": "Thumbnail lg size. 48px. Use for featured category entries."
+        }
+      },
+      "xl": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-xl}",
+          "$description": "Thumbnail xl size. 80px. Use for featured topic grid (焦點主題), IP selector."
+        }
+      },
+      "2xl": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{sys.sizing.avatar-2xl}",
+          "$description": "Thumbnail 2xl size. 96px. Use for hero category thumbnails."
+        }
+      },
+      "border-radius": {
+        "$type": "dimension",
+        "$value": "{sys.radius.full}",
+        "$description": "Thumbnail shape. Circle (9999px) by default. Future: may add square variant for product thumbnails."
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "Thumbnail fallback background. White. Show when image is loading or missing."
+      },
+      "active": {
+        "border-width": {
+          "$type": "dimension",
+          "$value": "{sys.border.width.focus}",
+          "$description": "Thumbnail active border width. 2px. Use for selected/highlighted thumbnail in selector pattern."
+        },
+        "border-color": {
+          "$type": "color",
+          "$value": "{sys.color.primary}",
+          "$description": "Thumbnail active border color. Brand orange. Use for selected thumbnail in IP selector, category grid."
+        }
+      },
+      "default": {
+        "border-width": {
+          "$type": "dimension",
+          "$value": "{sys.border.width.none}",
+          "$description": "Thumbnail default border width. 0px. No border in default state."
         }
       }
     },

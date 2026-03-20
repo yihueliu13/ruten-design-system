@@ -2,7 +2,7 @@
 
 > 更新：2026-03-18
 > 範圍：分類館首頁 19 個 component
-> 目前：620 tokens (ref 159 + sys 165 + comp 296) + 130 Text Styles
+> 目前：636 tokens (ref 159 + sys 166 + comp 311) + 130 Text Styles
 > 策略決策見 COWORK_INSTRUCTIONS.md §9-10
 > Component 治理見 component-governance.md
 
@@ -16,7 +16,7 @@
 |---|-----------|------|------|--------|------|------|
 | 1 | ProductCard | Display | Compound | 51 | ✅ Binding 大致完成 | 轉 Main Component + Variants |
 | 2 | Button | Action | Primitive | 60 | ✅ Token 完成 | 建 Figma Main Component (size × style) |
-| 3 | Tab | Navigation | Primitive | 29 | ✅ Token 完成 | 建 Figma Main Component (size × state) |
+| 3 | Tab | Navigation | Primitive | 33 | ✅ Token 完成 | 建 Figma Main Component (size × state) |
 | 4 | Tag (Filter) | Feedback | Primitive | 74 | ✅ 清理完成 | 無舊路徑殘留（2026-03-17 驗證） |
 | 5 | Tag (Display) | Feedback | Primitive | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |
 | 6 | Tag (Promo Corner) | Feedback | Primitive | 含 #4 | ✅ | — |
@@ -38,9 +38,10 @@
 | P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | ~3 |
 | P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | 4 ✅ |
 | P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ~6 |
+| 20 | Thumbnail | Display | Primitive | 圖片縮圖卡 | ~11 |
 
-**預估新增 ~65 tokens → 總量 ~594**
-（較先前估計 ~82 減少，因 Pattern 層不建 comp/ token）
+**預估新增 ~76 tokens → 總量 ~676**
+（較先前估計 ~82 減少，因 Pattern 層不建 comp/ token；新增 Thumbnail 11 tokens）
 
 ---
 
