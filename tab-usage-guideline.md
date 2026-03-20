@@ -4,7 +4,7 @@
 > **日期**: 2026-03-20
 > **狀態**: 討論定稿中
 > **依據**: design-system-all.json（唯一真實來源）
-> **分類**: Navigation × Primitive × Owned（28 + 1 = 29 tokens）
+> **分類**: Navigation × Primitive × Owned（29 + 4 = 33 tokens）
 
 ---
 
@@ -163,6 +163,35 @@ comp/tab/secondary/inactive/text-color → {sys.color.on-surface-medium}
 ```
 
 橘色背景上的 secondary emphasis active/background 需要覆寫為 transparent，由 Phase 3 Variable Mode 處理。與 button-usage-guideline.md §10 深色表面處理邏輯一致。
+
+### Tab 結構（vertical stack）
+
+```
+┌─────────────────────────┐
+│       padding-v         │
+│ ── text (lineHeight) ── │  ← Content 區
+│       padding-v         │
+├─────────────────────────┤
+│    indicator (3px)      │  ← hardcode，不是 token
+├─────────────────────────┤
+│     divider (1px)       │  ← 1px
+└─────────────────────────┘
+
+controlHeight = 整個 Tab 高度
+contentHeight = controlHeight - indicatorHeight(3) - dividerHeight(1)
+paddingBlock  = (contentHeight - lineHeight) / 2
+```
+
+### 各 size 驗算
+
+| size | controlHeight | content 區 | lineHeight | 公式 padding | 實際 token padding-v | 差異說明 |
+|------|-------------|-----------|-----------|-------------|-------------------|---------|
+| sm | 32px | 28px | 16px | 6px | 4px | 設計決策：sm 更緊湊 |
+| md | 40px | 36px | 20px | 8px | 8px | ✅ 完全吻合 |
+| lg | 44px | 40px | 20px | 10px | 8px | 設計決策：lg 保持跟 md 相同的 padding 體感 |
+| xl | 48px | 44px | 24px | 10px | 12px | 設計決策：xl 給文字更多呼吸空間 |
+
+> **設計決策記錄**：Tab 的 padding-v 不嚴格遵循 Button 的 controlHeight 公式。sm/lg/xl 的 padding 與公式有 ±2px 的差異，這是有意的設計調整。controlHeight（min-height）是鎖定值，不因 padding 調整而改變。
 
 ---
 
