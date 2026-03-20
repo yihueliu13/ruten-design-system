@@ -140,7 +140,7 @@ paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 
 |-----------|---------|--------|------|------|
 | Button | Action | 49 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
 | Link | Action | — | 🔲 Future | text link, underline/no-underline |
-| Tab | Navigation | 28 | ✅ Done | sm/md/lg/xl × active/inactive/hover |
+| Tab | Navigation | 29 | ✅ Done | sm/md/lg/xl × active/inactive/hover |
 | Tag | Feedback | 61 | ✅ Done | filter/display/action × sm/md/lg/xl |
 | Badge | Feedback | 11 | ✅ Done | dot/count |
 | Icon | Media | 8 | ✅ Done | xs/sm/md/lg × size + color |

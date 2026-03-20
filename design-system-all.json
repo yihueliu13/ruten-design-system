@@ -4965,8 +4965,8 @@
       },
       "indicator-height": {
         "$type": "number",
-        "$value": 2,
-        "$description": "Active tab bottom indicator height. 2px.",
+        "$value": 3,
+        "$description": "Tab indicator height. 3px hardcoded, below base-4 scale. Rounded pill shape at bottom of active tab. Sits above the full-width divider.",
         "$extensions": {
           "com.figma.variableId": "VariableID:17:14275",
           "com.figma.scopes": [
@@ -5287,6 +5287,11 @@
             ],
             "com.figma.isOverride": true
           }
+        },
+        "text-color": {
+          "$type": "color",
+          "$value": "{sys.color.on-surface}",
+          "$description": "Tab hover text color. Darker than inactive, lighter than active. Desktop only. Pair with comp/tab/hover/background."
         }
       }
     },

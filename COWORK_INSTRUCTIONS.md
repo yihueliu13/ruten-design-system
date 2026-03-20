@@ -1,6 +1,6 @@
 # Ruten Design System — Cowork Instructions
 
-> 版本：v2.1.0 | 更新：2026-03-18
+> 版本：v2.2.0 | 更新：2026-03-19
 > 這份文件是 Cowork Claude 的唯一進入點。讀完這份就夠了。
 
 ---
@@ -57,11 +57,11 @@
 ## 4. Token 架構
 
 ```
-ref（155）→ 原子值，不直接使用
+ref（159）→ 原子值，不直接使用
   ↓ alias
-sys（153）→ 語意化，設計師可選
+sys（165）→ 語意化，設計師可選
   ↓ alias
-comp（221）→ 元件綁定，AI / 設計師主要操作層
+comp（285）→ 元件綁定，AI / 設計師主要操作層
   ↓ bind
 Figma Variables → Text Styles（130）
 ```
@@ -69,7 +69,7 @@ Figma Variables → Text Styles（130）
 - 單一 Collection，用 `/` 分群組
 - alias 方向固定：comp → sys → ref，不跳層
 - comp → comp 引用合法（如 product-card/tag-brand → comp/tag/base）
-- 目前：529 tokens + 130 Text Styles
+- 目前：609 tokens + 130 Text Styles
 
 ### 元件分類（v2 三維體系）
 
@@ -83,7 +83,7 @@ Action | Display | Navigation | Feedback | Layout | Media
 | 深度 | 定義 | Token 規則 | RWD 規則 |
 |------|------|-----------|---------|
 | Primitive | 不含其他 DS component | 完整 comp/ token 集 | size variant (sm/md/lg/xl) |
-| Compound | 由 2+ Primitive 組合 | comp/ token 只管佈局 + Slot Override | size 或 layout variant |
+| Compound | 由 2+ Primitive 組合 | comp/ token 管所有非獨立子元素屬性（參考 MD3）+ Slot Override | size 或 layout variant |
 | Pattern | 頁面區域，不發布為 Main Component | 用 sys/ token，不建 comp/ | CSS grid/media query |
 
 **維度三：Token 擁有權**
@@ -134,6 +134,27 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 | 無寫死數值 | comp 層 $value 全是 alias | grep '{' |
 | 衍生檔同步 | 所有 .md 的數字與 JSON 一致 | validate 腳本 |
 | Token description | 新 token 都有 imperative-style $description | 人工審查 |
+
+### §7a. 完整交付驗證清單
+
+每個 Sprint 或 Batch 交付前，逐項跑完以下 12 項：
+
+| # | 驗證項目 | 方法 | 通過標準 |
+|---|---------|------|---------|
+| 1 | JSON 語法正確 | python3 json.load | 無 error |
+| 2 | Alias 完整性 | validate 腳本 | 0 broken alias |
+| 3 | 無跳層引用 | validate 腳本 | comp 不直接引用 ref |
+| 4 | 無寫死數值 | validate 腳本 | comp 層 $value 全是 alias |
+| 5 | Token count 正確 | validate 腳本 | ref + sys + comp = 預期總量 |
+| 6 | 衍生檔數字同步 | validate 腳本 | governance/progress/SKILL 數字一致 |
+| 7 | $description 品質 | 人工審查 | 每個新 token 有 imperative-style $description |
+| 8 | Usage Guideline 完整 | 檢查檔案存在 | 每個新 component 有對應 .md |
+| 9 | Figma Variables 匯入 | Thierry overlay import | 無 error |
+| 10 | Figma binding 正確 | get_variable_defs 抽樣 | 至少 5 個關鍵 token alias chain 通過 |
+| 11 | component-governance Registry | 人工審查 | 新 component 狀態 ✅ + token 數正確 |
+| 12 | EXECUTION_PLAN 狀態 | 人工審查 | 對應 # 標記完成 |
+
+任何一項 FAIL → 不交付，先修正再重跑驗證。
 
 ---
 
@@ -211,19 +232,20 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 每個新 component 照這個流程走（決策規則詳見 `component-governance.md` §7）：
 
 ```
-1. 決策分類     component-governance.md 決策流程 → 確認功能類別 + 組合深度
-2. Figma 截圖   get_design_context / get_screenshot → 確認設計
-3. 定義 token   Primitive: 完整 comp/ token 集
-                 Compound: comp/ 佈局 token + Slot Override（如需要）
-                 Pattern: 不建 comp/ token
-                 每個 token 必須有 $description（imperative-style）
-                 Slot Override 的 $description 以 "Slot override." 開頭
-4. 驗證         python3 validate-design-system.py --root .
-5. 同步衍生檔   progress.md, governance.md, SKILL.md, component-governance.md
-6. Figma 匯入   Thierry plugin overlay import
-7. Figma Component  Primitive/Compound: Main Component + Variant
-                    Pattern: section frame（不做 Main Component）
-8. 驗證 binding get_variable_defs 確認綁定正確
+=== Chat 負責（CLASSIFY + INSPECT + SPEC）===
+1. 決策分類      component-governance.md → 功能類別 + 組合深度
+2. Figma 截圖    get_design_context / get_screenshot
+3. 定義 token    完整 token 表格（path, $value, $description），交給 Cowork
+
+=== Cowork 負責（WRITE → VERIFY）===
+4. 寫入 JSON     design-system-all.json
+5. 驗證 JSON     python3 validate-design-system.py --root .
+6. 同步衍生檔    progress.md, governance.md, SKILL.md, component-governance.md
+7. Usage Guideline  為每個新 component 寫 {component}-usage-guideline.md
+8. Figma 匯入    Thierry overlay import（不刪 collection）
+9. Figma binding  get_variable_defs 抽樣驗證 alias chain
+10. 完整驗證     跑 §7a 清單 12 項全 PASS
+11. REPORT       改了什麼、沒改什麼、驗證結果、交付物清單
 ```
 
 ---
@@ -233,7 +255,7 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 | Phase | 狀態 | 說明 |
 |-------|------|------|
 | 4a Icon System | ✅ | 完成 |
-| 1 Figma UI Kit | 🔄 進行中 | 529 tokens, Tag 擴充完成, 19 元件盤點完成 |
+| 1 Figma UI Kit | 🔄 進行中 | 608 tokens, 8 元件 token 完成, 19 元件盤點完成 |
 | 2 Engineering Output | ⏳ | Vue/RN component, Storybook |
 | 3 Multi-brand | ⏳ | Ichiban/Resell mode, Dark mode |
 

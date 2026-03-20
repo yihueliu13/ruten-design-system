@@ -11,7 +11,7 @@
 
 **架構：** 單一 Collection，三層 ref → sys → comp（參照 MD3）  
 **品牌：** 露天市集 | 一抽入魂 | 預購市場  
-**總量：** 608 tokens + 130 Text Styles
+**總量：** 609 tokens + 130 Text Styles
 
 ---
 
@@ -153,7 +153,7 @@ Total                 130 styles
 
 | 檔案 | 狀態 | 說明 |
 |------|------|------|
-| `design-system-all.json` | ✅ 唯一真實來源 | ref(159) + sys(165) + comp(284) |
+| `design-system-all.json` | ✅ 唯一真實來源 | ref(159) + sys(165) + comp(285) |
 | `design-system-viewer-live.html` | ✅ | 直接讀取 source of truth |
 | `design-system-viewer.html` | ✅ | 目前基線 snapshot |
 | `create-text-styles.js` | ✅ | Scripter script 130 Text Styles |

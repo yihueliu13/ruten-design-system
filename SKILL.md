@@ -14,7 +14,7 @@ description: |
 ## Overview
 AI-readable, multi-brand design system for Ruten e-commerce (露天市集, 一抽入魂, 預購市場).
 
-**Total:** 608 tokens + 130 Text Styles
+**Total:** 609 tokens + 130 Text Styles
 
 **Workflow:**
 ```
@@ -100,7 +100,7 @@ Built with Scripter plugin script: create-text-styles.js
 ## File Inventory
 | File | Tokens/Styles |
 |------|---------------|
-| design-system-all.json | 608 tokens (ref 159 + sys 165 + comp 284) |
+| design-system-all.json | 609 tokens (ref 159 + sys 165 + comp 285) |
 | design-system-viewer.html | Snapshot viewer aligned to current baseline |
 | token-migration-map.md | Old→new token mapping |
 | create-text-styles.js | Scripter script aligned to 130 Text Styles |
