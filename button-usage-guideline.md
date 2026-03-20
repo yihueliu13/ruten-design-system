@@ -4,6 +4,7 @@
 > **日期**: 2026-03-17
 > **狀態**: 討論定稿中
 > **依據**: design-system-all.json（唯一真實來源）
+> **分類**: Action × Primitive × Owned（49 tokens）
 
 ---
 
@@ -208,6 +209,24 @@ Button token 只管外觀。業務邏輯在 wrapper component 層處理。
 | 競標 — 競標結束 | AuctionButton | role=secondary, disabled=true |
 | 轉售 — 一鍵轉售 | ResellButton | role=primary, form=label-icon |
 | 轉售 — 已發佈 | ResellButton | role=tertiary, form=label-icon |
+
+### 11.5 設計師 Do / Don't
+
+### Do ✓
+- 每個 section 最多放一個 primary button
+- Dialog footer 用標準組合：左 ghost + 右 primary
+- 兩顆按鈕並排時用不同角色（primary + ghost，或 primary + tertiary），不要用同一個角色
+- 危險操作（刪除、取消訂單）用 tertiary+danger 或 ghost+danger，讓使用者多想一秒
+- 全寬送出按鈕讓它撐滿整排（Figma Auto Layout 的 Fill container），其他按鈕讓它依文字內容自動收縮（Hug contents），不要硬定寬度
+- 業務狀態（競標中、已轉售）由 wrapper component 控制，base button 只管外觀
+
+### Don't ✗
+- 不要讓 primary 和 secondary 同時出現在同一個畫面——兩個都很搶眼，使用者不知道該按哪個
+- 不要用 secondary（橘底）做危險操作——橘色是品牌色，不是警告色
+- 不要自己定義按鈕顏色或字重——用 token
+- 不要在同一排放超過三顆按鈕——太多選擇等於沒有選擇
+- 不要用 Tab 或 Tag 來做按鈕該做的事（觸發操作 = Button）
+- 不要把 loading 態和 disabled 態搞混——loading 是「正在處理」，disabled 是「不允許操作」
 
 ---
 

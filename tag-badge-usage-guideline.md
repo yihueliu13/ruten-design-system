@@ -6,6 +6,7 @@
 > **適用範圍**: 露天市集（Ruten）、一抽露魂（Ichiban）、預購市場（Resell）  
 > **維護者**: Design System Team  
 > **依據**: design-system-all.json（唯一真實來源）
+> **分類**: Feedback × Primitive × Owned（Tag 74 + Badge 11 = 85 tokens）
 
 ---
 
@@ -356,7 +357,25 @@ comp/badge/{property}
 
 ---
 
-## 12. 版本紀錄
+## 12. 設計師 Do / Don't
+
+### Do ✓
+- Tag 選 role 前先問自己：這個標籤是給使用者點的（Filter/Action），還是純展示的（Display）？
+- 篩選用 Filter Tag（可選可取消），展示用 Display Tag（不可互動）
+- Badge 只用在通知數量（紅點/數字），不要拿 Badge 當 Tag 用
+- Product Card 裡的 tag（露天心選、預購）用 Slot Override token，不要用 Tag Primitive 的預設色
+- Tag 文字盡量控制在 2~6 個中文字
+
+### Don't ✗
+- 不要把 Tag 和 Badge 搞混——Tag 是分類標記，Badge 是通知計數
+- 不要在同一個商品卡上堆超過 3 個 Tag——太多標籤等於沒有標籤
+- 不要用 Tag 來做按鈕該做的事——如果點了會觸發操作（送出、刪除），那是 Button
+- 不要自己定義 Tag 顏色——用 token，品牌切換時才能自動適配
+- 不要把 Filter Tag 用在不可互動的場景——使用者會以為可以點
+
+---
+
+## 13. 版本紀錄
 
 | 版本 | 日期 | 變更 |
 |------|------|------|

@@ -4,6 +4,7 @@
 > **日期**: 2026-03-19
 > **狀態**: 已定稿
 > **依據**: design-system-all.json（唯一真實來源）
+> **分類**: Navigation × Primitive × Owned（11 tokens）
 
 ---
 

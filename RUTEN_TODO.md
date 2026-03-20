@@ -9,10 +9,10 @@
 ## Phase 1 — Figma UI Kit（進行中）
 
 ### 1.1 Token 定義
-- [x] ref 155 tokens
-- [x] sys 150 tokens
-- [x] comp 208 tokens（icon 8, product-card 51, button 49, tab 28, tag 61, badge 11）
-- [ ] 新增 ~82 tokens for #9-19（見 EXECUTION_PLAN Sprint 2-5）
+- [x] ref 159 tokens
+- [x] sys 165 tokens
+- [x] comp 285 tokens（icon 8, product-card 51, button 49, tab 29, tag 74, badge 11, avatar 11, divider 5, search-bar 11, nav-bar 6, bottom-nav 12, section-header 7, section-module 7, banner 4）
+- [ ] 新增更多 tokens for #9-19 剩餘 Figma Component（見 EXECUTION_PLAN Sprint 2-5）
 
 ### 1.2 Figma Component 建置
 - [ ] ProductCard → Main Component + Variants

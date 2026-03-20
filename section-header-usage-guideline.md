@@ -4,6 +4,7 @@
 > **日期**: 2026-03-19
 > **狀態**: 已定稿
 > **依據**: design-system-all.json（唯一真實來源）
+> **分類**: Layout × Compound × Owned（7 tokens）
 
 ---
 
