@@ -2,6 +2,44 @@
 
 ---
 
+## 2026-03-20（五）— 收工
+
+### 1. 今日完成
+- [x] Scripter scripts v3（Tab Item 12v + Tab Bar 2v + Button 32v + Avatar 12v）— 修 layoutSizing bug、加 cleanup + grid layout
+- [ ] Figma Component 視覺驗證 — Tab 建成但高度/grid 需再調，未完成最終確認（Blocked: 需討論 HUG vs FIXED 高度）
+- [x] Button role 命名遷移 — old primary→secondary, old secondary→tertiary, 新 primary（深灰底橘字）+11 tokens
+- [x] Button guideline 更新 — §4.1 iconPosition（leading/trailing slot）、§11 Wrapper Component 全面改寫（4 wrapper × 9 狀態）
+- [x] component-governance.md §8 新增 Toggle/業務狀態按鈕邊界案例
+- [x] Tab secondary emphasis — sys/color/on-surface-medium +1, comp/tab/secondary +4, tab guideline §3.5
+- [x] Avatar 定義縮窄（人/商家 only）+ Thumbnail 新增（IP/主題/分類）+11 tokens + 新 guideline
+- [x] component-governance.md Primitive Registry + §8 Thumbnail vs Avatar 邊界案例
+- [x] 所有衍生檔數字同步（6 次 validate 全過）
+
+### 2. Token 狀態
+- 起始：608 tokens (ref 159 + sys 165 + comp 284)
+- 結束：636 tokens (ref 159 + sys 166 + comp 311)
+- 淨增：+28 tokens（sys +1, comp +27）
+- Validation：43 PASS / 0 FAIL ✅
+- 最後修改檔案：design-system-all.json, button-usage-guideline.md, tab-usage-guideline.md, avatar-usage-guideline.md, thumbnail-usage-guideline.md (NEW), component-governance.md, design-system-governance.md, design-system-progress.md, SKILL.md, EXECUTION_PLAN.md, RUTEN_TODO.md, scripter-01-tab.js, scripter-02-button.js, scripter-03-avatar.js
+
+### 3. 明日工作順序（建議，等 Kay 確認）
+1. Tab Component 高度決策（HUG+minHeight vs FIXED）→ 重跑 scripter-01-tab.js 確認視覺
+2. 三個 Component 最終驗證（截圖 + variable binding check）
+3. Tab Bar scrollable variant 補完（如需調整）
+4. scripter 更新 — Button script 對齊新 role 命名（primary=深灰底）
+
+### 如果有空才做
+- Thumbnail Figma Component scripter script
+- Tab secondary emphasis Figma variant 擴充
+
+### 4. Blocked 項目
+| 項目 | Blocked 原因 |
+|------|-------------|
+| Tab Component 最終版 | 需 Kay 決定高度策略（HUG+minHeight A / FIXED B / 調 padding C） |
+| Button Component 新 primary variant | 需先跑 Thierry 匯入新 token 到 Figma Variables |
+
+---
+
 ## 2026-03-20（五）
 
 ### 1. 昨日完成
