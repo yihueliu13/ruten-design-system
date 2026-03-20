@@ -4636,11 +4636,71 @@
         }
       },
       "primary": {
+        "default": {
+          "background": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Primary button default background. Dark neutral surface. Highest-priority CTA: submit, confirm, next. One per section max."
+          },
+          "text-color": {
+            "$type": "color",
+            "$value": "{sys.color.primary}",
+            "$description": "Primary button default text. Brand orange on dark surface."
+          },
+          "border-color": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Primary button default border. Same as background, no visible border."
+          }
+        },
+        "hover": {
+          "background": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Primary button hover background. Same tone, opacity change handles hover."
+          },
+          "opacity": {
+            "$type": "number",
+            "$value": 0.85,
+            "$description": "Primary button hover opacity."
+          }
+        },
+        "pressed": {
+          "background": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Primary button pressed background."
+          },
+          "opacity": {
+            "$type": "number",
+            "$value": 0.7,
+            "$description": "Primary button pressed opacity."
+          }
+        },
+        "disabled": {
+          "background": {
+            "$type": "color",
+            "$value": "{sys.color.on-surface}",
+            "$description": "Primary button disabled background."
+          },
+          "text-color": {
+            "$type": "color",
+            "$value": "{sys.color.primary}",
+            "$description": "Primary button disabled text color."
+          },
+          "opacity": {
+            "$type": "number",
+            "$value": "{sys.opacity.disabled}",
+            "$description": "Primary button disabled opacity. 0.38."
+          }
+        }
+      },
+      "secondary": {
         "hover": {
           "opacity": {
             "$type": "number",
             "$value": "{sys.opacity.opaque}",
-            "$description": "Primary button hover opacity. Fully opaque.",
+            "$description": "Secondary button hover opacity. Fully opaque.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14518",
               "com.figma.scopes": [
@@ -4652,7 +4712,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.secondary}",
-            "$description": "Primary button hover bg. Darker orange.",
+            "$description": "Secondary button hover bg. Darker orange.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14599",
               "com.figma.scopes": [
@@ -4666,7 +4726,7 @@
           "opacity": {
             "$type": "number",
             "$value": "{sys.opacity.opaque}",
-            "$description": "Primary button pressed opacity.",
+            "$description": "Secondary button pressed opacity.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14519",
               "com.figma.scopes": [
@@ -4678,7 +4738,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.secondary}",
-            "$description": "Primary button pressed bg. Darker orange.",
+            "$description": "Secondary button pressed bg. Darker orange.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14600",
               "com.figma.scopes": [
@@ -4692,7 +4752,7 @@
           "opacity": {
             "$type": "number",
             "$value": "{sys.opacity.disabled}",
-            "$description": "Primary button disabled opacity. 0.38.",
+            "$description": "Secondary button disabled opacity. 0.38.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14520",
               "com.figma.scopes": [
@@ -4704,7 +4764,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.primary}",
-            "$description": "Primary button disabled bg. Same color but with reduced opacity.",
+            "$description": "Secondary button disabled bg. Same color but with reduced opacity.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14601",
               "com.figma.scopes": [
@@ -4716,7 +4776,7 @@
           "text-color": {
             "$type": "color",
             "$value": "{sys.color.on-primary}",
-            "$description": "Primary button disabled text.",
+            "$description": "Secondary button disabled text.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14602",
               "com.figma.scopes": [
@@ -4730,7 +4790,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.primary}",
-            "$description": "Primary button bg. Brand orange #FF963B.",
+            "$description": "Secondary button bg. Brand orange #FF963B.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14596",
               "com.figma.scopes": [
@@ -4742,7 +4802,7 @@
           "text-color": {
             "$type": "color",
             "$value": "{sys.color.on-primary}",
-            "$description": "Primary button text. White on orange.",
+            "$description": "Secondary button text. White on orange.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14597",
               "com.figma.scopes": [
@@ -4754,7 +4814,7 @@
           "border-color": {
             "$type": "color",
             "$value": "{sys.color.primary}",
-            "$description": "Primary button border. Same as bg (no visible border).",
+            "$description": "Secondary button border. Same as bg (no visible border).",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14598",
               "com.figma.scopes": [
@@ -4765,12 +4825,12 @@
           }
         }
       },
-      "secondary": {
+      "tertiary": {
         "default": {
           "border-width": {
             "$type": "number",
             "$value": "{sys.border.width.default}",
-            "$description": "Secondary button border width. 1px.",
+            "$description": "Tertiary button border width. 1px.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14521",
               "com.figma.scopes": [
@@ -4782,7 +4842,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.surface}",
-            "$description": "Secondary button bg. White/transparent.",
+            "$description": "Tertiary button bg. White/transparent.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14603",
               "com.figma.scopes": [
@@ -4794,7 +4854,7 @@
           "text-color": {
             "$type": "color",
             "$value": "{sys.color.primary}",
-            "$description": "Secondary button text. Brand orange.",
+            "$description": "Tertiary button text. Brand orange.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14604",
               "com.figma.scopes": [
@@ -4806,7 +4866,7 @@
           "border-color": {
             "$type": "color",
             "$value": "{sys.color.outline}",
-            "$description": "Secondary button border. Grey outline.",
+            "$description": "Tertiary button border. Grey outline.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14605",
               "com.figma.scopes": [
@@ -4820,7 +4880,7 @@
           "opacity": {
             "$type": "number",
             "$value": "{sys.opacity.disabled}",
-            "$description": "Secondary button disabled opacity. 0.38.",
+            "$description": "Tertiary button disabled opacity. 0.38.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14522",
               "com.figma.scopes": [
@@ -4832,7 +4892,7 @@
           "background": {
             "$type": "color",
             "$value": "{sys.color.surface}",
-            "$description": "Secondary button disabled bg.",
+            "$description": "Tertiary button disabled bg.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14608",
               "com.figma.scopes": [
@@ -4844,7 +4904,7 @@
           "text-color": {
             "$type": "color",
             "$value": "{sys.color.on-surface-variant}",
-            "$description": "Secondary button disabled text. Faded.",
+            "$description": "Tertiary button disabled text. Faded.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14609",
               "com.figma.scopes": [
@@ -4852,13 +4912,18 @@
               ],
               "com.figma.isOverride": true
             }
+          },
+          "border-width": {
+            "$type": "number",
+            "$value": "{sys.border.width.hairline}",
+            "$description": "Tertiary button disabled border width. 0.5px hairline."
           }
         },
         "hover": {
           "background": {
             "$type": "color",
             "$value": "{sys.color.surface-brand-dim}",
-            "$description": "Secondary button hover bg. Light orange tint.",
+            "$description": "Tertiary button hover bg. Light orange tint.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14606",
               "com.figma.scopes": [
@@ -4870,7 +4935,7 @@
           "border-color": {
             "$type": "color",
             "$value": "{sys.color.primary}",
-            "$description": "Secondary button hover border. Brand orange.",
+            "$description": "Tertiary button hover border. Brand orange.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14607",
               "com.figma.scopes": [

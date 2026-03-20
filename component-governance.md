@@ -138,7 +138,7 @@ paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 
 
 | Component | 功能類別 | Tokens | 狀態 | 說明 |
 |-----------|---------|--------|------|------|
-| Button | Action | 49 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
+| Button | Action | 60 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
 | Link | Action | — | 🔲 Future | text link, underline/no-underline |
 | Tab | Navigation | 29 | ✅ Done | sm/md/lg/xl × active/inactive/hover |
 | Tag | Feedback | 74 | ✅ Done | filter/display/action × sm/md/lg/xl |
