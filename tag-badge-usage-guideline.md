@@ -160,7 +160,7 @@
 | 子類 | 說明 | Token 處理 |
 |------|------|-----------|
 | **promo-corner** | 免運$99 角標，非對稱圓角 | 獨立 token set（已有） |
-| **composite** | 大賞齊全、露天心選 badge（帶 icon） | Type B Composite，token 管色彩，形狀由 Figma component 控制 |
+| **composite** | 大賞齊全、露天心選 badge（帶 icon） | Compound (Slot Override)，token 管色彩，形狀由 Figma component 控制 |
 | **prize-level** | A賞/B賞/最後賞，per-level 色 | 色彩由業務邏輯決定，token 只管結構尺寸 |
 
 ---

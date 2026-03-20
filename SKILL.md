@@ -46,8 +46,8 @@ Semantic aliases to ref. Includes sys/color/price (red, for promotional prices).
 - **icon (8):** xs/sm/md/lg × size + color. Other comps reference comp/icon instead of sys/sizing directly.
 - **product-card (51):** container, image, badge, title, price(red), meta(8px), tag-shipping(blue), tag-brand(red+icon), promo-corner(免運角標)
 - **button (49):** sm/md/lg/xl × primary/secondary/ghost × states
-- **tab (28):** sm/md/lg/xl × active/inactive/hover
-- **tag (61):** filter/display/action × sm/md/lg/xl + promo-corner
+- **tab (29):** sm/md/lg/xl × active/inactive/hover
+- **tag (74):** filter/display/action × sm/md/lg/xl + promo-corner
 
 ## Component Governance (v1.0.0)
 
