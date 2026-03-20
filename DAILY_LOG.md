@@ -2,6 +2,38 @@
 
 ---
 
+## 2026-03-20（五）— 收工 Session 2
+
+### 1. 今日完成
+- [x] UI Library Preview HTML 存檔 — Kay 提供完整 HTML（Button 4-role + Tab emphasis + Avatar + Thumbnail），存為 `ui-library-preview.html`
+- [x] Tab guideline §3.5 補強 — 新增 Tab 結構圖（vertical stack 示意）、各 size 驗算表（sm/md/lg/xl controlHeight vs padding 公式）、設計決策記錄
+- [x] Tab guideline header token 數更新 29 → 33
+- [x] Validation 確認 43 PASS / 0 FAIL
+
+### 2. Token 狀態
+- 起始：636 tokens (ref 159 + sys 166 + comp 311)
+- 結束：636 tokens (ref 159 + sys 166 + comp 311)
+- 淨增：0（JSON token 昨天 Session 1 已入庫）
+- Validation：43 PASS / 0 FAIL ✅
+- 最後修改檔案：tab-usage-guideline.md, ui-library-preview.html (NEW)
+
+### 3. 明日工作順序（建議，等 Kay 確認）
+1. Figma Component 視覺驗證（Tab / Button / Avatar 截圖 + variable binding check）
+2. scripter 更新 — Button script 對齊新 role 命名（primary=深灰底）
+3. Tab Bar scrollable variant 補完
+4. Thumbnail Figma Component scripter script
+
+### 如果有空才做
+- Tab secondary emphasis Figma variant 擴充
+- design-system-viewer-live.html 更新（Button 頁面對齊新 4-role、新增 Tab/Avatar/Thumbnail 頁面）
+
+### 4. Blocked 項目
+| 項目 | Blocked 原因 |
+|------|-------------|
+| Button Component 新 primary variant | 需先跑 Thierry 匯入新 token 到 Figma Variables |
+
+---
+
 ## 2026-03-20（五）— 收工
 
 ### 1. 今日完成
