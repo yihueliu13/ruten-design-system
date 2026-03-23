@@ -14,6 +14,8 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 - body-md-alt = 13px (legacy)
 - Price color = sys/color/price (RED, not brand orange)
 - icon-color and text-color are separate tokens
+- Button icon-color aliases text-color (comp→comp, Ant Design currentColor pattern)
+- Icon vector fill bound to comp/icon/md/color Variable
 - Never delete Figma Variable Collection and re-import (breaks bindings)
 - Mono removed from SOT and Text Styles
 

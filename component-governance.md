@@ -560,6 +560,9 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 - Compound token 管所有非獨立子元素屬性（參考 MD3 component token）
 - 元件 padding-v 由工程端用公式計算：`(controlHeight - fontHeight) / 2 - borderWidth`
 - icon-color 和 text-color 分開（語義不同）
+- Button icon-color aliases text-color（comp→comp, Ant Design currentColor pattern）
+- Icon component vector fill bound to `comp/icon/md/color` Variable
+- iconPosition is Component Property, not variant（MD3 pattern）
 - 刪除 Variable Collection 再匯入會斷綁定 → 永遠用 overlay import
 
 ### 12.4 Update Flow
@@ -603,6 +606,10 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 | 價格顏色 | **紅色 sys/color/price** | 非 error 語義，獨立的促銷價格紅 |
 | 13px | **body-md-alt** | legacy compatibility，建議新設計用 14px |
 | label-2xs | **8px（非 9px）** | 對齊實際設計（銷售999+） |
+| Button icon-color | **comp→comp alias text-color** | Ant Design currentColor pattern：icon 預設跟隨文字色，未來可獨立覆寫 hover/disabled 等狀態 |
+| Icon vector fill | **bound to `comp/icon/md/color`** | 單一 Variable 綁定所有 icon vector fill，語義統一、Figma 批次換色 |
+| iconPosition | **Component Property（非 variant）** | MD3 pattern：不影響外觀尺寸的屬性用 Property 而非 Variant，減少 variant 組合爆炸 |
+| icon-color 分離 | **獨立 token 但 alias text-color** | governance §12.3 要求 icon-color 與 text-color 分離，但預設值相同以降低維護成本 |
 
 ### 已解決的高風險點
 
