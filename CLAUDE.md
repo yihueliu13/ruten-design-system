@@ -27,6 +27,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 ```
 
 ## Rules
+- **每次 git commit 前必跑 `python3 validate-design-system.py --root .`**，不管改的是不是 SOT
 - Every new token MUST have $description (imperative style)
 - Description template: "[What]. Use for [contexts]. Do NOT use for [anti-patterns]."
 - comp layer: never hardcode color or value, always alias to sys
