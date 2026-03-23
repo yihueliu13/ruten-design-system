@@ -1,77 +1,20 @@
 {
-  "$schema": "icon-inventory/v1.0",
-  "$description": "Ruten Design System icon inventory. Tracks all icons, their sizing tokens, and Figma status.",
-  "$updated": "2026-03-17",
-  "sizing_tokens": {
-    "sys": {
-      "icon-xs": {
-        "value": 12,
-        "alias": "{ref.sizing.3}",
-        "usage": "Compact tag icons, inline micro-indicators"
-      },
-      "icon-sm": {
-        "value": 16,
-        "alias": "{ref.sizing.4}",
-        "usage": "Inline indicators, status dots, compact UI icons"
-      },
-      "icon-md": {
-        "value": 24,
-        "alias": "{ref.sizing.6}",
-        "usage": "Navigation icons, action icons, form field icons (default)"
-      },
-      "icon-lg": {
-        "value": 32,
-        "alias": "{ref.sizing.8}",
-        "usage": "Empty state icons, feature highlight icons"
-      }
-    },
-    "comp": {
-      "icon/xs": {
-        "size": "{sys.sizing.icon-xs}",
-        "color": "{sys.color.on-surface-variant}"
-      },
-      "icon/sm": {
-        "size": "{sys.sizing.icon-sm}",
-        "color": "{sys.color.on-surface}"
-      },
-      "icon/md": {
-        "size": "{sys.sizing.icon-md}",
-        "color": "{sys.color.on-surface}"
-      },
-      "icon/lg": {
-        "size": "{sys.sizing.icon-lg}",
-        "color": "{sys.color.on-surface}"
-      }
-    }
-  },
-  "icon_consumers": {
-    "comp/button": {
-      "sm/icon-size": "{comp.icon.sm.size} (16px)",
-      "md/icon-size": "{comp.icon.md.size} (24px)",
-      "lg/icon-size": "{comp.icon.md.size} (24px)",
-      "xl/icon-size": "{comp.icon.md.size} (24px)"
-    },
-    "comp/tag/base": {
-      "icon-size": "{sys.sizing.icon-xs} (12px)",
-      "icon-gap": "2px (hardcoded, below spacing scale)"
-    },
-    "comp/tag/action/dismissible": {
-      "close-icon-size": "{sys.sizing.icon-sm} (16px)",
-      "close-icon-color": "{sys.color.on-surface-variant}"
-    },
-    "comp/product-card/tag-brand": {
-      "icon-size": "{comp.tag.base.icon-size} (12px)",
-      "gap": "{comp.tag.base.icon-gap} (2px)"
-    }
-  },
-  "figma": {
-    "file_key": "JntRm8aTeyw1HPdowgSBk4",
-    "icons_page_node_id": "45:19481",
-    "tag_section_node_id": null,
-    "tag_new_icon_source_node_id": "81:2872764",
-    "_note": "All in DS測試 file (JntRm8aTeyw1HPdowgSBk4)."
+  "$description": "Icon inventory generated from Figma component names. Source: Scripter plugin on Icons page.",
+  "$generated": "2026-03-23",
+  "$totalInstances": 476,
+  "$uniqueIcons": 283,
+  "$styleCounts": {
+    "bulk": 112,
+    "outline": 206,
+    "solid": 158
   },
   "icons": [
+    {
+      "name": "18-plus-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
     {
       "name": "2-user",
       "outline": true,
@@ -277,6 +220,12 @@
       "bulk": true
     },
     {
+      "name": "baby-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "bad",
       "outline": false,
       "solid": true,
@@ -293,6 +242,24 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "bag-01-light-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "bag-01-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "bag-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "basket",
@@ -341,6 +308,12 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "book-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "bookmark",
@@ -433,6 +406,18 @@
       "bulk": false
     },
     {
+      "name": "camping-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "car-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "card",
       "outline": true,
       "solid": true,
@@ -458,6 +443,12 @@
     },
     {
       "name": "category-02",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "category-lite",
       "outline": true,
       "solid": false,
       "bulk": false
@@ -523,6 +514,12 @@
       "bulk": false
     },
     {
+      "name": "china-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "circle-danger",
       "outline": true,
       "solid": true,
@@ -566,6 +563,12 @@
     },
     {
       "name": "computer",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
+      "name": "computer-lite",
       "outline": true,
       "solid": false,
       "bulk": false
@@ -634,6 +637,12 @@
       "name": "dots-center",
       "outline": false,
       "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "dress-lite",
+      "outline": true,
+      "solid": false,
       "bulk": false
     },
     {
@@ -763,6 +772,12 @@
       "bulk": true
     },
     {
+      "name": "game-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "gamepad",
       "outline": true,
       "solid": true,
@@ -823,6 +838,12 @@
       "bulk": true
     },
     {
+      "name": "heart-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "help",
       "outline": false,
       "solid": true,
@@ -850,6 +871,12 @@
       "name": "home-heart",
       "outline": false,
       "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "home-lite",
+      "outline": true,
+      "solid": false,
       "bulk": false
     },
     {
@@ -913,12 +940,6 @@
       "bulk": true
     },
     {
-      "name": "light-heart",
-      "outline": true,
-      "solid": false,
-      "bulk": false
-    },
-    {
       "name": "lightning",
       "outline": false,
       "solid": true,
@@ -953,6 +974,12 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "makeup-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "market",
@@ -1006,6 +1033,12 @@
       "name": "moving",
       "outline": true,
       "solid": true,
+      "bulk": false
+    },
+    {
+      "name": "music-lite",
+      "outline": true,
+      "solid": false,
       "bulk": false
     },
     {
@@ -1115,6 +1148,12 @@
       "outline": false,
       "solid": false,
       "bulk": true
+    },
+    {
+      "name": "phone-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "pie-chart",
@@ -1363,6 +1402,12 @@
       "bulk": false
     },
     {
+      "name": "shoe-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "shopping-car",
       "outline": false,
       "solid": true,
@@ -1387,6 +1432,12 @@
       "bulk": false
     },
     {
+      "name": "sport-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "square-close",
       "outline": true,
       "solid": true,
@@ -1403,6 +1454,12 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "star-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "stars",
@@ -1433,6 +1490,12 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "t-shirt-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "tablet",
@@ -1487,6 +1550,12 @@
       "outline": true,
       "solid": true,
       "bulk": true
+    },
+    {
+      "name": "time-square-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
     },
     {
       "name": "tips",
@@ -1567,6 +1636,12 @@
       "bulk": true
     },
     {
+      "name": "video-lite",
+      "outline": true,
+      "solid": false,
+      "bulk": false
+    },
+    {
       "name": "voice",
       "outline": true,
       "solid": true,
@@ -1632,110 +1707,5 @@
       "solid": true,
       "bulk": false
     }
-  ],
-  "summary": {
-    "total_unique_icons": 260,
-    "outline": 183,
-    "solid": 155,
-    "bulk": 111,
-    "outline_only": 81,
-    "solid_only": 53,
-    "all_three": 76
-  },
-  "category_menu_icons": {
-    "_source_node": "81:2872764",
-    "_description": "分類館首頁分類選單 — 23 category icons, all renamed with -lite suffix, 24x24px in new outline frame",
-    "already_in_icons_page": [
-      {
-        "name": "heart-lite",
-        "note": "was frame (detached)"
-      },
-      {
-        "name": "home-lite"
-      },
-      {
-        "name": "computer-lite"
-      },
-      {
-        "name": "book-lite"
-      },
-      {
-        "name": "video-lite"
-      },
-      {
-        "name": "game-lite"
-      },
-      {
-        "name": "bag-lite"
-      },
-      {
-        "name": "star-lite"
-      }
-    ],
-    "missing_from_icons_page": [
-      {
-        "name": "camping-lite",
-        "label": "休閒旅遊"
-      },
-      {
-        "name": "car-lite",
-        "label": "交通工具"
-      },
-      {
-        "name": "phone-lite",
-        "label": "手機通訊"
-      },
-      {
-        "name": "t-shirt-lite",
-        "label": "男裝配件"
-      },
-      {
-        "name": "sport-lite",
-        "label": "運動健身"
-      },
-      {
-        "name": "bag-01-lite",
-        "label": "名產食品"
-      },
-      {
-        "name": "makeup-lite",
-        "label": "保養彩妝"
-      },
-      {
-        "name": "dress-lite",
-        "label": "流行女裝"
-      },
-      {
-        "name": "shoe-lite",
-        "label": "鞋包精品"
-      },
-      {
-        "name": "baby-lite",
-        "label": "嬰幼母親"
-      },
-      {
-        "name": "music-lite",
-        "label": "音樂電影"
-      },
-      {
-        "name": "time-square-lite",
-        "label": "鐘錶眼鏡"
-      },
-      {
-        "name": "china-lite",
-        "label": "古董收藏"
-      },
-      {
-        "name": "18-plus-lite",
-        "label": "成人專區"
-      },
-      {
-        "name": "category-lite",
-        "label": "百業服務"
-      }
-    ],
-    "new_outline_frame_node_id": "87:15521",
-    "total_in_new_outline": 23,
-    "color_binding": "comp/icon/md/color ✅ confirmed"
-  }
+  ]
 }
