@@ -187,6 +187,7 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 - 不要修改 ref 層的值（除非經過 governance 審核）
 - 不要假設品牌色——查 JSON 確認
 - 不要在未確認的情況下自動修改 design-system-all.json
+- 刪除檔案前，必須先跑 `grep -rl "檔名" .` 確認無其他檔案引用，再跑 `python3 validate-design-system.py --root .` 確認通過。兩步都過才能刪
 
 ---
 
