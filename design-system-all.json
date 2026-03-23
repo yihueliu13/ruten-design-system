@@ -4656,6 +4656,11 @@
             "$type": "color",
             "$value": "{sys.color.on-surface}",
             "$description": "Primary button default border. Same as background, no visible border."
+          },
+          "icon-color": {
+            "$type": "color",
+            "$value": "{sys/color/primary}",
+            "$description": "Primary button icon color. Brand orange on dark surface. Separate from text-color per governance §12.3."
           }
         },
         "hover": {
@@ -4827,6 +4832,11 @@
               ],
               "com.figma.isOverride": true
             }
+          },
+          "icon-color": {
+            "$type": "color",
+            "$value": "{sys/color/on-primary}",
+            "$description": "Secondary button icon color. White on brand orange surface. Separate from text-color per governance §12.3."
           }
         }
       },
@@ -4879,6 +4889,11 @@
               ],
               "com.figma.isOverride": true
             }
+          },
+          "icon-color": {
+            "$type": "color",
+            "$value": "{sys/color/primary}",
+            "$description": "Tertiary button icon color. Brand orange, matches outline style. Separate from text-color per governance §12.3."
           }
         },
         "disabled": {
@@ -4990,6 +5005,11 @@
               ],
               "com.figma.isOverride": true
             }
+          },
+          "icon-color": {
+            "$type": "color",
+            "$value": "{sys/color/primary}",
+            "$description": "Ghost button icon color. Brand orange on transparent surface. Separate from text-color per governance §12.3."
           }
         },
         "hover": {

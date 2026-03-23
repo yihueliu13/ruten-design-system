@@ -72,6 +72,19 @@ comp/button/ghost/default/background       → transparent
 comp/button/ghost/default/text-color       → {sys.color.primary}
 ```
 
+#### icon-color（與 text-color 分離）
+
+按鈕內的 icon 顏色獨立於文字顏色，遵循 governance §12.3 決策。目前預設值與 text-color 相同，但語義分離確保未來可獨立調整（例如 hover 時 icon 變色但文字不變）。
+
+```
+comp/button/primary/default/icon-color     → {sys.color.primary}
+comp/button/secondary/default/icon-color   → {sys.color.on-primary}
+comp/button/tertiary/default/icon-color    → {sys.color.primary}
+comp/button/ghost/default/icon-color       → {sys.color.primary}
+```
+
+Figma 綁定：icon instance 的 fill 綁到 icon-color，不要綁 text-color。
+
 ---
 
 ## 4. Form（型態）
