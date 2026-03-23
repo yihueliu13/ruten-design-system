@@ -560,9 +560,12 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 - Compound token 管所有非獨立子元素屬性（參考 MD3 component token）
 - 元件 padding-v 由工程端用公式計算：`(controlHeight - fontHeight) / 2 - borderWidth`
 - icon-color 和 text-color 分開（語義不同）
-- Button icon-color aliases text-color（comp→comp, Ant Design currentColor pattern）
-- Icon component vector fill bound to `comp/icon/md/color` Variable
-- iconPosition is Component Property, not variant（MD3 pattern）
+- Button icon 顏色跟隨文字色：icon-color alias 到 text-color（comp → comp），Figma 用獨立 token 綁定，工程端用 CSS currentColor 繼承
+- 所有 Icon component（476 個）的 vector fill 綁到 comp/icon/md/color Variable
+- Button icon 位置用 form variant（label / icon-label / label-icon），不用 Component Property（Figma 不支援 layout order property）
+- Button ghost 的 background fill opacity=0，Variable 綁 sys/color/surface
+- Tertiary button border-color 改為 sys/color/primary（橘色框線）
+- Figma Scripter 綁 fills/strokes 顏色的正確方法：`paint.boundVariables = { color: { type: "VARIABLE_ALIAS", id: var.id } }`，不能用 `setBoundVariable("fills", var, 0)`
 - 刪除 Variable Collection 再匯入會斷綁定 → 永遠用 overlay import
 
 ### 12.4 Update Flow
@@ -606,10 +609,11 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 | 價格顏色 | **紅色 sys/color/price** | 非 error 語義，獨立的促銷價格紅 |
 | 13px | **body-md-alt** | legacy compatibility，建議新設計用 14px |
 | label-2xs | **8px（非 9px）** | 對齊實際設計（銷售999+） |
-| Button icon-color | **comp→comp alias text-color** | Ant Design currentColor pattern：icon 預設跟隨文字色，未來可獨立覆寫 hover/disabled 等狀態 |
-| Icon vector fill | **bound to `comp/icon/md/color`** | 單一 Variable 綁定所有 icon vector fill，語義統一、Figma 批次換色 |
-| iconPosition | **Component Property（非 variant）** | MD3 pattern：不影響外觀尺寸的屬性用 Property 而非 Variant，減少 variant 組合爆炸 |
-| icon-color 分離 | **獨立 token 但 alias text-color** | governance §12.3 要求 icon-color 與 text-color 分離，但預設值相同以降低維護成本 |
+| Button icon-color aliases text-color | **comp→comp alias** | Ant Design currentColor pattern。治理規則 §12.3 仍保持 icon-color 和 text-color 分開，但值預設相同。未來可各自調整。 |
+| Icon vector fill 統一綁 Variable | **bound to `comp/icon/md/color`** | 476 個 icon component fill 綁到 comp/icon/md/color。嵌入其他 component 時由使用方 override。 |
+| iconPosition 用 form variant 不用 Component Property | **form=label/icon-label/label-icon** | Figma 不支援 Auto Layout order property。form=label/icon-label/label-icon 三個 variant。 |
+| Figma paint.boundVariables 是綁色的正確方法 | **paint.boundVariables** | setBoundVariable("fills") 會報錯。必須用 paint 物件的 boundVariables 屬性。 |
+| tertiary border-color 改為 sys/color/primary | **品牌橘框線** | 從 sys/color/outline（灰色）改為品牌橘，與文字色一致。 |
 
 ### 已解決的高風險點
 

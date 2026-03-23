@@ -99,6 +99,8 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 - icon-color 和 text-color 分開（語義不同）
 - base-4 以下的 hardcode 值（如 2px gap）保留 + 註解
 - 刪除 Variable Collection 再匯入會斷綁定 → 永遠用 overlay import
+- Figma paint 綁色用 `paint.boundVariables`，不用 `setBoundVariable("fills")`
+- Tertiary button border-color = sys/color/primary（橘色）
 - Mono 已從 SOT 和 Text Styles 移除
 
 ---
