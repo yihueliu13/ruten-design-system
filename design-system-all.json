@@ -4890,8 +4890,8 @@
           },
           "border-color": {
             "$type": "color",
-            "$value": "{sys.color.outline}",
-            "$description": "Tertiary button border. Grey outline.",
+            "$value": "{sys.color.primary}",
+            "$description": "Tertiary button border. Brand orange outline.",
             "$extensions": {
               "com.figma.variableId": "VariableID:17:14605",
               "com.figma.scopes": [
