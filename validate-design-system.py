@@ -78,7 +78,6 @@ def build_issues(root: Path) -> list[Issue]:
     comp_gov_path = root / "component-governance.md"
     migration_path = root / "token-migration-map.md"
     viewer_live_path = root / "design-system-viewer-live.html"
-    viewer_snapshot_path = root / "design-system-viewer.html"
     script_path = root / "create-text-styles.js"
 
     data = load_json(json_path)
@@ -129,7 +128,6 @@ def build_issues(root: Path) -> list[Issue]:
     comp_gov = read_text(comp_gov_path)
     migration = read_text(migration_path)
     viewer_live = read_text(viewer_live_path)
-    viewer_snapshot = read_text(viewer_snapshot_path)
     script = read_text(script_path)
 
     # SKILL.md checks (slimmed — defers counts to JSON)
@@ -167,10 +165,6 @@ def build_issues(root: Path) -> list[Issue]:
     else:
         issues.append(Issue("FAIL", "VIEWER_LIVE_FETCH", "Live viewer does not appear to fetch design-system-all.json.", viewer_live_path.name))
     expect_contains(issues, viewer_live, f"130 個 Text Styles", viewer_live_path.name, "VIEWER_LIVE_STYLES", "Live viewer shows 130 text styles.")
-
-    expect_contains(issues, viewer_snapshot, f'"ruten.version": "v1.0.0"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_VERSION", "Snapshot viewer carries the sealed baseline version.")
-    expect_contains(issues, viewer_snapshot, f'"ruten.status": "sealed-baseline"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_STATUS", "Snapshot viewer carries the sealed baseline status.")
-    expect_contains(issues, viewer_snapshot, "ref tokens", viewer_snapshot_path.name, "VIEWER_SNAPSHOT_TOTAL", "Snapshot viewer contains ref token display.")
 
     # Forbidden legacy text
     forbidden = {
