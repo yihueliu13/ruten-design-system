@@ -4659,8 +4659,8 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{sys/color/primary}",
-            "$description": "Primary button icon color. Brand orange on dark surface. Separate from text-color per governance §12.3."
+            "$value": "{comp/button/primary/default/text-color}",
+            "$description": "Primary button icon color. Aliases text-color (Ant Design currentColor pattern). Separate token per governance §12.3, same value by default."
           }
         },
         "hover": {
@@ -4835,8 +4835,8 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{sys/color/on-primary}",
-            "$description": "Secondary button icon color. White on brand orange surface. Separate from text-color per governance §12.3."
+            "$value": "{comp/button/secondary/default/text-color}",
+            "$description": "Secondary button icon color. Aliases text-color (Ant Design currentColor pattern). White on brand orange."
           }
         }
       },
@@ -4892,8 +4892,8 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{sys/color/primary}",
-            "$description": "Tertiary button icon color. Brand orange, matches outline style. Separate from text-color per governance §12.3."
+            "$value": "{comp/button/tertiary/default/text-color}",
+            "$description": "Tertiary button icon color. Aliases text-color (Ant Design currentColor pattern). Brand orange."
           }
         },
         "disabled": {
@@ -5008,8 +5008,8 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{sys/color/primary}",
-            "$description": "Ghost button icon color. Brand orange on transparent surface. Separate from text-color per governance §12.3."
+            "$value": "{comp/button/ghost/default/text-color}",
+            "$description": "Ghost button icon color. Aliases text-color (Ant Design currentColor pattern). Brand orange."
           }
         },
         "hover": {
