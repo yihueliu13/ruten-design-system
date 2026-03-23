@@ -2,6 +2,55 @@
 
 ---
 
+## 2026-03-23（一）— Daily Standup（自動排程）
+
+### 1. 上次完成的工作（2026-03-20 五）
+
+**Sprint 2 進行中：基礎元件 Guideline + Figma Component**
+- [x] UI Library Preview HTML 存檔（Button 4-role + Tab emphasis + Avatar + Thumbnail）
+- [x] Tab guideline §3.5 補強（結構圖、size 驗算表、設計決策記錄）
+- [x] Tab guideline header token 數更新 29 → 33
+- [x] Button role 命名遷移 + guideline 全面改寫（4 wrapper × 9 狀態）
+- [x] Tab secondary emphasis（sys/color/on-surface-medium +1, comp/tab/secondary +4）
+- [x] Avatar 定義縮窄 + Thumbnail 新增（+11 tokens + guideline）
+- [x] component-governance.md 更新（Primitive Registry + §8 邊界案例）
+- [x] Scripter scripts v3（Tab Item 12v + Tab Bar 2v + Button 32v + Avatar 12v）
+
+**Sprint 完成狀態：**
+- Sprint 0 ✅ 清技術債
+- Sprint 1 ✅ Icon 收尾 + Tag 清理
+- Sprint 2 🔄 進行中（Guideline 大致完成，Figma Component 待建）
+- Sprint 4 部分完成：#15 SectionModule (7 tokens) ✅, #18 Banner (4 tokens) ✅
+
+### 2. Token 狀態
+- 目前：636 tokens (ref 159 + sys 166 + comp 311) + 130 Text Styles
+- 自上次站會以來：無變化（週末未修改 JSON）
+- design-system-all.json 最後修改：2026-03-20
+- Validation：**43 PASS / 0 FAIL / 0 WARN** ✅
+
+### 3. 今日工作項目
+
+**下一個待做：Sprint 2 收尾 — Figma Component 建立**
+
+| 項目 | 執行方式 | 說明 |
+|------|---------|------|
+| Tab Component 高度決策 | 💬 Chat 討論 | HUG+minHeight vs FIXED — 上次 Blocked |
+| Button Figma Component（新 primary variant） | 🖥 Cowork 執行 | 需先跑 Thierry 匯入新 token |
+| Tab Figma Component 最終驗證 | 🖥 Cowork 執行 | 高度決策後重跑 scripter |
+| Avatar Figma Component | 🖥 Cowork 執行 | scripter-03-avatar.js 已就緒 |
+| Thumbnail Figma Component scripter | 🖥 Cowork 執行 | 新增 scripter script |
+
+**建議先做：** Tab 高度決策（Chat 討論），解除 Blocked 後才能完成 Sprint 2 全部 Figma Component。
+
+### 4. Blocked 項目
+
+| 項目 | Blocked 原因 |
+|------|-------------|
+| Tab Component 最終版 | 需 Kay 決定高度策略（HUG+minHeight A / FIXED B / 調 padding C） |
+| Button Component 新 primary variant | 需先跑 Thierry 匯入新 token 到 Figma Variables |
+
+---
+
 ## 2026-03-20（五）— 收工 Session 2
 
 ### 1. 今日完成
