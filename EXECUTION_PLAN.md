@@ -15,12 +15,12 @@
 | # | Component | 類別 | 深度 | Tokens | 狀態 | 待做 |
 |---|-----------|------|------|--------|------|------|
 | 1 | ProductCard | Display | Compound | 51 | ✅ Binding 大致完成 | 轉 Main Component + Variants |
-| 2 | Button | Action | Primitive | 64 | ✅ Token 完成 | 建 Figma Main Component (size × style) |
-| 3 | Tab | Navigation | Primitive | 33 | ✅ Token 完成 | 建 Figma Main Component (size × state) |
+| 2 | Button | Action | Primitive | 64 | ✅ Figma Component 48 variants (4 role × 4 size × 3 form) | — |
+| 3 | Tab | Navigation | Primitive | 33 | ✅ Figma Component 24 variants (2 emphasis × 4 size × 3 state) | — |
 | 4 | Tag (Filter) | Feedback | Primitive | 74 | ✅ 清理完成 | 無舊路徑殘留（2026-03-17 驗證） |
 | 5 | Tag (Display) | Feedback | Primitive | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |
 | 6 | Tag (Promo Corner) | Feedback | Primitive | 含 #4 | ✅ | — |
-| 7 | Icon | Media | Primitive | 8 | ✅ outline 完成 | 23 icon detach + -lite + color binding（2026-03-17） |
+| 7 | Icon | Media | Primitive | 8 | ✅ 476 icons, vector fill bound to Variable | — |
 | 8 | Badge | Feedback | Primitive | 11 | ✅ Token 完成 | 建 Figma Main Component (dot/count) |
 
 ### B. 需全新定義 token（按執行優先序）
@@ -37,8 +37,8 @@
 | P3 | 16 | QuickInfoBar | Layout | Pattern | 保障購物（評價/出貨/退貨） | 0（用 sys/） |
 | P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | ~3 |
 | P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | 4 ✅ |
-| P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ~6 |
-| 20 | Thumbnail | Display | Primitive | 圖片縮圖卡 | ~11 |
+| P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ✅ Figma Component 12 variants |
+| 20 | Thumbnail | Display | Primitive | 圖片縮圖卡 | ✅ Figma Component 12 variants |
 
 **預估新增 ~76 tokens → 總量 ~676**
 （較先前估計 ~82 減少，因 Pattern 層不建 comp/ token；新增 Thumbnail 11 tokens）
@@ -86,9 +86,10 @@ Chat 下一個元件（或回來修正）
 - [x] 建立 icon-inventory.json（2026-03-17）
 
 ### Sprint 2：基礎元件 Guideline + Figma Component（Chat 定規範 → Cowork 執行）
-- [ ] #2 Button：Chat 定 guideline（size × style × state × RWD）→ Cowork 建 Main Component + Variants
-- [ ] #3 Tab：Chat 定 guideline（size × state × RWD）→ Cowork 建 Main Component + Variants
-- [ ] #19 Avatar：Chat 定 guideline → Cowork 補 token + 建 Main Component
+- [x] #2 Button：Figma Component 48 variants (4 role × 4 size × 3 form) ✅
+- [x] #3 Tab：Figma Component 24 variants (2 emphasis × 4 size × 3 state) ✅
+- [x] #19 Avatar：Figma Component 12 variants ✅
+- [x] #20 Thumbnail：Figma Component 12 variants ✅
 
 ### Sprint 3：全局骨架元件（Chat 討論 + Cowork 執行）
 - [ ] #9 SectionHeader（出現頻率最高）

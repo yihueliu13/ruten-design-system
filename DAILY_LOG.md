@@ -7,17 +7,17 @@
 ## 🔄 目前狀態（2026-03-23（一）20:08 自動更新）
 
 **Token：642** (ref 159 + sys 168 + comp 315) + 130 Text Styles
-**Validation：33 PASS / 1 FAIL** ⚠️
-**Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 🔄 (0/3) · Sprint 3 🔄 (0/3) · Sprint 4 🔄 (1/4) · Sprint 5 🔄 (1/3) · Sprint 6 🔄 (0/3)
+**Validation：32 PASS / 0 FAIL** ✅
+**Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ (4/4) · Sprint 3 🔄 (0/3) · Sprint 4 🔄 (1/4) · Sprint 5 🔄 (1/3) · Sprint 6 🔄 (0/3)
 
 **下一步：**
-- Tab Component 高度決策
-- Button Figma Component（新 primary variant）
-- Tab Figma Component 最終驗證
+- Button Instance Swap Property（手動設定）
+- 全面 alias chain 驗證（Figma Variable vs JSON 比對）
+- Tab Variable binding 修正（用 paint.boundVariables 方法）
+- Sprint 3 元件 Figma Component 建置
 
 **Blocked：**
-- Tab Component 最終版 — 需 Kay 決定高度策略（HUG+minHeight A / FIXED B / 調 padding C）
-- Button Component 新 primary variant — 需先跑 Thierry 匯入新 token 到 Figma Variables
+- （目前無 blocked 項目）
 
 **今日 commits：20 筆**
 - `5a1c2bf` fix: tertiary border-color → sys.color.primary (brand orange outline)
@@ -80,94 +80,16 @@
   - `design-system-governance.md`
   - ...（共 36 個）
 
-### 3. 明日工作順序（建議，等 Kay 確認）
-1. Tab Component 高度決策
-2. Button Figma Component（新 primary variant）
-3. Tab Figma Component 最終驗證
-
-### 如果有空才做
-- #2 Button：Chat 定 guideline（size × style × state × RWD）→ Cowork 建 Main Component + Variants
-- #3 Tab：Chat 定 guideline（size × state × RWD）→ Cowork 建 Main Component + Variants
+### 3. 明日工作順序（Kay 確認）
+1. Button Instance Swap Property（手動設定）
+2. 全面 alias chain 驗證（Figma Variable vs JSON 比對）
+3. Tab Variable binding 修正（用 paint.boundVariables 方法）
+4. Sprint 3 元件 Figma Component 建置
 
 ### 4. Blocked 項目
 | 項目 | Blocked 原因 |
 |------|-------------|
-| Tab Component 最終版 | 需 Kay 決定高度策略（HUG+minHeight A / FIXED B / 調 padding C） |
-| Button Component 新 primary variant | 需先跑 Thierry 匯入新 token 到 Figma Variables |
-| （Claude 補充已知 blocked） | — |
-
-
----
-
-## 2026-03-23（一） — 收工（sync-daily-log.py --close）
-
-### 1. 今日完成
-- [x] `456c807` cleanup: consolidate docs — merge governance/progress/control-height/TODO into component-governance + EXECUTION_PLAN, slim SKILL.md, add sync-derived-files.py
-- [x] `ead6798` cleanup: file consolidation — update validate script, add §6a, fix stale refs
-- [x] `649566e` feat: add scripter-import-new-variables.js — 620 token entries for Figma Variable creation
-- [x] `66bc5be` refactor: rewrite SKILL.md — 14-step lifecycle + role matrix + progress tracking
-- [x] `00780d5` 更新skill
-- [x] `a9d6d8f` feat: add §6 Project Knowledge upload checklist to SKILL.md
-- [x] `62b4d6d` cleanup: remove 4 obsolete files + update validate script
-- [x] `7acfdcd` rule: add file deletion safety check to §8 禁止事項
-- [x] `ba42210` 已加進 COWORK_INSTRUCTIONS.md §8
-- [x] `ab4ec9a` feat(icons): add icon-inventory.json with 476 Figma icon instances
-- [x] `5a78e0d` 完成。摘要： 項目數量總實例數476 ✅Unique icons283outline206solid158bulk112 已 commit + push（ab4ec9a）。
-- [x] `f3a655c` chore: add mandatory validation rule to CLAUDE.md
-- [x] `38ecfda` feat: add comp/button/*/default/icon-color tokens (4 new, governance §12.3)
-- [x] `3aae3f7` chore: add PUSH step to workflow — list committed files after push
-- [x] `cb8cd22` refactor: icon-color aliases text-color (comp→comp, Ant Design currentColor pattern)
-- [x] `45782af` rule: add icon-color + iconPosition + icon Variable binding governance decisions
-- [x] `5da332f` fix: button token completeness — 2 new sys tokens, icon-color alias, opacity alias, format normalization
-- [x] `5a1c2bf` fix: tertiary border-color → sys.color.primary (brand orange outline)
-
-**備份/日誌：**
-- `520ccb7` backup: pre-cleanup snapshot 2026-03-23
-- `ca8177a` 備份
-
-**原定計畫項目：**
-- Tab Component 高度決策
-- Button Figma Component（新 primary variant）
-- Tab Figma Component 最終驗證
-- Avatar Figma Component
-- Thumbnail Figma Component scripter
-
-### 2. Token 狀態
-- 目前：642 tokens (ref 159 + sys 168 + comp 315)
-- Validation：**33 PASS / 1 FAIL**
-- 今日變動檔案（36 個）：
-  - `CLAUDE.md`
-  - `COWORK_INSTRUCTIONS.md`
-  - `DAILY_LOG.md`
-  - `EXECUTION_PLAN.md`
-  - `RUTEN_TODO.md`
-  - `SKILL.md`
-  - `add-tag-variables.js`
-  - `bind-icon-color.js`
-  - `button-guideline-review.html`
-  - `button-usage-guideline.md`
-  - `component-governance.md`
-  - `control-height-guideline.md`
-  - `design-system-all-fixed.json`
-  - `design-system-all.json`
-  - `design-system-governance.md`
-  - ...（共 36 個）
-
-### 3. 明日工作順序（建議，等 Kay 確認）
-1. Tab Component 高度決策
-2. Button Figma Component（新 primary variant）
-3. Tab Figma Component 最終驗證
-
-### 如果有空才做
-- #2 Button：Chat 定 guideline（size × style × state × RWD）→ Cowork 建 Main Component + Variants
-- #3 Tab：Chat 定 guideline（size × state × RWD）→ Cowork 建 Main Component + Variants
-
-### 4. Blocked 項目
-| 項目 | Blocked 原因 |
-|------|-------------|
-| Tab Component 最終版 | 需 Kay 決定高度策略（HUG+minHeight A / FIXED B / 調 padding C） |
-| Button Component 新 primary variant | 需先跑 Thierry 匯入新 token 到 Figma Variables |
-| （Claude 補充已知 blocked） | — |
+| （目前無 blocked 項目） | — |
 
 
 ---
