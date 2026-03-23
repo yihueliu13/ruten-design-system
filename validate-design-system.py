@@ -49,6 +49,13 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def read_text_optional(path: Path) -> str | None:
+    """Read file if it exists, return None otherwise."""
+    if path.exists():
+        return path.read_text(encoding="utf-8")
+    return None
+
+
 def expect_contains(issues: list[Issue], text: str, needle: str, file: str, code: str, msg: str) -> None:
     if needle in text:
         issues.append(Issue("PASS", code, msg, file))
@@ -67,9 +74,8 @@ def build_issues(root: Path) -> list[Issue]:
     issues: list[Issue] = []
 
     json_path = root / "design-system-all.json"
-    progress_path = root / "design-system-progress.md"
     skill_path = root / "SKILL.md"
-    governance_path = root / "design-system-governance.md"
+    comp_gov_path = root / "component-governance.md"
     migration_path = root / "token-migration-map.md"
     viewer_live_path = root / "design-system-viewer-live.html"
     viewer_snapshot_path = root / "design-system-viewer.html"
@@ -119,30 +125,27 @@ def build_issues(root: Path) -> list[Issue]:
         issues.append(Issue("PASS", "MONO_REMOVED", "No Mono token paths remain in source of truth.", str(json_path.name)))
 
     # --- Derived file checks ---
-    progress = read_text(progress_path)
     skill = read_text(skill_path)
-    governance = read_text(governance_path)
+    comp_gov = read_text(comp_gov_path)
     migration = read_text(migration_path)
     viewer_live = read_text(viewer_live_path)
     viewer_snapshot = read_text(viewer_snapshot_path)
     script = read_text(script_path)
 
-    # Required truths in docs
-    expect_contains(issues, progress, f"**總量：** {total_count} tokens + {expected_text_styles} Text Styles", progress_path.name, "PROGRESS_TOTAL", "Progress total matches source of truth.")
-    expect_contains(issues, progress, f"## ✅ ref 層 — {ref_count} tokens", progress_path.name, "PROGRESS_REF", "Progress ref count matches source of truth.")
-    expect_contains(issues, progress, f"## ✅ sys 層 — {sys_count} tokens", progress_path.name, "PROGRESS_SYS", "Progress sys count matches source of truth.")
-    expect_contains(issues, progress, f"| `design-system-all.json` | ✅ 唯一真實來源 | ref({ref_count}) + sys({sys_count}) + comp({comp_count}) |", progress_path.name, "PROGRESS_SOT", "Progress source-of-truth summary matches counts.")
-
+    # SKILL.md checks (slimmed — defers counts to JSON)
     expect_contains(issues, skill, "See `design-system-all.json` for current token counts.", skill_path.name, "SKILL_DEFERS_COUNTS", "SKILL defers token counts to JSON.")
     expect_contains(issues, skill, "comp → sys → ref", skill_path.name, "SKILL_ALIAS_DIRECTION", "SKILL documents alias direction.")
     expect_contains(issues, skill, "130 styles", skill_path.name, "SKILL_TEXT_STYLES", "SKILL references 130 text styles.")
 
-    expect_contains(issues, governance, f"- ref: {ref_count}", governance_path.name, "GOV_REF", "Governance ref count matches source of truth.")
-    expect_contains(issues, governance, f"- sys: {sys_count}", governance_path.name, "GOV_SYS", "Governance sys count matches source of truth.")
-    expect_contains(issues, governance, f"- comp: {comp_count}", governance_path.name, "GOV_COMP", "Governance comp count matches source of truth.")
-    expect_contains(issues, governance, f"- total: {total_count}", governance_path.name, "GOV_TOTAL", "Governance total count matches source of truth.")
-    expect_contains(issues, governance, f"- total: {expected_text_styles}", governance_path.name, "GOV_TEXT_STYLES", "Governance text style count is 130.")
+    # component-governance.md checks (merged from governance.md + progress.md)
+    expect_contains(issues, comp_gov, "Source of Truth", comp_gov_path.name, "COMPGOV_SOT", "Component governance declares source of truth.")
+    expect_contains(issues, comp_gov, "Locked Decisions", comp_gov_path.name, "COMPGOV_LOCKED", "Component governance contains locked decisions.")
+    expect_contains(issues, comp_gov, "Architecture Decisions Log", comp_gov_path.name, "COMPGOV_ARCH_LOG", "Component governance contains architecture decisions log.")
+    expect_contains(issues, comp_gov, "label-2xs", comp_gov_path.name, "COMPGOV_LABEL2XS", "Component governance documents label-2xs decision.")
+    expect_contains(issues, comp_gov, "body-md-alt", comp_gov_path.name, "COMPGOV_BODYMDALT", "Component governance documents body-md-alt decision.")
+    expect_contains(issues, comp_gov, "sys/color/price", comp_gov_path.name, "COMPGOV_PRICE", "Component governance documents price color decision.")
 
+    # Migration map
     if 'design-system-all.json' in migration and '唯一真實來源' in migration:
         issues.append(Issue("PASS", "MIGRATION_SOT", "Migration map declares the source of truth.", migration_path.name))
     else:
@@ -158,6 +161,7 @@ def build_issues(root: Path) -> list[Issue]:
     else:
         issues.append(Issue("FAIL", "MIGRATION_PRICE", "Migration map does not clearly map product-card price-color to sys/color/price.", migration_path.name))
 
+    # Viewer checks
     if 'fetch(`${DATA_SOURCE}?v=${Date.now()}`' in viewer_live or 'fetch("design-system-all.json"' in viewer_live or "fetch('design-system-all.json'" in viewer_live:
         issues.append(Issue("PASS", "VIEWER_LIVE_FETCH", "Live viewer fetches design-system-all.json.", viewer_live_path.name))
     else:
@@ -166,23 +170,16 @@ def build_issues(root: Path) -> list[Issue]:
 
     expect_contains(issues, viewer_snapshot, f'"ruten.version": "v1.0.0"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_VERSION", "Snapshot viewer carries the sealed baseline version.")
     expect_contains(issues, viewer_snapshot, f'"ruten.status": "sealed-baseline"', viewer_snapshot_path.name, "VIEWER_SNAPSHOT_STATUS", "Snapshot viewer carries the sealed baseline status.")
-    # Snapshot viewer is sealed at baseline; verify it contains ref/sys token data
     expect_contains(issues, viewer_snapshot, "ref tokens", viewer_snapshot_path.name, "VIEWER_SNAPSHOT_TOTAL", "Snapshot viewer contains ref token display.")
 
-    # Forbidden legacy text in docs
+    # Forbidden legacy text
     forbidden = {
-        progress_path.name: ["523 tokens", "483 tokens", "481 tokens", "218 comp", "178 comp"],
-        skill_path.name: ["523 tokens", "483 tokens", "481 tokens"],
-        governance_path.name: ["- comp: 218", "- total: 523", "- comp: 178", "- total: 483", "- total: 481"],
+        skill_path.name: (skill, ["523 tokens", "483 tokens", "481 tokens"]),
+        comp_gov_path.name: (comp_gov, ["- comp: 218", "- total: 523", "- comp: 178", "- total: 483", "- total: 481"]),
     }
-    file_text = {
-        progress_path.name: progress,
-        skill_path.name: skill,
-        governance_path.name: governance,
-    }
-    for file_name, needles in forbidden.items():
+    for file_name, (text, needles) in forbidden.items():
         for needle in needles:
-            expect_not_contains(issues, file_text[file_name], needle, file_name, f"NO_LEGACY::{file_name}::{needle}", f"{file_name} does not contain legacy value {needle!r}.")
+            expect_not_contains(issues, text, needle, file_name, f"NO_LEGACY::{file_name}::{needle}", f"{file_name} does not contain legacy value {needle!r}.")
 
     # Script sanity check
     expect_not_contains(issues, script, "SF Mono", script_path.name, "SCRIPT_NO_MONO", "Text style script no longer generates SF Mono styles.")

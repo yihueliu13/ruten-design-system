@@ -57,9 +57,9 @@
 ```
 ref（159）→ 原子值，不直接使用
   ↓ alias
-sys（165）→ 語意化，設計師可選
+sys（166）→ 語意化，設計師可選
   ↓ alias
-comp（285）→ 元件綁定，AI / 設計師主要操作層
+comp（311）→ 元件綁定，AI / 設計師主要操作層
   ↓ bind
 Figma Variables → Text Styles（130）
 ```
@@ -119,6 +119,29 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 8. REPORT   列出：改了哪些檔案、沒改哪些、validation 結果、是否需要跑 Figma 腳本
 ```
 
+### §6a. Cowork 任務類型與平行執行
+
+**可直接在 Cowork 執行的任務（不需 Chat 討論）：**
+- 已確認 spec 的 token 寫入 JSON + validate + sync
+- Usage Guideline 撰寫（spec 已定稿時）
+- Figma Scripter 腳本產出（token 已定稿時）
+- 衍生檔同步：`python3 sync-derived-files.py --root .`
+- 檔案整理、重構、cleanup
+
+**需要 Chat 先討論再交 Cowork 的任務：**
+- 新元件 spec 定義（功能類別 + 組合深度 + token 表格）
+- 設計決策灰色地帶（邊界案例、跨品牌差異）
+- token 路徑設計、元件邊界釐清
+
+**研究 / 調查任務（Cowork 可獨立執行）：**
+- Figma 截圖分析（get_screenshot + get_design_context）
+- Token 盤點（統計現有 token 使用狀況）
+- Validation 報告 + 修復建議
+- 衍生檔一致性檢查
+
+**平行執行原則：**
+多個 Cowork session 可同時跑不衝突的任務。但同時修改 `design-system-all.json` 的任務不能平行（會產生 merge conflict）。
+
 ---
 
 ## 7. 品質閘門
@@ -144,7 +167,7 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 | 3 | 無跳層引用 | validate 腳本 | comp 不直接引用 ref |
 | 4 | 無寫死數值 | validate 腳本 | comp 層 $value 全是 alias |
 | 5 | Token count 正確 | validate 腳本 | ref + sys + comp = 預期總量 |
-| 6 | 衍生檔數字同步 | validate 腳本 | governance/progress/SKILL 數字一致 |
+| 6 | 衍生檔數字同步 | sync-derived-files.py | component-governance/EXECUTION_PLAN/CLAUDE 數字一致 |
 | 7 | $description 品質 | 人工審查 | 每個新 token 有 imperative-style $description |
 | 8 | Usage Guideline 完整 | 檢查檔案存在 | 每個新 component 有對應 .md |
 | 9 | Figma Variables 匯入 | Thierry overlay import | 無 error |
@@ -253,8 +276,8 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 | Phase | 狀態 | 說明 |
 |-------|------|------|
 | 4a Icon System | ✅ | 完成 |
-| 1 Figma UI Kit | 🔄 進行中 | 608 tokens, 8 元件 token 完成, 19 元件盤點完成 |
+| 1 Figma UI Kit | 🔄 進行中 | 636 tokens, 15 元件 token 完成, 19 元件盤點完成 |
 | 2 Engineering Output | ⏳ | Vue/RN component, Storybook |
 | 3 Multi-brand | ⏳ | Ichiban/Resell mode, Dark mode |
 
-詳細待辦見 `RUTEN_TODO.md`，執行順序見 `EXECUTION_PLAN.md`。
+詳細待辦、Phase 2-4 路線圖、技術債見 `EXECUTION_PLAN.md`。
