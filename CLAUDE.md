@@ -24,6 +24,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 3. CHECK   — python3 validate-design-system.py --root .
 4. SYNC    — python3 sync-derived-files.py --root .
 5. REPORT  — list changed files, unchanged files, validation result
+6. PUSH    — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
 ```
 
 ## Rules
