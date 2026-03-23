@@ -127,7 +127,7 @@ let SYS = [];
 let COMP = [];
 
 const DATA_SOURCE = './design-system-all.json';
-const VIEWER_VERSION = 'v1.0.0-live';
+const VIEWER_VERSION = 'v1.1.0-live';
 const DATA_SOURCE_LABEL = 'design-system-all.json';
 
 async function loadData(){
@@ -176,6 +176,9 @@ const PAGES=[
   {id:'radius',icon:'□',label:'圓角'},
   {id:'elevation',icon:'◎',label:'陰影層級'},
   {id:'button',icon:'✧',label:'按鈕'},
+  {id:'tab',icon:'⊟',label:'Tab 標籤'},
+  {id:'avatar',icon:'◕',label:'Avatar 頭像'},
+  {id:'thumbnail',icon:'▣',label:'Thumbnail 縮圖'},
   {id:'input',icon:'⌨',label:'輸入元件'},
   {id:'badge',icon:'◇',label:'標籤徽章'},
   {id:'card',icon:'⊡',label:'卡片'},
@@ -408,19 +411,364 @@ function pgElevation(){
   return h;
 }
 
-// === PAGE: BUTTON ===
+// === PAGE: BUTTON (4-role × 5-size × states × form × dialog) ===
 function pgButton(){
-  let h=pgHead('button','按鈕','主要操作元件，包含 Primary、Secondary 和 Disabled 狀態。');
-  h+=`<div class="card"><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:24px">
-    <button style="background:#FF963B;color:#FFF;border:none;border-radius:10px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px #FF963B40">Primary</button>
-    <button style="background:#FFF;color:#FF963B;border:1.5px solid #E3E4EB;border-radius:10px;padding:11px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">Secondary</button>
-    <button style="background:#FF963B;color:#FFF;border:none;border-radius:10px;padding:12px 28px;font-size:14px;font-weight:600;cursor:not-allowed;font-family:inherit;opacity:.38">Disabled</button>
-  </div>
-  <div class="clabel">Token Mapping</div>`;
-  [['background','sys/color/primary'],['text-color','sys/color/on-primary'],['border-radius','sys/radius/md'],['padding-h','sys/spacing/md'],['padding-v','sys/spacing/xs'],['font-size','sys/typography/label/lg'],['font-weight','sys/typography/weight/semibold'],['disabled','sys/opacity/disabled']].forEach(([p,v])=>{
-    h+=`<div class="tkrow"><div class="tkn">${p}</div><div class="tkv" style="margin-left:auto">${v}</div></div>`;
+  let h=pgHead('button','按鈕 Button','4 角色 × 5 尺寸 × 5 狀態 × 3 型態。Action × Primitive。60 tokens。');
+
+  // Helper to make a button
+  const btn=(role,label,size,state,form)=>{
+    const R={
+      primary:{bg:'#33343B',text:'#FF963B',bd:'none'},
+      secondary:{bg:'#FF963B',text:'#FFF',bd:'none'},
+      tertiary:{bg:'#FFF',text:'#FF963B',bd:'1px solid #B9BABF'},
+      ghost:{bg:'transparent',text:'#FF963B',bd:'none'},
+    }[role];
+    const S={xs:{h:24,ph:8,pv:2,fs:11,r:'9999px',ic:12},sm:{h:32,ph:12,pv:4,fs:12,r:'8px',ic:16},md:{h:40,ph:16,pv:8,fs:14,r:'8px',ic:20},lg:{h:48,ph:24,pv:10,fs:14,r:'8px',ic:24},xl:{h:52,ph:32,pv:10,fs:16,r:'8px',ic:24}}[size||'md'];
+    let op=1,cur='pointer',extra='';
+    if(state==='hover'&&role==='primary')op=0.85;
+    if(state==='hover'&&role==='secondary')extra='background:#E6781F;';
+    if(state==='hover'&&role==='tertiary')extra='background:#FFF8F1;border-color:#FF963B;';
+    if(state==='hover'&&role==='ghost')extra='background:#FFF8F1;';
+    if(state==='pressed')op=0.7;
+    if(state==='disabled'){op=0.4;cur='not-allowed';}
+    if(state==='loading')label='⟳ '+label;
+    let iconHtml='';
+    if(form==='label-icon')iconHtml=`<span style="font-size:${S.ic}px">+</span>`;
+    if(form==='icon')label='',iconHtml=`<span style="font-size:${S.ic}px">✕</span>`;
+    return`<button style="background:${R.bg};color:${R.text};border:${R.bd};border-radius:${S.r};padding:${S.pv}px ${S.ph}px;font-size:${S.fs}px;font-weight:600;min-height:${S.h}px;cursor:${cur};font-family:inherit;opacity:${op};display:inline-flex;align-items:center;gap:${Math.max(S.ic/3,4)}px;${extra}">${iconHtml}${label}</button>`;
+  };
+
+  // §1 — Role × State Matrix
+  h+=`<div class="stitle">§1 角色 × 狀態矩陣</div>`;
+  const roles=['primary','secondary','tertiary','ghost'];
+  const roleLabels={primary:'Primary ★★★★★ 最高優先',secondary:'Secondary ★★★★ 品牌CTA',tertiary:'Tertiary ★★★ 輔助',ghost:'Ghost ★★ 最輕量'};
+  const roleDesc={primary:'深灰底 + 橘字。每 section 最多一個',secondary:'橘底 + 白字。獨立CTA，不與 primary 並排',tertiary:'白底 + 橘框。次要操作',ghost:'透明 + 橘字。最輕量操作'};
+  const states=['default','hover','pressed','disabled','loading'];
+
+  roles.forEach(role=>{
+    h+=`<div class="card"><div class="clabel">${roleLabels[role]}</div><div style="font-size:11px;color:#9798A2;margin-bottom:12px">${roleDesc[role]}</div>`;
+    h+=`<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">`;
+    states.forEach(st=>{
+      h+=`<div style="text-align:center">${btn(role,st==='loading'?'Loading':'Button','md',st,'label')}<div style="font-size:10px;color:#9798A2;margin-top:4px">${st}</div></div>`;
+    });
+    h+=`</div></div>`;
   });
-  h+=`</div>`;return h;
+
+  // §2 — Size (5 sizes including xs pill)
+  h+=`<div class="stitle">§2 尺寸（5 級）</div><div class="card">`;
+  [{n:'xs',h:24,fs:11,scene:'關注+、極緊湊（pill）'},{n:'sm',h:32,fs:12,scene:'卡片內 CTA'},{n:'md',h:40,fs:14,scene:'Web 通用（預設）'},{n:'lg',h:48,fs:14,scene:'App 觸控、Dialog'},{n:'xl',h:52,fs:16,scene:'全寬 CTA'}].forEach(s=>{
+    h+=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">`;
+    h+=`<div style="width:28px;font-size:12px;font-weight:600;color:#9798A2">${s.n}</div>`;
+    h+=btn('primary','Button',s.n,'default','label');
+    h+=btn('secondary','Button',s.n,'default','label');
+    h+=btn('tertiary','Button',s.n,'default','label');
+    h+=`<div style="font-size:10px;color:#B9BABF">${s.h}px · ${s.fs}px · ${s.scene}</div>`;
+    h+=`</div>`;
+  });
+  h+=`</div>`;
+
+  // §3 — Form (label / label-icon / icon)
+  h+=`<div class="stitle">§3 型態（Form）</div><div class="card">`;
+  h+=`<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px">`;
+  h+=`<div style="text-align:center">${btn('primary','送出','md','default','label')}<div style="font-size:10px;color:#9798A2;margin-top:4px">label</div></div>`;
+  h+=`<div style="text-align:center">${btn('tertiary','關注','md','default','label-icon')}<div style="font-size:10px;color:#9798A2;margin-top:4px">label-icon (leading)</div></div>`;
+  h+=`<div style="text-align:center">${btn('ghost','','md','default','icon')}<div style="font-size:10px;color:#9798A2;margin-top:4px">icon</div></div>`;
+  h+=`</div>`;
+  h+=`<div style="font-size:11px;color:#73747B">Icon size 跟 button size 走：xs=12, sm=16, md=20, lg=24, xl=24。Icon-only 用正方形容器。</div>`;
+  h+=`</div>`;
+
+  // §4 — Status (danger / info)
+  h+=`<div class="stitle">§4 語義色覆寫（Status）</div><div class="card">`;
+  h+=`<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:12px">`;
+  h+=`<button style="background:#FFF;color:#FF4E51;border:1px solid #FF4E51;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">刪除商品</button>`;
+  h+=`<div style="font-size:11px;color:#9798A2">tertiary + danger（紅色系 error）</div>`;
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:12px">`;
+  h+=`<button style="background:transparent;color:#FF4E51;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">取消訂單</button>`;
+  h+=`<div style="font-size:11px;color:#9798A2">ghost + danger</div>`;
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">`;
+  h+=`<button style="background:#3B82F6;color:#FFF;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">開抽</button>`;
+  h+=`<div style="font-size:11px;color:#9798A2">primary + info（藍色系，一番賞）</div>`;
+  h+=`</div></div>`;
+
+  // §5 — Dialog Footer Combos
+  h+=`<div class="stitle">§5 Dialog Footer 標準組合</div><div class="card">`;
+  [{l:'一般確認',left:btn('ghost','再想想','lg','default','label'),right:btn('primary','確定','lg','default','label')},
+   {l:'危險操作',left:btn('ghost','取消','lg','default','label'),right:`<button style="background:#FFF;color:#FF4E51;border:1px solid #FF4E51;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">刪除</button>`},
+   {l:'表單導航',left:btn('ghost','上一步','lg','default','label'),right:btn('primary','下一步','lg','default','label')}
+  ].forEach(c=>{
+    h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #F0F0F5"><div style="font-size:12px;font-weight:600;color:#47484D;width:80px">${c.l}</div><div style="display:flex;gap:12px">${c.left}${c.right}</div></div>`;
+  });
+  h+=`</div>`;
+
+  // §6 — Wrapper Business Buttons
+  h+=`<div class="stitle">§6 業務狀態按鈕（Wrapper）</div><div class="card">`;
+  h+=`<div class="clabel">Toggle 行為 — 同一按鈕根據業務狀態切換外觀</div>`;
+  h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">`;
+  // FollowButton
+  h+=`<div style="background:#F6F7FE;border-radius:10px;padding:16px"><div style="font-size:12px;font-weight:600;color:#47484D;margin-bottom:8px">FollowButton</div>`;
+  h+=`<div style="display:flex;gap:8px;align-items:center">${btn('tertiary','關注','xs','default','label-icon')}<span style="font-size:11px;color:#9798A2">→</span>${btn('secondary','已關注','xs','default','label')}</div></div>`;
+  // ExpandButton
+  h+=`<div style="background:#F6F7FE;border-radius:10px;padding:16px"><div style="font-size:12px;font-weight:600;color:#47484D;margin-bottom:8px">ExpandButton</div>`;
+  h+=`<div style="display:flex;gap:8px;align-items:center"><button style="background:#FFF;color:#FF963B;border:1px solid #B9BABF;border-radius:8px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">展開 ▼</button><span style="font-size:11px;color:#9798A2">→</span><button style="background:#FFF;color:#FF963B;border:1px solid #B9BABF;border-radius:8px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">收合 ▲</button></div></div>`;
+  // AuctionButton
+  h+=`<div style="background:#F6F7FE;border-radius:10px;padding:16px"><div style="font-size:12px;font-weight:600;color:#47484D;margin-bottom:8px">AuctionButton</div>`;
+  h+=`<div style="display:flex;gap:6px;align-items:center">${btn('secondary','即將開始','md','disabled','label')}<span style="font-size:11px;color:#9798A2">→</span>${btn('primary','我要出價','md','default','label')}<span style="font-size:11px;color:#9798A2">→</span>${btn('secondary','已結束','md','disabled','label')}</div></div>`;
+  // ResellButton
+  h+=`<div style="background:#F6F7FE;border-radius:10px;padding:16px"><div style="font-size:12px;font-weight:600;color:#47484D;margin-bottom:8px">ResellButton</div>`;
+  h+=`<div style="display:flex;gap:8px;align-items:center">${btn('primary','一鍵轉售','md','default','label')}<span style="font-size:11px;color:#9798A2">→</span>${btn('tertiary','已發佈','md','default','label')}</div></div>`;
+  h+=`</div></div>`;
+
+  // §7 — Token Mapping (dynamic)
+  h+=`<div class="stitle">§7 Token Mapping（${COMP.filter(t=>t.path.startsWith('comp/button/')).length} tokens）</div>`;
+  roles.forEach(role=>{
+    let roleTks=COMP.filter(t=>t.path.startsWith('comp/button/'+role+'/'));
+    if(!roleTks.length)return;
+    h+=`<div class="card"><div class="clabel">${role}</div>`;
+    roleTks.forEach(t=>{h+=`<div class="tkrow"><div class="tkn">${t.path.replace('comp/button/'+role+'/','')}</div><div class="tkv" style="margin-left:auto">${t.value}</div></div>`;});
+    h+=`</div>`;
+  });
+  // Size + shared
+  h+=`<div class="card"><div class="clabel">Size + 共用</div>`;
+  COMP.filter(t=>t.path.startsWith('comp/button/')&&!roles.some(r=>t.path.split('/')[2]===r)).forEach(t=>{
+    h+=`<div class="tkrow"><div class="tkn">${t.path.replace('comp/button/','')}</div><div class="tkv" style="margin-left:auto">${t.value}</div></div>`;
+  });
+  h+=`</div>`;
+
+  return h;
+}
+
+// === PAGE: TAB (emphasis × state × layout × size) ===
+function pgTab(){
+  let h=pgHead('tab','Tab 標籤','導航切換元件。2 Emphasis × 3 State × 2 Layout × 4 Size。33 tokens。');
+
+  // Helper: single tab item
+  const tabItem=(label,state,emphasis,size)=>{
+    const sz={sm:{h:32,fs:12,ph:12,pv:4},md:{h:40,fs:14,ph:16,pv:8},lg:{h:44,fs:14,ph:24,pv:8},xl:{h:48,fs:16,ph:32,pv:12}}[size||'md'];
+    let color,fw,indColor,bg;
+    if(emphasis==='secondary'){
+      color=state==='active'?'#33343B':state==='hover'?'#33343B':'#47484D';
+      fw=state==='active'?700:state==='hover'?500:400;
+      indColor=state==='active'?'#33343B':'transparent';
+      bg=state==='hover'?'#F6F7FE':'transparent';
+    }else{
+      color=state==='active'?'#FF963B':state==='hover'?'#33343B':'#73747B';
+      fw=state==='active'?600:500;
+      indColor=state==='active'?'#FF963B':'transparent';
+      bg=state==='hover'?'#F6F7FE':'transparent';
+    }
+    return`<div style="padding:${sz.pv}px ${sz.ph}px;font-size:${sz.fs}px;font-weight:${fw};color:${color};cursor:pointer;min-height:${sz.h}px;display:flex;align-items:center;position:relative;background:${bg};border-bottom:3px solid ${indColor};margin-bottom:-1px">${label}</div>`;
+  };
+
+  // §1 — Primary Emphasis: 3 states side by side
+  h+=`<div class="stitle">§1 Primary Emphasis（品牌橘指示線）</div><div class="card">`;
+  h+=`<div style="font-size:11px;color:#9798A2;margin-bottom:12px">inactive → hover → active 三種狀態</div>`;
+  h+=`<div style="display:flex;gap:0;border-bottom:1px solid #E3E4EB">`;
+  h+=tabItem('推薦','active','primary','md');
+  h+=tabItem('最新','hover','primary','md');
+  h+=tabItem('熱門','inactive','primary','md');
+  h+=tabItem('分類','inactive','primary','md');
+  h+=tabItem('品牌','inactive','primary','md');
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:24px;margin-top:12px">`;
+  h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:3px;border-radius:2px;background:#FF963B"></div><span style="font-size:10px;color:#9798A2">active: 橘字 600 + 3px 橘底線</span></div>`;
+  h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:2px;background:#F6F7FE"></div><span style="font-size:10px;color:#9798A2">hover: 深灰字 + 淺灰底</span></div>`;
+  h+=`<div style="font-size:10px;color:#9798A2">inactive: 灰字 500 白底</div>`;
+  h+=`</div></div>`;
+
+  // §2 — Secondary Emphasis
+  h+=`<div class="stitle">§2 Secondary Emphasis（深色強調）</div><div class="card">`;
+  h+=`<div style="font-size:11px;color:#9798A2;margin-bottom:12px">同頁二級分類、橘色背景上使用</div>`;
+  h+=`<div style="display:flex;gap:0;border-bottom:1px solid #E3E4EB">`;
+  h+=tabItem('全部','active','secondary','md');
+  h+=tabItem('進行中','hover','secondary','md');
+  h+=tabItem('已完成','inactive','secondary','md');
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:24px;margin-top:12px">`;
+  h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:3px;border-radius:2px;background:#33343B"></div><span style="font-size:10px;color:#9798A2">active: 深灰字 700 + 深灰底線</span></div>`;
+  h+=`<div style="font-size:10px;color:#9798A2">inactive: 中灰字 400</div>`;
+  h+=`</div></div>`;
+
+  // §3 — Size variants
+  h+=`<div class="stitle">§3 尺寸（4 級）</div><div class="card">`;
+  [{n:'sm',h:32,fs:12,scene:'Mobile 次級、緊湊面板'},{n:'md',h:40,fs:14,scene:'分類館首頁（預設）'},{n:'lg',h:44,fs:14,scene:'Desktop 頁面級'},{n:'xl',h:48,fs:16,scene:'寬螢幕桌面版'}].forEach(s=>{
+    h+=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">`;
+    h+=`<div style="width:28px;font-size:12px;font-weight:600;color:#9798A2">${s.n}</div>`;
+    h+=`<div style="display:flex;border-bottom:1px solid #E3E4EB">${tabItem('Active','active','primary',s.n)}${tabItem('Inactive','inactive','primary',s.n)}</div>`;
+    h+=`<div style="font-size:10px;color:#B9BABF">${s.h}px · ${s.fs}px · ${s.scene}</div>`;
+    h+=`</div>`;
+  });
+  h+=`</div>`;
+
+  // §4 — Layout: Fixed vs Scrollable
+  h+=`<div class="stitle">§4 排版模式（Layout）</div>`;
+  h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">`;
+  // Fixed
+  h+=`<div class="card"><div class="clabel">Fixed（等寬，≤ 5 tabs）</div>`;
+  h+=`<div style="display:flex;border-bottom:1px solid #E3E4EB">`;
+  ['品牌旗艦','公仔模型','動漫周邊','虛擬偶像','組裝模型'].forEach((l,i)=>{
+    h+=`<div style="flex:1;text-align:center;padding:8px 4px;font-size:12px;font-weight:${i===0?600:500};color:${i===0?'#FF963B':'#73747B'};border-bottom:${i===0?'3px solid #FF963B':'none'};margin-bottom:-1px">${l}</div>`;
+  });
+  h+=`</div></div>`;
+  // Scrollable
+  h+=`<div class="card"><div class="clabel">Scrollable（可捲動，> 5 tabs）</div>`;
+  h+=`<div style="display:flex;gap:0;overflow-x:auto;border-bottom:1px solid #E3E4EB;position:relative">`;
+  ['全部','可動公仔','PVC人偶','塑膠組裝','動漫收藏','紙牌遊戲','轉蛋食玩','模型配件'].forEach((l,i)=>{
+    h+=`<div style="white-space:nowrap;padding:8px 14px;font-size:12px;font-weight:${i===0?600:500};color:${i===0?'#FF963B':'#73747B'};border-bottom:${i===0?'3px solid #FF963B':'none'};margin-bottom:-1px;flex-shrink:0">${l}</div>`;
+  });
+  h+=`</div><div style="font-size:10px;color:#9798A2;margin-top:6px">← 水平捲動 →</div></div>`;
+  h+=`</div>`;
+
+  // §5 — Indicator detail
+  h+=`<div class="stitle">§5 Indicator（底線）</div><div class="card">`;
+  h+=`<div style="display:flex;gap:24px;align-items:center">`;
+  h+=`<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:60px;height:3px;border-radius:2px;background:#FF963B"></div><div style="font-size:10px;color:#9798A2">3px pill</div></div>`;
+  h+=`<div style="font-size:11px;color:#73747B;line-height:1.6">粗細 3px（hardcode，低於 base-4）<br>圓角 pill（兩端圓弧）<br>緊貼 tab item 底部，蓋在 1px 全寬分隔線上方<br>切換時水平滑動過渡</div>`;
+  h+=`</div></div>`;
+
+  // §6 — Token Mapping
+  h+=`<div class="stitle">§6 Token Mapping（${COMP.filter(t=>t.path.startsWith('comp/tab/')).length} tokens）</div><div class="card">`;
+  ['base','sm','md','lg','xl','active','inactive','hover','secondary'].forEach(group=>{
+    let tks;
+    if(group==='base')tks=COMP.filter(t=>t.path.startsWith('comp/tab/')&&!['sm','md','lg','xl','active','inactive','hover','secondary'].some(g=>t.path.split('/')[2]===g));
+    else tks=COMP.filter(t=>t.path.split('/')[2]===group&&t.path.startsWith('comp/tab/'));
+    if(!tks.length)return;
+    h+=`<div style="font-size:11px;font-weight:600;color:#FF963B;margin:12px 0 6px;letter-spacing:.04em">${group.toUpperCase()}</div>`;
+    tks.forEach(t=>{h+=`<div class="tkrow"><div class="tkn">${t.path.replace('comp/tab/','')}</div><div class="tkv" style="margin-left:auto">${t.value}</div></div>`;});
+  });
+  h+=`</div>`;
+
+  return h;
+}
+
+// === PAGE: AVATAR (size × state × fallback × context) ===
+function pgAvatar(){
+  let h=pgHead('avatar','Avatar 頭像','圓形圖像元件，專用於「人」或「商家」。Media × Primitive。11 tokens。');
+
+  // §1 — Size scale with image + fallback
+  h+=`<div class="stitle">§1 尺寸（6 級）+ Fallback</div><div class="card">`;
+  h+=`<div class="clabel">有圖片</div><div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:24px">`;
+  [{n:'xs',s:24,scene:'行內提及'},{n:'sm',s:32,scene:'評論作者'},{n:'md',s:40,scene:'導航列'},{n:'lg',s:48,scene:'賣家資訊'},{n:'xl',s:80,scene:'賣家 spotlight'},{n:'2xl',s:96,scene:'分類 hero'}].forEach(a=>{
+    h+=`<div style="text-align:center"><div style="width:${a.s}px;height:${a.s}px;border-radius:50%;background:linear-gradient(135deg,#FFE5C7,#FF963B);display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="width:100%;height:100%;background:linear-gradient(135deg,#FFD4A8,#FF963B)"></div></div><div style="font-size:11px;font-weight:600;color:#47484D;margin-top:6px">${a.n}</div><div style="font-size:9px;color:#9798A2">${a.s}px · ${a.scene}</div></div>`;
+  });
+  h+=`</div>`;
+  h+=`<div class="clabel">Fallback（首字母 + 白底）</div><div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end">`;
+  [{n:'xs',s:24},{n:'sm',s:32},{n:'md',s:40},{n:'lg',s:48},{n:'xl',s:80},{n:'2xl',s:96}].forEach(a=>{
+    h+=`<div style="text-align:center"><div style="width:${a.s}px;height:${a.s}px;border-radius:50%;background:#FFF;border:1px solid #E3E4EB;display:flex;align-items:center;justify-content:center;color:#9798A2;font-weight:700;font-size:${Math.max(a.s*0.38,10)}px">K</div><div style="font-size:11px;font-weight:600;color:#47484D;margin-top:6px">${a.n}</div></div>`;
+  });
+  h+=`</div></div>`;
+
+  // §2 — Active vs Default state
+  h+=`<div class="stitle">§2 Active 狀態（選中/高亮）</div><div class="card">`;
+  h+=`<div style="display:flex;gap:32px;align-items:center">`;
+  [48,80].forEach(s=>{
+    h+=`<div style="display:flex;gap:16px;align-items:center">`;
+    h+=`<div style="text-align:center"><div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#FFE5C7,#FF963B);border:2px solid #FF963B"></div><div style="font-size:10px;color:#FF963B;margin-top:4px;font-weight:600">Active</div></div>`;
+    h+=`<div style="text-align:center"><div style="width:${s}px;height:${s}px;border-radius:50%;background:linear-gradient(135deg,#FFE5C7,#FF963B)"></div><div style="font-size:10px;color:#9798A2;margin-top:4px">Default</div></div>`;
+    h+=`</div>`;
+  });
+  h+=`</div>`;
+  h+=`<div style="font-size:11px;color:#73747B;margin-top:12px">Active: border 2px solid sys/color/primary。Default: border 0px。不改 size，用 border 表達選中。</div>`;
+  h+=`</div>`;
+
+  // §3 — Context examples
+  h+=`<div class="stitle">§3 使用情境</div>`;
+  h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">`;
+  // List item
+  h+=`<div class="card"><div class="clabel">列表項目（sm / md）</div><div style="display:flex;flex-direction:column;gap:12px">`;
+  ['小明','露天官方','Kay'].forEach(name=>{
+    h+=`<div style="display:flex;gap:10px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FFE5C7,#FF963B);display:flex;align-items:center;justify-content:center;color:#FFF;font-weight:700;font-size:13px">${name[0]}</div><div><div style="font-size:13px;font-weight:600">${name}</div><div style="font-size:11px;color:#9798A2">5 分鐘前</div></div></div>`;
+  });
+  h+=`</div></div>`;
+  // Seller spotlight
+  h+=`<div class="card"><div class="clabel">賣家 Spotlight（xl）</div><div style="display:flex;gap:16px;align-items:center">`;
+  h+=`<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#FFD4A8,#FF963B)"></div>`;
+  h+=`<div><div style="font-size:16px;font-weight:700">露天旗艦店</div><div style="font-size:12px;color:#9798A2;margin-top:2px">評價 4.9 · 出貨 24hr</div><button style="background:#FF963B;color:#FFF;border:none;border-radius:8px;padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px">查看賣場</button></div>`;
+  h+=`</div></div>`;
+  h+=`</div>`;
+
+  // §4 — Token Mapping
+  h+=`<div class="stitle">§4 Token Mapping（${COMP.filter(t=>t.path.startsWith('comp/avatar/')).length} tokens）</div><div class="card">`;
+  COMP.filter(t=>t.path.startsWith('comp/avatar/')).forEach(t=>{
+    let prop=t.path.replace('comp/avatar/','');
+    h+=`<div class="tkrow"><div class="tkn">${prop}</div><div class="tkv" style="margin-left:auto">${t.value}</div></div>`;
+  });
+  h+=`</div>`;
+
+  // §5 — vs Thumbnail
+  h+=`<div class="stitle">§5 Avatar vs Thumbnail 判斷</div><div class="card">`;
+  h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">`;
+  h+=`<div style="background:#FFF8F1;border-radius:10px;padding:14px;border:1px solid #FFEAD5"><div style="font-size:12px;font-weight:700;color:#FF963B;margin-bottom:6px">✓ Avatar</div><div style="font-size:11px;color:#73747B;line-height:1.5">代表「人」或「商家」<br>使用者頭像、賣家 profile<br>評論、聊天、社群</div></div>`;
+  h+=`<div style="background:#E5EEFF;border-radius:10px;padding:14px;border:1px solid #CDDFFF"><div style="font-size:12px;font-weight:700;color:#3B82F6;margin-bottom:6px">✓ Thumbnail</div><div style="font-size:11px;color:#73747B;line-height:1.5">代表「IP」「主題」「分類」<br>焦點主題、分類入口圖<br>品牌主題</div></div>`;
+  h+=`</div></div>`;
+
+  return h;
+}
+
+// === PAGE: THUMBNAIL (size × selector × context) ===
+function pgThumbnail(){
+  let h=pgHead('thumbnail','Thumbnail 縮圖','圓形縮圖元件，用於「IP/主題/分類」。Media × Primitive。11 tokens。');
+
+  // §1 — Size scale
+  h+=`<div class="stitle">§1 尺寸（6 級）</div><div class="card">`;
+  h+=`<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end">`;
+  [{n:'xs',s:24,scene:'行內分類 icon'},{n:'sm',s:32,scene:'小型分類列表'},{n:'md',s:40,scene:'標準分類 grid'},{n:'lg',s:48,scene:'重點分類入口'},{n:'xl',s:80,scene:'焦點主題 IP selector'},{n:'2xl',s:96,scene:'分類 hero'}].forEach(a=>{
+    h+=`<div style="text-align:center"><div style="width:${a.s}px;height:${a.s}px;border-radius:50%;background:linear-gradient(135deg,#E8E0F8,#9B6FEB);display:flex;align-items:center;justify-content:center;overflow:hidden"></div><div style="font-size:11px;font-weight:600;color:#47484D;margin-top:6px">${a.n}</div><div style="font-size:9px;color:#9798A2">${a.s}px · ${a.scene}</div></div>`;
+  });
+  h+=`</div></div>`;
+
+  // §2 — Selector behavior (Active/Default)
+  h+=`<div class="stitle">§2 Selector 互動（Active / Default）</div><div class="card">`;
+  h+=`<div class="clabel">焦點主題 — 點擊切換上方大圖</div>`;
+  h+=`<div style="display:flex;gap:16px;align-items:center;margin-bottom:16px">`;
+  ['hololive','咒術迴戰','鬼滅之刃','間諜家家酒','進擊的巨人'].forEach((ip,i)=>{
+    let selected=i===0;
+    let colors=['#4DC8E8','#7B3FA0','#2ECC71','#E74C3C','#95A5A6'];
+    h+=`<div style="text-align:center"><div style="width:80px;height:80px;border-radius:50%;background:${colors[i]};${selected?'border:2px solid #FF963B;':''}display:flex;align-items:center;justify-content:center;color:#FFF;font-weight:700;font-size:11px;cursor:pointer">${ip.slice(0,4)}</div><div style="font-size:10px;font-weight:${selected?600:400};color:${selected?'#FF963B':'#73747B'};margin-top:6px">${ip}</div></div>`;
+  });
+  h+=`</div>`;
+  h+=`<div style="display:flex;gap:16px;align-items:center;margin-top:8px">`;
+  h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:24px;border-radius:50%;background:#4DC8E8;border:2px solid #FF963B"></div><span style="font-size:10px;color:#9798A2">Active: border 2px orange</span></div>`;
+  h+=`<div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:24px;border-radius:50%;background:#95A5A6"></div><span style="font-size:10px;color:#9798A2">Default: border none</span></div>`;
+  h+=`</div></div>`;
+
+  // §3 — Context: CategoryGrid
+  h+=`<div class="stitle">§3 使用情境</div>`;
+  h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">`;
+  // Category Grid
+  h+=`<div class="card"><div class="clabel">分類入口 Grid（xl / 2xl）</div>`;
+  h+=`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">`;
+  ['公仔','模型','周邊','卡牌','轉蛋','文具','服飾','配件'].forEach(cat=>{
+    h+=`<div style="text-align:center"><div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#F0F0F5,#D2D3D9);margin:0 auto"></div><div style="font-size:10px;color:#47484D;margin-top:4px">${cat}</div></div>`;
+  });
+  h+=`</div></div>`;
+  // Horizontal scroll
+  h+=`<div class="card"><div class="clabel">焦點主題 HorizontalScroll（xl）</div>`;
+  h+=`<div style="display:flex;gap:12px;overflow-x:auto">`;
+  ['hololive','咒術迴戰','鬼滅之刃','SPY×FAMILY','進擊的巨人','海賊王'].forEach((ip,i)=>{
+    let colors=['#4DC8E8','#7B3FA0','#2ECC71','#E74C3C','#95A5A6','#F39C12'];
+    h+=`<div style="text-align:center;flex-shrink:0"><div style="width:80px;height:80px;border-radius:50%;background:${colors[i]};display:flex;align-items:center;justify-content:center;color:#FFF;font-weight:600;font-size:10px">${ip.slice(0,5)}</div><div style="font-size:10px;color:#47484D;margin-top:4px;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${ip}</div></div>`;
+  });
+  h+=`</div></div>`;
+  h+=`</div>`;
+
+  // §4 — Fallback
+  h+=`<div class="stitle">§4 Fallback</div><div class="card">`;
+  h+=`<div style="display:flex;gap:20px;align-items:center">`;
+  h+=`<div style="width:80px;height:80px;border-radius:50%;background:#FFF;border:1px solid #E3E4EB;display:flex;align-items:center;justify-content:center;color:#9798A2;font-weight:700;font-size:24px">咒</div>`;
+  h+=`<div><div style="font-size:13px;font-weight:600">Fallback</div><div style="font-size:11px;color:#9798A2;line-height:1.6">缺圖時：白底（sys/color/surface）+ 主題名稱首字<br>與 Avatar 共用 fallback 邏輯</div></div>`;
+  h+=`</div></div>`;
+
+  // §5 — Token Mapping
+  h+=`<div class="stitle">§5 Token Mapping（${COMP.filter(t=>t.path.startsWith('comp/thumbnail/')).length} tokens）</div><div class="card">`;
+  COMP.filter(t=>t.path.startsWith('comp/thumbnail/')).forEach(t=>{
+    let prop=t.path.replace('comp/thumbnail/','');
+    h+=`<div class="tkrow"><div class="tkn">${prop}</div><div class="tkv" style="margin-left:auto">${t.value}</div></div>`;
+  });
+  h+=`</div>`;
+
+  return h;
 }
 
 // === PAGE: INPUT ===
@@ -510,6 +858,9 @@ function go(page){
     case'radius':h=pgRadius();break;
     case'elevation':h=pgElevation();break;
     case'button':h=pgButton();break;
+    case'tab':h=pgTab();break;
+    case'avatar':h=pgAvatar();break;
+    case'thumbnail':h=pgThumbnail();break;
     case'input':h=pgInput();break;
     case'badge':h=pgBadge();break;
     case'card':h=pgCard();break;
