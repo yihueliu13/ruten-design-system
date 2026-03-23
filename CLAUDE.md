@@ -96,10 +96,17 @@ python3 sync-daily-log.py --root . --close --commit
 5. **Blocked** — 預留欄位，Claude 或 Kay 手動補充
 6. **寫入 + commit** — 自動寫入 DAILY_LOG.md 頂部 + git commit
 
-> **Claude 的額外職責：** 腳本跑完後，Claude 應該：
-> - 檢查 Blocked 欄位，補上已知的 blocked 原因
-> - 確認明日建議是否合理，必要時手動調整
-> - 如果有 validation FAIL，說明原因
+> **Claude 的額外職責：** 腳本跑完後，Claude **必須**：
+> 1. 比對今天 commit 內容，確認明日建議沒有列出已完成的項目
+> 2. 檢查 Blocked 欄位，補上已知的 blocked 原因
+> 3. 如果有 validation FAIL，說明原因
+> 4. **用以下格式向 Kay 回報**（不能只說「已 push」就結束）：
+>    - 今日完成：X 個 commits，主要成果列點
+>    - Token 狀態：X tokens，validate 結果
+>    - 變動檔案：列出主要檔案
+>    - 明日建議：列出建議順序（已確認未完成的項目）
+>    - Blocked：列出卡住的項目和原因
+>    - DAILY_LOG commit hash
 
 ---
 
