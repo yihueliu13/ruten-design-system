@@ -125,6 +125,65 @@ paddingBlock  = (32 - 22) / 2 - 1 = 4px（← 工程端算出來的，不需要 
 | fontSize 改了怎麼辦？ | padding 自動重新計算，controlHeight 不變 |
 | fontHeight > controlHeight 怎麼辦？ | **不允許。** 每個 control-height 階級配對固定的 Text Style，設計師不能任意把大字塞進小控件 |
 
+**驗算範例 2（Tag l = 28px）**：
+```
+controlHeight = 28px     ← sys/sizing/control-height/md
+fontSize      = 13px     ← sys/typography/body/md-alt
+lineHeight    = 1.54     ← Text Style
+fontHeight    = 13 × 1.54 ≈ 20px
+borderWidth   = 1px      ← sys/border/width/default
+
+paddingBlock  = (28 - 20) / 2 - 1 = 3px
+
+驗算：
+  1px  (上邊框)
++ 3px  (上 padding)
++ 20px (文字)
++ 3px  (下 padding)
++ 1px  (下邊框)
+= 28px ✅
+```
+
+**Text Style 配對表**（每個 control-height 有建議 fontSize 上限，超過會導致 padding 為負）：
+
+| control-height | 可用值 | fontSize 上限 | 建議 Text Style |
+|---------------|--------|-------------|----------------|
+| xs (16px) | 8px | ~10px | label-2xs (8px) |
+| sm (20px) | 10px | ~13px | label-xs (10px) |
+| md (28px) | 13px | ~18px | body-md-alt (13px) |
+| default (32px) | 12-14px | ~20px | label-md (12px), label-lg (14px) |
+| lg (36px) | 14px | ~24px | body-md (14px) |
+| xl (40px) | 14px | ~28px | label-lg (14px) |
+| 2xl (44px) | 14px | ~32px | title-sm (14px) |
+| 3xl (48px) | 14-16px | ~36px | title-sm (14px) |
+| 4xl (52px) | 16px | ~40px | title-md (16px) |
+
+**comp 層引用方式**（所有互動控件 min-height alias 到 sys/sizing/control-height/*）：
+
+```
+comp/button/sm/min-height   → {sys.sizing.control-height.default}   (32px)
+comp/button/md/min-height   → {sys.sizing.control-height.xl}        (40px)
+comp/button/lg/min-height   → {sys.sizing.control-height.3xl}       (48px)
+comp/button/xl/min-height   → {sys.sizing.control-height.4xl}       (52px)
+comp/tab/sm/min-height      → {sys.sizing.control-height.default}   (32px)
+comp/tab/md/min-height      → {sys.sizing.control-height.xl}        (40px)
+comp/tab/lg/min-height      → {sys.sizing.control-height.2xl}       (44px)
+comp/tab/xl/min-height      → {sys.sizing.control-height.3xl}       (48px)
+comp/tag/base/s/min-height  → {sys.sizing.control-height.xs}        (16px)
+comp/tag/base/m/min-height  → {sys.sizing.control-height.sm}        (20px)
+comp/tag/base/l/min-height  → {sys.sizing.control-height.md}        (28px)
+comp/tag/base/lg-alt/min-height → {sys.sizing.control-height.lg}    (36px)
+comp/search-bar/height      → {sys.sizing.control-height.default}   (32px)
+comp/nav-bar/height         → {sys.sizing.control-height.3xl}       (48px)
+comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
+```
+
+**AI Agent control-height 指引**：
+1. 新增互動控件時：min-height 一律 alias 到 sys/sizing/control-height/*，不能寫死數值
+2. 選擇哪個階級：先看觸碰目標需求（WCAG ≥ 40px = xl）→ 看搭配 fontSize → 看視覺密度
+3. padding 不要自己算：設計側用 Figma Auto Layout 既有 padding-v token，工程側用公式
+4. 需要新階級時：先確認 9 個現有階級都不符合，新增需討論確認
+
 **RWD 規則**：
 - 透過 Figma Variant `size = sm/md/lg/xl` 實現
 - 每個 size variant 有獨立的 token 值
@@ -470,3 +529,86 @@ Step 5: 定義 RWD
 | comp → comp 引用合法 | 不變（Compound 引用子 Primitive） | **保留** |
 | RWD size variant sm/md/lg/xl | 不變（限 Primitive/Compound 層） | **保留 + 擴充 Pattern 層規則** |
 | design-system-all.json = SOT | 不變 | **保留** |
+
+---
+
+## 12. Source of Truth & Governance
+
+> 原 `design-system-governance.md` 內容整合於此（2026-03-23）
+
+### 12.1 Source of Truth
+
+**唯一真實來源：`design-system-all.json`**
+
+所有擴充、修正、命名調整、token alias、component mapping，一律先改 `design-system-all.json`。其他檔案都屬於衍生檔，不能先自行定義規則。如果衍生檔與 JSON 衝突，一律以 JSON 為準。
+
+### 12.2 Current Baseline
+
+See `design-system-all.json` for current counts. Run `python3 sync-derived-files.py` to update all derived file numbers.
+
+Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
+
+### 12.3 Locked Decisions
+
+- `label-2xs` = 8px
+- `body-md-alt` = 13px（legacy compatibility）
+- `price color` = `sys/color/price`（紅色，非品牌橘）
+- `design-system-all.json` = source of truth
+- Text Styles baseline = 130
+- Mono is removed from both source-of-truth and text-style script
+- `sys/sizing/control-height/*` = 互動控件高度統一管理（參考 Ant Design controlHeight）
+- Compound token 管所有非獨立子元素屬性（參考 MD3 component token）
+- 元件 padding-v 由工程端用公式計算：`(controlHeight - fontHeight) / 2 - borderWidth`
+- icon-color 和 text-color 分開（語義不同）
+- 刪除 Variable Collection 再匯入會斷綁定 → 永遠用 overlay import
+
+### 12.4 Update Flow
+
+1. Modify `design-system-all.json`
+2. Run `python3 validate-design-system.py --root .`
+3. Run `python3 sync-derived-files.py` to update derived file numbers
+4. Fix any remaining issues
+5. Rebuild snapshot / zip only after validation passes
+
+### 12.5 Derived Files
+
+| 衍生檔 | 同步內容 |
+|--------|---------|
+| `SKILL.md` | Token 總數 |
+| `component-governance.md` | Baseline + Registry 數字 |
+| `EXECUTION_PLAN.md` | 頂部總數 + 元件表 |
+| `CLAUDE.md` | 架構描述數字 |
+| `token-migration-map.md` | 舊→新 token mapping |
+| `design-system-viewer-live.html` | 直接 fetch JSON（自動同步） |
+| `design-system-viewer.html` | 快照（需手動更新） |
+| `create-text-styles.js` | Scripter script |
+
+---
+
+## Appendix A: Architecture Decisions Log
+
+> 原 `design-system-progress.md` 歷史決策記錄（2026-03-23 整合）
+
+| 決策 | 結論 | 理由 |
+|------|------|------|
+| Collection 策略 | **單一 Collection** | 同 collection alias 匯入即生效 |
+| Namespace | **不加** `ruten/` | ref 三品牌共用 |
+| 色彩命名 | **純色相** | MD3 ref 不帶語義 |
+| text-decoration | **sys 層** | 業界標準，AI 可讀 |
+| Grid | **sys 層** | 組合式決策，非原子值 |
+| Breakpoint | **ref 層** | 原子數字 |
+| RWD 策略 | **Size variants (sm/md/lg/xl)** | Professional plan 只有 1 mode，不能用 Variable Modes |
+| Typography Figma | **Text Styles** | Variables 一個一個綁太慢，Text Styles 一鍵套用 |
+| Typography Token | **保留在 JSON** | AI 和工程師需要讀取 |
+| 價格顏色 | **紅色 sys/color/price** | 非 error 語義，獨立的促銷價格紅 |
+| 13px | **body-md-alt** | legacy compatibility，建議新設計用 14px |
+| label-2xs | **8px（非 9px）** | 對齊實際設計（銷售999+） |
+
+### 已解決的高風險點
+
+| 問題 | 原因 | 解法 |
+|------|------|------|
+| 13px 不在標準 scale | 舊設計遺留 | body-md-alt legacy token |
+| label-2xs 9px vs 實際 8px | token 與設計不一致 | 改成 8px |
+| 價格用紅色不是橘色 | 設計決策 | 新增 sys/color/price |
+| Mono 殘留 | Text Styles 與 source of truth 分裂 | 徹底移除 Mono |

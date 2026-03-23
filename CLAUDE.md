@@ -2,10 +2,10 @@
 
 ## What this is
 Multi-brand design system for Ruten e-commerce (露天市集 / 一抽入魂 / 預購市場).
-Single source of truth: `design-system-all.json` (529 tokens + 130 Text Styles).
+Single source of truth: `design-system-all.json` (636 tokens + 130 Text Styles).
 
 ## Architecture
-Single Figma Collection, three tiers: `ref(155) → sys(153) → comp(221)`.
+Single Figma Collection, three tiers: `ref(159) → sys(166) → comp(311)`.
 Alias direction: comp → sys → ref. Never skip tiers. comp → comp is allowed.
 Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 
@@ -22,7 +22,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 1. PLAN    — state what you'll do, which files change
 2. DO      — edit design-system-all.json
 3. CHECK   — python3 validate-design-system.py --root .
-4. SYNC    — update derived files (SKILL.md, governance.md, progress.md numbers)
+4. SYNC    — python3 sync-derived-files.py --root .
 5. REPORT  — list changed files, unchanged files, validation result
 ```
 
@@ -42,14 +42,12 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 ## Key files
 - `design-system-all.json` — SOT, edit this first
 - `validate-design-system.py` — run after every JSON change
-- `SKILL.md` — token architecture rules (update numbers after changes)
-- `design-system-governance.md` — locked decisions
-- `design-system-progress.md` — decision log
-- `EXECUTION_PLAN.md` — 19 component list, sprint order
+- `sync-derived-files.py` — auto-update token counts in derived files
+- `SKILL.md` — token architecture rules (skill trigger)
+- `component-governance.md` — component classification, locked decisions, architecture decisions log
+- `EXECUTION_PLAN.md` — 19 component list, sprint order, Phase 2-4 roadmap, tech debt
 - `DAILY_LOG.md` — daily standup log (read this FIRST every session)
-- `RUTEN_TODO.md` — phase-level progress tracking
 - `create-text-styles.js` — Figma Scripter script (130 Text Styles)
-- `component-governance.md` — component classification rules
 
 ## Brands
 | Brand | Primary | HEX |

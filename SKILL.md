@@ -14,7 +14,7 @@ description: |
 ## Overview
 AI-readable, multi-brand design system for Ruten e-commerce (露天市集, 一抽入魂, 預購市場).
 
-**Total:** 636 tokens + 130 Text Styles
+See `design-system-all.json` for current token counts.
 
 **Workflow:**
 ```
@@ -32,36 +32,24 @@ Figma export → AI transform/validate → JSON → Import to Figma → Bind Var
 | Typography in Figma | Text Styles | One-click apply, not one-by-one Variable binding |
 | Typography in JSON | Keep as semantic/component-readable tokens | AI and engineers read from JSON |
 
-## ref Layer — 159 tokens ✅
-Raw atomic values. Never used directly.
-- color(45), spacing(13), sizing(11), radius(9), typography(36), elevation(6), opacity(8), border(9), breakpoint(5), z-index(8), duration(4)
-- Font-size: 8px (label-2xs) → 64px (display-3xl)
-- Breakpoint: sm(375) · md(768) · lg(992) · xl(1200) · 2xl(1440)
+## Token Tiers
 
-## sys Layer — 166 tokens ✅
-Semantic aliases to ref. Includes sys/color/price (red, for promotional prices).
-- color(42), spacing(10), sizing(11), radius(6), typography(38), elevation(6), opacity(8), border(8), grid(8), z-index(8), duration(4)
+- **ref** — Raw atomic values. Never used directly. color, spacing, sizing, radius, typography, elevation, opacity, border, breakpoint, z-index, duration.
+- **sys** — Semantic aliases to ref. Includes sys/color/price (red, for promotional prices). color, spacing, sizing, radius, typography, elevation, opacity, border, grid, z-index, duration.
+- **comp** — Component-bound tokens. icon, product-card, button, tab, tag, badge, avatar, thumbnail, divider, search-bar, nav-bar, bottom-nav, section-header, section-module, banner.
 
-## comp Layer — 311 tokens ✅
-- **icon (8):** xs/sm/md/lg × size + color. Other comps reference comp/icon instead of sys/sizing directly.
-- **product-card (51):** container, image, badge, title, price(red), meta(8px), tag-shipping(blue), tag-brand(red+icon), promo-corner(免運角標)
-- **button (60):** sm/md/lg/xl × primary/secondary/ghost × states
-- **tab (33):** sm/md/lg/xl × active/inactive/hover + secondary emphasis
-- **tag (74):** filter/display/action × sm/md/lg/xl + promo-corner
-- **other components (74):** badge, avatar, divider, search-bar, nav-bar, bottom-nav, section-header, section-module, banner
-
-## Component Governance (v1.0.0)
+## Component Governance
 
 Full rules: `component-governance.md`. Summary for AI:
 
 **Classification: [Category] × [Depth] × [Ownership]**
-- Category: Action | Display | Navigation | Feedback | Layout | Media
+- Category: Action | Input | Display | Navigation | Feedback | Overlay | Layout | Media
 - Depth: Primitive | Compound | Pattern
 - Ownership: Owned | Slot Override | Inherited
 
 **Token rules by depth:**
 - Primitive: full comp/ token set, alias to sys only, no comp→comp reference
-- Compound: comp/ tokens for layout only (padding, gap, bg, radius). Child styles controlled by child's comp/ tokens. Slot Override allowed when child needs context-specific visuals.
+- Compound: comp/ tokens for all non-independent child element properties (ref MD3). Slot Override allowed when child needs context-specific visuals.
 - Pattern: no comp/ tokens. Use sys/ tokens + CSS layout.
 
 **Slot Override convention:**
@@ -76,19 +64,19 @@ Full rules: `component-governance.md`. Summary for AI:
 
 **New component decision flow:**
 1. Existing component covers it? → Variant (same structure) or new comp (different structure)
-2. Assign category → Action/Display/Navigation/Feedback/Layout/Media
+2. Assign category → Action/Input/Display/Navigation/Feedback/Overlay/Layout/Media
 3. Contains other DS components? → No: Primitive | Yes + reusable: Compound | Yes + section-only: Pattern
 4. Define tokens per depth rule
 5. Define RWD per depth rule
 
-## Text Styles — 130 styles ✅
-CH/PingFang TC (65) + EN/SF Pro (65)
+## Text Styles — 130 styles
+CH/PingFang TC (65) + EN/SF Pro (65). Mono removed.
 Built with Scripter plugin script: create-text-styles.js
 
 ## Figma Binding Rules
-- ✅ Colors, radius, padding/gap, width/height → bind as Variables
-- ✅ Typography → apply as Text Styles (not Variables)
-- 設計師選 comp/ 或 sys/，**永遠不選 ref/**
+- Colors, radius, padding/gap, width/height → bind as Variables
+- Typography → apply as Text Styles (not Variables)
+- 設計師選 comp/ 或 sys/，永遠不選 ref/
 
 ## Key Decisions
 - label-2xs = 8px (not 9px, matches 銷售999+ actual design)
@@ -99,13 +87,15 @@ Built with Scripter plugin script: create-text-styles.js
 - Mono removed from source-of-truth and text styles baseline
 
 ## File Inventory
-| File | Tokens/Styles |
-|------|---------------|
-| design-system-all.json | 636 tokens (ref 159 + sys 166 + comp 311) |
-| design-system-viewer.html | Snapshot viewer aligned to current baseline |
+| File | Purpose |
+|------|---------|
+| design-system-all.json | SOT — all tokens |
+| component-governance.md | Component classification, token rules, RWD governance, locked decisions, architecture decisions log |
+| EXECUTION_PLAN.md | 19 component list, sprint order, Phase 2-4 roadmap, tech debt |
+| validate-design-system.py | Validation script |
+| sync-derived-files.py | Auto-update token counts in derived files |
+| create-text-styles.js | Scripter script for 130 Text Styles |
+| design-system-viewer-live.html | Live viewer (fetches JSON) |
+| design-system-viewer.html | Snapshot viewer |
 | token-migration-map.md | Old→new token mapping |
-| create-text-styles.js | Scripter script aligned to 130 Text Styles |
 | SKILL.md | This file |
-| design-system-progress.md | Decision log |
-| design-system-governance.md | Governance and update rules |
-| component-governance.md | Component classification, token rules, RWD governance |

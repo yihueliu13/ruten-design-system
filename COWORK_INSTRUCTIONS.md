@@ -40,12 +40,10 @@
 | `COWORK_INSTRUCTIONS.md` | Cowork Claude 進入點（本文件） | Claude |
 | `design-system-all.json` | Token 原始資料（唯一 SOT） | Claude, Figma, 工程師 |
 | `SKILL.md` | Token 架構規則、層級說明 | Claude（觸發 skill 用） |
-| `EXECUTION_PLAN.md` | 19 元件清單、優先級、執行順序 | Claude, Kay |
-| `RUTEN_TODO.md` | Phase 1-4 全域待辦 | Kay（進度追蹤） |
+| `EXECUTION_PLAN.md` | 19 元件清單、優先級、執行順序、Phase 2-4 路線圖、技術債 | Claude, Kay |
 | `validate-design-system.py` | 驗證腳本 | Claude（每次改 JSON 後跑） |
-| `design-system-governance.md` | 治理規則、鎖定決策 | Claude（查規則用） |
-| `component-governance.md` | Component 分類 + token 規則 + RWD 治理 | Claude, 設計師, 工程師 |
-| `design-system-progress.md` | 建置進度筆記、決策紀錄 | Claude, Kay |
+| `sync-derived-files.py` | 自動更新衍生檔 token 數字 | Claude（每次改 JSON 後跑） |
+| `component-governance.md` | Component 分類 + token 規則 + RWD 治理 + 鎖定決策 + 架構決策記錄 | Claude, 設計師, 工程師 |
 | `tag-badge-usage-guideline.md` | Tag/Badge 使用規範 | Claude, 設計師 |
 | `token-migration-map.md` | 舊 token 遷移對照 | 工程師 |
 | `create-text-styles.js` | Figma Scripter 腳本（130 Text Styles） | Figma plugin |
@@ -69,7 +67,7 @@ Figma Variables → Text Styles（130）
 - 單一 Collection，用 `/` 分群組
 - alias 方向固定：comp → sys → ref，不跳層
 - comp → comp 引用合法（如 product-card/tag-brand → comp/tag/base）
-- 目前：609 tokens + 130 Text Styles
+- 目前：636 tokens + 130 Text Styles
 
 ### 元件分類（v2 三維體系）
 
@@ -115,7 +113,7 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 3. PLAN     說出你要做什麼、預期改哪些檔案
 4. DO       執行任務
 5. CHECK    python3 validate-design-system.py --root .
-6. SYNC     更新受影響的衍生檔（progress.md, governance.md, SKILL.md 的數字）
+6. SYNC     python3 sync-derived-files.py --root .（自動更新衍生檔數字）
 7. FIGMA    若有新增/修改 token → 產出 Scripter 腳本同步 Figma Variables
             （Cowork 無法直接寫入 Figma，必須產出腳本讓 Kay 在 Scripter 執行）
 8. REPORT   列出：改了哪些檔案、沒改哪些、validation 結果、是否需要跑 Figma 腳本
@@ -240,7 +238,7 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 === Cowork 負責（WRITE → VERIFY）===
 4. 寫入 JSON     design-system-all.json
 5. 驗證 JSON     python3 validate-design-system.py --root .
-6. 同步衍生檔    progress.md, governance.md, SKILL.md, component-governance.md
+6. 同步衍生檔    python3 sync-derived-files.py --root .
 7. Usage Guideline  為每個新 component 寫 {component}-usage-guideline.md
 8. Figma 匯入    Thierry overlay import（不刪 collection）
 9. Figma binding  get_variable_defs 抽樣驗證 alias chain

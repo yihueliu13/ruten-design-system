@@ -133,9 +133,9 @@ def build_issues(root: Path) -> list[Issue]:
     expect_contains(issues, progress, f"## ✅ sys 層 — {sys_count} tokens", progress_path.name, "PROGRESS_SYS", "Progress sys count matches source of truth.")
     expect_contains(issues, progress, f"| `design-system-all.json` | ✅ 唯一真實來源 | ref({ref_count}) + sys({sys_count}) + comp({comp_count}) |", progress_path.name, "PROGRESS_SOT", "Progress source-of-truth summary matches counts.")
 
-    expect_contains(issues, skill, f"**Total:** {total_count} tokens + {expected_text_styles} Text Styles", skill_path.name, "SKILL_TOTAL", "SKILL total matches source of truth.")
-    expect_contains(issues, skill, f"## ref Layer — {ref_count} tokens ✅", skill_path.name, "SKILL_REF", "SKILL ref count matches source of truth.")
-    expect_contains(issues, skill, f"## sys Layer — {sys_count} tokens ✅", skill_path.name, "SKILL_SYS", "SKILL sys count matches source of truth.")
+    expect_contains(issues, skill, "See `design-system-all.json` for current token counts.", skill_path.name, "SKILL_DEFERS_COUNTS", "SKILL defers token counts to JSON.")
+    expect_contains(issues, skill, "comp → sys → ref", skill_path.name, "SKILL_ALIAS_DIRECTION", "SKILL documents alias direction.")
+    expect_contains(issues, skill, "130 styles", skill_path.name, "SKILL_TEXT_STYLES", "SKILL references 130 text styles.")
 
     expect_contains(issues, governance, f"- ref: {ref_count}", governance_path.name, "GOV_REF", "Governance ref count matches source of truth.")
     expect_contains(issues, governance, f"- sys: {sys_count}", governance_path.name, "GOV_SYS", "Governance sys count matches source of truth.")
