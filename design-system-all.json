@@ -2927,6 +2927,16 @@
           ],
           "com.figma.isOverride": true
         }
+      },
+      "hover-overlay": {
+        "$type": "number",
+        "$value": 0.08,
+        "$description": "Opacity for hover overlay. Use for interactive elements on hover state. Do NOT use for disabled states."
+      },
+      "pressed-overlay": {
+        "$type": "number",
+        "$value": 0.12,
+        "$description": "Opacity for pressed overlay. Use for interactive elements on pressed/active state. Do NOT use for disabled states."
       }
     },
     "z-index": {
@@ -4659,7 +4669,7 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{comp/button/primary/default/text-color}",
+            "$value": "{comp.button.primary.default.text-color}",
             "$description": "Primary button icon color. Aliases text-color (Ant Design currentColor pattern). Separate token per governance §12.3, same value by default."
           }
         },
@@ -4671,7 +4681,7 @@
           },
           "opacity": {
             "$type": "number",
-            "$value": 0.85,
+            "$value": "{sys.opacity.hover-overlay}",
             "$description": "Primary button hover opacity."
           }
         },
@@ -4683,7 +4693,7 @@
           },
           "opacity": {
             "$type": "number",
-            "$value": 0.7,
+            "$value": "{sys.opacity.pressed-overlay}",
             "$description": "Primary button pressed opacity."
           }
         },
@@ -4835,7 +4845,7 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{comp/button/secondary/default/text-color}",
+            "$value": "{comp.button.secondary.default.text-color}",
             "$description": "Secondary button icon color. Aliases text-color (Ant Design currentColor pattern). White on brand orange."
           }
         }
@@ -4892,7 +4902,7 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{comp/button/tertiary/default/text-color}",
+            "$value": "{comp.button.tertiary.default.text-color}",
             "$description": "Tertiary button icon color. Aliases text-color (Ant Design currentColor pattern). Brand orange."
           }
         },
@@ -5008,7 +5018,7 @@
           },
           "icon-color": {
             "$type": "color",
-            "$value": "{comp/button/ghost/default/text-color}",
+            "$value": "{comp.button.ghost.default.text-color}",
             "$description": "Ghost button icon color. Aliases text-color (Ant Design currentColor pattern). Brand orange."
           }
         },

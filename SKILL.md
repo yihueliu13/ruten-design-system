@@ -11,7 +11,7 @@ description: |
 
 # Ruten Design System — Skill Reference
 
-> 640 tokens (ref 159 + sys 166 + comp 315) + 130 Text Styles (130 styles)
+> 642 tokens (ref 159 + sys 168 + comp 315) + 130 Text Styles (130 styles)
 > 唯一 SOT：`design-system-all.json`
 > See `design-system-all.json` for current token counts.
 
