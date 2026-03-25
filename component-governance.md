@@ -33,12 +33,22 @@ Foundation → Primitive → Compound → Pattern → Template → Page
 
 | 層級 | 定義 | 在設計系統裡是什麼 | Token 規則 | Figma Page | Storybook 目錄 |
 |------|------|-------------------|-----------|-----------|---------------|
-| **Foundation** | 色彩、字型、間距、圓角、陰影等設計基礎 | ref + sys token | ref + sys 兩層 | Foundation | `Foundations/` |
-| **Primitive** | 最小可複用 UI 單元，不含其他 DS component | 獨立元件，擁有完整 token 集 | `comp/{name}/` 完整集 | Component | `Components/{功能類別}/` |
+| **Foundation** | 色彩、字型、間距、圓角、陰影等設計基礎 | ref + sys token | ref + sys 兩層 | Foundation › Global + Semantic | `Foundations/` |
+| **Primitive** | 最小可複用 UI 單元，不含其他 DS component | 獨立元件，擁有完整 token 集 | `comp/{name}/` 完整集 | Primitive | `Components/{功能類別}/` |
 | **Compound** | 由 2+ Primitive 組合，跨頁面複用，有獨立功能 | 組合元件，管非獨立子元素屬性 | `comp/{name}/` 佈局 + 非獨立子元素 | Component | `Components/{功能類別}/` |
 | **Pattern** | 由 Component 組合成的頁面區域，不發布為 Library component | 佈局邏輯，無獨立視覺身份 | 只用 `sys/` token（不建 comp/） | Pattern | `Patterns/` |
 | **Template** | 頁面骨架 + placeholder 內容，驗證佈局結構用 | 頁面結構已定，內容是假的 | 同 Page（`sys/grid` + `sys/spacing`） | Template | `Templates/`（可選） |
 | **Page** | 完整頁面，由 Template 填入真實內容 | 頁面級 frame，含真實資料 | `sys/grid` + `sys/spacing` | Page | `Pages/` |
+
+### Figma Page 與 Token 路徑對照
+
+Figma 左欄使用設計師友善的名稱，token 路徑維持業界標準（W3C DTCG）不變：
+
+| Figma Page 名稱 | Token 路徑前綴 | 說明 |
+|----------------|--------------|------|
+| **Global** | `ref/` | 全域原始值（色票、字級、間距刻度），不直接使用 |
+| **Semantic** | `sys/` | 語意化 token（品牌色、功能色、語意間距），設計師主要選用層 |
+| **Primitive / Component** | `comp/` | 元件綁定 token，AI / 工程端主要操作層 |
 
 ### Template vs Page 的區別
 
