@@ -24,12 +24,13 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 
 ## Workflow for every task
 ```
-1. PLAN    — state what you'll do, which files change
-2. DO      — edit design-system-all.json
-3. CHECK   — python3 validate-design-system.py --root .
-4. SYNC    — python3 sync-derived-files.py --root .
-5. REPORT  — list changed files, unchanged files, validation result
-6. PUSH    — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
+1. PLAN     — state what you'll do, which files change
+2. DO       — edit design-system-all.json
+3. CHECK    — python3 validate-design-system.py --root .
+4. SYNC     — python3 sync-derived-files.py --root .
+5. REPORT   — list changed files, unchanged files, validation result
+6. PUSH     — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
+7. PK-SYNC  — 比對 repo 和 Chat Project Knowledge 的檔案差異，列出需要替換/刪除/上傳的清單，提醒 Kay 手動更新 PK
 ```
 
 ## Rules
