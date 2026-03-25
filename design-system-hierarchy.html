@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruten DS — 組成層級 Design System Hierarchy</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang TC',-apple-system,'Noto Sans TC',sans-serif;background:#F6F7FE;color:#161619;-webkit-font-smoothing:antialiased;padding:40px 32px 80px}
+h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.sub{font-size:14px;color:#73747B;margin-bottom:48px}
+.hierarchy{display:flex;flex-direction:column;gap:0;max-width:960px;margin:0 auto}
+
+/* Layer card */
+.layer{border-radius:16px;padding:28px 32px;position:relative;margin-bottom:-8px}
+.layer:last-child{margin-bottom:0}
+
+/* Nesting visual — each layer slightly indented and narrower */
+.layer:nth-child(1){margin-left:0;margin-right:0}
+.layer:nth-child(2){margin-left:20px;margin-right:20px}
+.layer:nth-child(3){margin-left:40px;margin-right:40px}
+.layer:nth-child(4){margin-left:60px;margin-right:60px}
+.layer:nth-child(5){margin-left:80px;margin-right:80px}
+.layer:nth-child(6){margin-left:100px;margin-right:100px}
+
+/* Layer colors */
+.layer-page{background:#E8E0F0;border:2px solid #C4B5D4}
+.layer-pattern{background:#DBEAFE;border:2px solid #93C5FD}
+.layer-compound{background:#FFF8F1;border:2px solid #FFCC99}
+.layer-primitive{background:#FFF1E6;border:2px solid #FF963B}
+.layer-foundation{background:#F0FDF4;border:2px solid #86EFAC}
+
+.layer-header{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.layer-name{font-size:20px;font-weight:700}
+.layer-name-en{font-size:14px;color:#73747B;font-weight:500}
+.layer-desc{font-size:13px;color:#73747B;margin-bottom:16px;line-height:1.6}
+
+.layer-tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-bottom:12px}
+.tag-page{background:#C4B5D4;color:#3B1F5E}
+.tag-pattern{background:#93C5FD;color:#1E3A8A}
+.tag-compound{background:#FFCC99;color:#7C3A00}
+.tag-primitive{background:#FF963B;color:#fff}
+.tag-foundation{background:#86EFAC;color:#14532D}
+
+/* Token rule badge */
+.token-rule{font-size:12px;color:#73747B;font-weight:500;margin-left:auto;background:#fff;padding:4px 10px;border-radius:6px;border:1px solid #E3E4EB;white-space:nowrap}
+
+/* Component chips */
+.components{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:8px;background:#fff;border:1px solid #E3E4EB;transition:all .15s}
+.chip.done{border-color:#86EFAC;background:#F0FDF4}
+.chip.done::before{content:'✅';font-size:11px}
+.chip.wip{border-color:#FFCC99;background:#FFF8F1}
+.chip.wip::before{content:'🔄';font-size:11px}
+.chip.backlog{border-color:#E3E4EB;background:#F6F7FE}
+.chip.backlog::before{content:'🔲';font-size:11px}
+.chip.sprint3{border-color:#93C5FD;background:#EFF6FF}
+.chip.sprint3::before{content:'🆕';font-size:11px}
+
+/* Figma page mapping */
+.figma-page{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#9798A2;margin-top:12px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.7);border:1px dashed #D2D3D9}
+.figma-page::before{content:'📄';font-size:11px}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:40px auto 0;max-width:960px;padding:16px 20px;background:#fff;border-radius:12px;border:1px solid #E3E4EB}
+.legend-title{font-size:13px;font-weight:600;width:100%;margin-bottom:4px}
+.legend-item{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#73747B}
+.legend-chip{width:20px;height:20px;border-radius:4px;border:1px solid #E3E4EB;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+/* Arrow connector */
+.arrow{text-align:center;font-size:18px;color:#B9BABF;margin:4px 0 4px;line-height:1}
+
+/* Storybook path */
+.storybook{font-size:12px;color:#9798A2;font-family:'SF Mono',monospace;margin-top:8px}
+</style>
+</head>
+<body>
+
+<h1>Ruten Design System — 組成層級</h1>
+<p class="sub">Design System Hierarchy · 像樂高一樣，從基礎到頁面的六層組裝結構 · v1.3.0</p>
+
+<div class="hierarchy">
+
+  <!-- Page -->
+  <div class="layer layer-page">
+    <div class="layer-header">
+      <span class="layer-tag tag-page">LEVEL 6</span>
+      <span class="layer-name">Page 頁面</span>
+      <span class="layer-name-en">完整頁面，含真實資料</span>
+      <span class="token-rule">sys/grid + sys/spacing</span>
+    </div>
+    <p class="layer-desc">由 Template 填入真實資料。每個 Page 有 375px（手機）和 768px（平板）兩版 frame。</p>
+    <div class="components">
+      <span class="chip done">分類館首頁</span>
+      <span class="chip backlog">商品詳情頁</span>
+      <span class="chip backlog">搜尋結果頁</span>
+    </div>
+    <div class="figma-page">Figma: Page</div>
+    <div class="storybook">Storybook: Pages/</div>
+  </div>
+
+  <div class="arrow">↑ Template 填入真實資料</div>
+
+  <!-- Template -->
+  <div class="layer layer-page" style="background:#EDE8F4;border-color:#C4B5D4">
+    <div class="layer-header">
+      <span class="layer-tag tag-page">LEVEL 5</span>
+      <span class="layer-name">Template 模板</span>
+      <span class="layer-name-en">頁面骨架 + placeholder 內容</span>
+      <span class="token-rule">sys/grid + sys/spacing</span>
+    </div>
+    <p class="layer-desc">頁面結構已定，但內容是假的（placeholder text、灰色圖片區塊）。驗證佈局是否合理用。Token 規則同 Page。</p>
+    <div class="components">
+      <span class="chip backlog">分類館首頁 Template</span>
+    </div>
+    <div class="figma-page">Figma: Template</div>
+    <div class="storybook">Storybook: Templates/</div>
+  </div>
+
+  <div class="arrow">↑ 組合 Pattern + Component 成頁面骨架</div>
+
+  <!-- Pattern -->
+  <div class="layer layer-pattern">
+    <div class="layer-header">
+      <span class="layer-tag tag-pattern">LEVEL 4</span>
+      <span class="layer-name">Pattern 佈局模式</span>
+      <span class="layer-name-en">頁面區域，不發布為 Library component</span>
+      <span class="token-rule">只用 sys/ token（不建 comp/）</span>
+    </div>
+    <p class="layer-desc">由 Component 組合成的頁面區域。不在 DS Library 中作為 Main Component 發布。用 CSS layout（grid/flex）實作 RWD。</p>
+    <div class="components">
+      <span class="chip backlog">CategoryGrid</span>
+      <span class="chip backlog">HorizontalScroll</span>
+      <span class="chip backlog">Banner Content</span>
+      <span class="chip backlog">QuickInfoBar</span>
+      <span class="chip backlog">Ranking Section</span>
+      <span class="chip backlog">Form Layout</span>
+      <span class="chip backlog">Product Grid</span>
+    </div>
+    <div class="figma-page">Figma: Pattern</div>
+    <div class="storybook">Storybook: Patterns/</div>
+  </div>
+
+  <div class="arrow">↑ 組合 Compound + Primitive 成區域佈局</div>
+
+  <!-- Compound -->
+  <div class="layer layer-compound">
+    <div class="layer-header">
+      <span class="layer-tag tag-compound">LEVEL 3</span>
+      <span class="layer-name">Compound 組合元件</span>
+      <span class="layer-name-en">2+ Primitive 組合，跨頁面複用</span>
+      <span class="token-rule">comp/ 佈局 + 非獨立子元素</span>
+    </div>
+    <p class="layer-desc">由多個 Primitive 組合而成，有獨立功能。comp/ token 管「非獨立子 Primitive」的屬性（容器佈局 + icon color/size + label 等）。獨立子 Primitive 用自己的 token，需要覆寫走 Slot Override。</p>
+    <div class="components">
+      <span class="chip sprint3">NavigationBar <small>6 tokens</small></span>
+      <span class="chip sprint3">BottomNav <small>12 tokens</small></span>
+      <span class="chip sprint3">SectionHeader <small>14 tokens</small></span>
+      <span class="chip done">ProductCard <small>51 tokens</small></span>
+      <span class="chip done">SectionModule <small>7 tokens</small></span>
+      <span class="chip done">Banner <small>4 tokens</small></span>
+      <span class="chip backlog">Modal</span>
+      <span class="chip backlog">Dialog</span>
+      <span class="chip backlog">BottomSheet</span>
+      <span class="chip backlog">Table</span>
+    </div>
+    <div class="figma-page">Figma: Component page（與 Primitive 同一層）</div>
+    <div class="storybook">Storybook: Components/{功能類別}/</div>
+  </div>
+
+  <div class="arrow">↑ 組合 Primitive 成複合元件</div>
+
+  <!-- Primitive -->
+  <div class="layer layer-primitive">
+    <div class="layer-header">
+      <span class="layer-tag tag-primitive">LEVEL 2</span>
+      <span class="layer-name">Primitive 基礎元件</span>
+      <span class="layer-name-en">最小可複用 UI 單元</span>
+      <span class="token-rule">comp/ 完整集</span>
+    </div>
+    <p class="layer-desc">不含其他 DS component，擁有完整的 comp/ token 集（color、spacing、sizing、radius）。每個 token alias 到 sys 層，不跳層。透過 size variant（sm/md/lg/xl）實現 RWD。</p>
+    <div class="components">
+      <span class="chip sprint3">SearchBar <small>11 tokens</small></span>
+      <span class="chip done">Button <small>66 tokens</small></span>
+      <span class="chip done">Tab <small>33 tokens</small></span>
+      <span class="chip done">Tag <small>74 tokens</small></span>
+      <span class="chip done">Badge <small>11 tokens</small></span>
+      <span class="chip done">Icon <small>8 tokens</small></span>
+      <span class="chip done">Avatar <small>11 tokens</small></span>
+      <span class="chip done">Thumbnail <small>11 tokens</small></span>
+      <span class="chip done">Divider <small>5 tokens</small></span>
+      <span class="chip backlog">TextField</span>
+      <span class="chip backlog">Checkbox</span>
+      <span class="chip backlog">Switch</span>
+      <span class="chip backlog">Select</span>
+    </div>
+    <div class="figma-page">Figma: Component page（與 Compound 同一層）</div>
+    <div class="storybook">Storybook: Components/{功能類別}/</div>
+  </div>
+
+  <div class="arrow">↑ 使用 Foundation token 定義外觀</div>
+
+  <!-- Foundation -->
+  <div class="layer layer-foundation">
+    <div class="layer-header">
+      <span class="layer-tag tag-foundation">LEVEL 1</span>
+      <span class="layer-name">Foundation 設計基礎</span>
+      <span class="layer-name-en">色彩、字型、間距、圓角、陰影</span>
+      <span class="token-rule">ref (159) + sys (168)</span>
+    </div>
+    <p class="layer-desc">所有設計決策的原子值。ref 層是原始數值（不直接使用），sys 層是語意化 token（設計師選用）。Typography 在 Figma 用 130 個 Text Styles 表達。</p>
+    <div class="components">
+      <span class="chip done">Color <small>ref 41 + sys 33</small></span>
+      <span class="chip done">Typography <small>ref 36 + sys 52 + 130 Text Styles</small></span>
+      <span class="chip done">Spacing <small>ref 11 + sys 11</small></span>
+      <span class="chip done">Sizing <small>ref 38 + sys 38</small></span>
+      <span class="chip done">Border <small>ref 12 + sys 12</small></span>
+      <span class="chip done">Radius <small>ref 8 + sys 9</small></span>
+      <span class="chip done">Elevation <small>ref 5 + sys 5</small></span>
+      <span class="chip done">Opacity <small>ref 8 + sys 8</small></span>
+    </div>
+    <div class="figma-page">Figma: Foundation page（含 →Icons 子頁）</div>
+    <div class="storybook">Storybook: Foundations/</div>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-title">圖例</div>
+  <div class="legend-item"><span class="legend-chip">✅</span> Token 已定義</div>
+  <div class="legend-item"><span class="legend-chip">🆕</span> Sprint 3 新建</div>
+  <div class="legend-item"><span class="legend-chip">🔄</span> 進行中</div>
+  <div class="legend-item"><span class="legend-chip">🔲</span> Backlog / Future</div>
+  <div class="legend-item" style="margin-left:auto;font-size:11px;color:#B9BABF">Ruten Design System v1.3.0 · 651 tokens + 130 Text Styles</div>
+</div>
+
+</body>
+</html>

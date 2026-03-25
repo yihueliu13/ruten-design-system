@@ -22,31 +22,42 @@
 
 ## 2. 組成層級（Design System Hierarchy）
 
-設計系統像樂高一樣，有明確的組成層級。從最小的設計基礎到完整頁面，共五層：
+設計系統像樂高一樣，有明確的組成層級。從最小的設計基礎到完整頁面，共六層：
 
 ```
-Foundation → Primitive → Compound → Pattern → Page
-   基礎        基礎元件     組合元件     佈局模式    頁面
+Foundation → Primitive → Compound → Pattern → Template → Page
+   基礎        基礎元件     組合元件     佈局模式    模板       頁面
 ```
 
-### 五層定義
+### 六層定義
 
-| 層級 | 定義 | 在設計系統裡是什麼 | Token 規則 | Figma 表達 | Storybook 目錄 |
+| 層級 | 定義 | 在設計系統裡是什麼 | Token 規則 | Figma Page | Storybook 目錄 |
 |------|------|-------------------|-----------|-----------|---------------|
-| **Foundation** | 色彩、字型、間距、圓角、陰影等設計基礎 | ref + sys token | ref + sys 兩層 | Variable Collection + Text Styles | `Foundations/` |
-| **Primitive** | 最小可複用 UI 單元，不含其他 DS component | 獨立元件，擁有完整 token 集 | `comp/{name}/` 完整集 | Main Component + size Variants | `Components/{功能類別}/` |
-| **Compound** | 由 2+ Primitive 組合，跨頁面複用，有獨立功能 | 組合元件，管非獨立子元素屬性 | `comp/{name}/` 佈局 + 非獨立子元素 | Main Component + Variants | `Components/{功能類別}/` |
-| **Pattern** | 由 Component 組合成的頁面區域，不發布為 Library component | 佈局邏輯，無獨立視覺身份 | 只用 `sys/` token（不建 comp/） | Section frame（非 Main Component） | `Patterns/` |
-| **Page** | 完整頁面，由 Pattern + Component 組成 | 頁面級 frame，含真實內容 | `sys/grid` + `sys/spacing` | Page frame（375px / 768px） | `Pages/` |
+| **Foundation** | 色彩、字型、間距、圓角、陰影等設計基礎 | ref + sys token | ref + sys 兩層 | Foundation | `Foundations/` |
+| **Primitive** | 最小可複用 UI 單元，不含其他 DS component | 獨立元件，擁有完整 token 集 | `comp/{name}/` 完整集 | Component | `Components/{功能類別}/` |
+| **Compound** | 由 2+ Primitive 組合，跨頁面複用，有獨立功能 | 組合元件，管非獨立子元素屬性 | `comp/{name}/` 佈局 + 非獨立子元素 | Component | `Components/{功能類別}/` |
+| **Pattern** | 由 Component 組合成的頁面區域，不發布為 Library component | 佈局邏輯，無獨立視覺身份 | 只用 `sys/` token（不建 comp/） | Pattern | `Patterns/` |
+| **Template** | 頁面骨架 + placeholder 內容，驗證佈局結構用 | 頁面結構已定，內容是假的 | 同 Page（`sys/grid` + `sys/spacing`） | Template | `Templates/`（可選） |
+| **Page** | 完整頁面，由 Template 填入真實內容 | 頁面級 frame，含真實資料 | `sys/grid` + `sys/spacing` | Page | `Pages/` |
+
+### Template vs Page 的區別
+
+| | Template | Page |
+|--|----------|------|
+| 內容 | Placeholder（假文字、灰色圖片區塊） | 真實資料（商品名稱、價格、圖片） |
+| 用途 | 驗證佈局結構是否合理 | 驗證真實內容是否正常顯示 |
+| 誰做 | 設計師建 wireframe 骨架 | 設計師 or AI 填入真實內容 |
+| 數量 | 每種頁面類型 1 個 | 同類型可有多個（不同內容狀態） |
 
 ### 層級關係（由大到小）
 
 ```
-Page 頁面
- └── Pattern 佈局模式
-      └── Compound 組合元件
-           └── Primitive 基礎元件
-                └── Foundation 設計基礎（token）
+Page 頁面（真實內容）
+ └── Template 模板（placeholder 骨架）
+      └── Pattern 佈局模式（區域組合）
+           └── Compound 組合元件
+                └── Primitive 基礎元件
+                     └── Foundation 設計基礎（token）
 ```
 
 ### 露天的四個骨架元件在哪一層
@@ -68,9 +79,10 @@ Page 頁面
 | Primitive | Primitive | Component | Component | Component | Component |
 | Compound | Compound | Component | Component | Component | Component |
 | Pattern | Pattern | — | Pattern | Pattern | Pattern |
+| Template | Template | — | — | — | — |
 | Page | Page | — | — | — | — |
 
-> **業界差異**：多數設計系統不區分 Primitive 和 Compound，統稱 Component。露天因為 AI 驅動開發需要更精確的 token 規則區分（完整 token 集 vs 佈局 token + Slot Override），所以細分兩層。在 Storybook 中，Primitive 和 Compound 都放在 `Components/` 下，用功能類別分子目錄。
+> **業界差異**：多數設計系統不區分 Primitive 和 Compound，統稱 Component。露天因為 AI 驅動開發需要更精確的 token 規則區分（完整 token 集 vs 佈局 token + Slot Override），所以細分兩層。Template 層在業界較少獨立定義（Atomic Design 有但多數 DS 省略），露天保留是因為分類館等複雜頁面需要先驗證骨架再填內容。在 Storybook 中，Primitive 和 Compound 都放在 `Components/` 下，用功能類別分子目錄。
 
 ### Storybook 目錄結構
 
@@ -95,6 +107,9 @@ Storybook/
 │   ├── CategoryGrid
 │   ├── HorizontalScroll
 │   └── FormLayout
+├── Templates/                ← Template（可選）
+│   ├── 分類館首頁 Template
+│   └── 商品詳情頁 Template
 └── Pages/                    ← Page
     ├── 分類館首頁
     └── 商品詳情頁
@@ -454,6 +469,7 @@ AI 看到 `$description` 以 `"Slot override."` 開頭時：
 | **Primitive** | size variant (sm/md/lg/xl) | comp/ token 每個 size 有值 | CSS class 或 RN prop 切 size | Variant `size` |
 | **Compound** | size variant 或 layout variant | comp/ token 管佈局 | CSS class 或 RN prop | Variant `size` 或 `layout` |
 | **Pattern** | CSS layout（columns + gap） | sys/ token | CSS media query / grid auto-fit | 兩版 frame (375/768) |
+| **Template** | 同 Page | sys/grid + sys/spacing | 同 Page | 兩版 frame (375/768) |
 | **Page** | breakpoint frame | sys/grid + sys/spacing | CSS media query / RN Dimensions | 兩版 frame (375/768) |
 
 ### 斷點定義（已鎖定）

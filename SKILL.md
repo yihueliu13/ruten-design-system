@@ -83,15 +83,16 @@ comp (311) → 元件綁定，AI/設計師主要操作層
 ### 組成層級（Design System Hierarchy）
 
 ```
-Foundation → Primitive → Compound → Pattern → Page
-   基礎        基礎元件     組合元件     佈局模式    頁面
+Foundation → Primitive → Compound → Pattern → Template → Page
+   基礎        基礎元件     組合元件     佈局模式    模板       頁面
 ```
 
-- **Foundation**：ref + sys token（色彩、字型、間距）→ Storybook `Foundations/`
-- **Primitive**：最小可複用 UI 單元 → `comp/` 完整集 → Storybook `Components/{功能類別}/`
-- **Compound**：2+ Primitive 組合 → `comp/` 佈局 + 非獨立子元素 → Storybook `Components/{功能類別}/`
-- **Pattern**：頁面區域佈局 → 只用 `sys/` token → Storybook `Patterns/`
-- **Page**：完整頁面 → `sys/grid` + `sys/spacing` → Storybook `Pages/`
+- **Foundation**：ref + sys token → Figma `Foundation` / Storybook `Foundations/`
+- **Primitive**：最小可複用 UI 單元 → `comp/` 完整集 → Figma `Component` / Storybook `Components/{功能類別}/`
+- **Compound**：2+ Primitive 組合 → `comp/` 佈局 + 非獨立子元素 → Figma `Component` / Storybook `Components/{功能類別}/`
+- **Pattern**：頁面區域佈局 → 只用 `sys/` token → Figma `Pattern` / Storybook `Patterns/`
+- **Template**：頁面骨架 + placeholder → 同 Page token → Figma `Template` / Storybook `Templates/`
+- **Page**：Template + 真實內容 → `sys/grid` + `sys/spacing` → Figma `Page` / Storybook `Pages/`
 
 ### 元件分類（三維體系）
 
