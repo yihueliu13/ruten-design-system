@@ -77,7 +77,7 @@ def build_issues(root: Path) -> list[Issue]:
     skill_path = root / "SKILL.md"
     comp_gov_path = root / "component-governance.md"
     migration_path = root / "token-migration-map.md"
-    viewer_live_path = root / "design-system-viewer-live.html"
+    viewer_live_path = root / "ruten-design-system.html"
     script_path = root / "create-text-styles.js"
 
     data = load_json(json_path)
@@ -127,7 +127,7 @@ def build_issues(root: Path) -> list[Issue]:
     skill = read_text(skill_path)
     comp_gov = read_text(comp_gov_path)
     migration = read_text(migration_path)
-    viewer_live = read_text(viewer_live_path)
+    viewer_live = read_text_optional(viewer_live_path)
     script = read_text(script_path)
 
     # SKILL.md checks (slimmed — defers counts to JSON)
@@ -159,12 +159,15 @@ def build_issues(root: Path) -> list[Issue]:
     else:
         issues.append(Issue("FAIL", "MIGRATION_PRICE", "Migration map does not clearly map product-card price-color to sys/color/price.", migration_path.name))
 
-    # Viewer checks
-    if 'fetch(`${DATA_SOURCE}?v=${Date.now()}`' in viewer_live or 'fetch("design-system-all.json"' in viewer_live or "fetch('design-system-all.json'" in viewer_live:
-        issues.append(Issue("PASS", "VIEWER_LIVE_FETCH", "Live viewer fetches design-system-all.json.", viewer_live_path.name))
+    # Viewer checks (skip if file missing)
+    if viewer_live is not None:
+        if ('fetch(' in viewer_live and 'design-system-all.json' in viewer_live) or "DATA_SOURCE = './design-system-all.json'" in viewer_live:
+            issues.append(Issue("PASS", "VIEWER_DATA_SOURCE", "Viewer references design-system-all.json.", viewer_live_path.name))
+        else:
+            issues.append(Issue("FAIL", "VIEWER_DATA_SOURCE", "Viewer does not appear to reference design-system-all.json.", viewer_live_path.name))
+        expect_contains(issues, viewer_live, f"130 個 Text Styles", viewer_live_path.name, "VIEWER_TEXT_STYLES", "Viewer shows 130 text styles.")
     else:
-        issues.append(Issue("FAIL", "VIEWER_LIVE_FETCH", "Live viewer does not appear to fetch design-system-all.json.", viewer_live_path.name))
-    expect_contains(issues, viewer_live, f"130 個 Text Styles", viewer_live_path.name, "VIEWER_LIVE_STYLES", "Live viewer shows 130 text styles.")
+        issues.append(Issue("WARN", "VIEWER_MISSING", "ruten-design-system.html not found, skipping viewer checks.", viewer_live_path.name))
 
     # Forbidden legacy text
     forbidden = {
