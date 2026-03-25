@@ -7148,13 +7148,8 @@
         },
         "title-font-size": {
           "$type": "number",
-          "$value": "{sys.typography.title.sm.size}",
-          "$description": "Title font size for mobile/app. 16px."
-        },
-        "title-line-height": {
-          "$type": "number",
-          "$value": "{sys.typography.title.sm.line-height}",
-          "$description": "Title line height for mobile/app. 24px."
+          "$value": "{sys.typography.title.sm}",
+          "$description": "Title font size for mobile/app. 14px."
         },
         "height": {
           "$type": "number",
@@ -7170,13 +7165,8 @@
         },
         "title-font-size": {
           "$type": "number",
-          "$value": "{sys.typography.title.lg.size}",
-          "$description": "Title font size for PC. 20px."
-        },
-        "title-line-height": {
-          "$type": "number",
-          "$value": "{sys.typography.title.lg.line-height}",
-          "$description": "Title line height for PC. 30px."
+          "$value": "{sys.typography.title.lg}",
+          "$description": "Title font size for PC. 18px."
         },
         "height": {
           "$type": "number",
@@ -7186,7 +7176,7 @@
       },
       "title-font-weight": {
         "$type": "number",
-        "$value": "{sys.typography.font-weight.semibold}",
+        "$value": "{sys.typography.weight.semibold}",
         "$description": "Title font weight. Semibold 600. Consistent across all sizes."
       }
     },
