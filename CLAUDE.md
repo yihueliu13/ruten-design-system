@@ -30,7 +30,6 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 4. SYNC     — python3 sync-derived-files.py --root .
 5. REPORT   — list changed files, unchanged files, validation result
 6. PUSH     — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
-7. PK-SYNC  — 比對 repo 和 Chat Project Knowledge 的檔案差異，列出需要替換/刪除/上傳的清單，提醒 Kay 手動更新 PK
 ```
 
 ## Rules
@@ -54,7 +53,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 - `SKILL.md` — token architecture rules (skill trigger)
 - `component-governance.md` — component classification, locked decisions, architecture decisions log
 - `EXECUTION_PLAN.md` — 19 component list, sprint order, Phase 2-4 roadmap, tech debt
-- `DAILY_LOG.md` — daily standup log, 頂部有固定「目前狀態」區塊供 Chat 讀取
+- `DAILY_LOG.md` — daily standup log, 頂部有固定「目前狀態」區塊
 - `sync-daily-log.py` — DAILY_LOG 全生命週期管理（--write 啟動 / --close 收工 / dry-run 查看）
 - `create-text-styles.js` — Figma Scripter script (130 Text Styles)
 
@@ -75,7 +74,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 3. 照那個順序開始工作，不要自己重排
 4. 如果 DAILY_LOG 沒有明日順序，問 Kay 再開始
 
-> **為什麼要先跑 sync？** Chat 和 Cowork 是不同 session，各自做的 git commits
+> **為什麼要先跑 sync？** 每次開新 Cowork session 時，之前的 git commits
 > 不會自動反映在 DAILY_LOG 裡。sync 腳本會讀 git log，比對 DAILY_LOG 中
 > 已記錄的 commit hash，把遺漏的補寫進去，避免重複執行或遺漏。
 

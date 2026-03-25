@@ -1,7 +1,8 @@
 # Ruten Design System — Cowork Instructions
 
-> 版本：v2.2.0 | 更新：2026-03-19
-> 這份文件是 Cowork Claude 的唯一進入點。讀完這份就夠了。
+> 版本：v3.0.0 | 更新：2026-03-25
+> 這份文件是 Claude 的唯一進入點。Cowork（Opus）負責所有工作：設計決策、執行、驗證。
+> 不再區分 Chat / Cowork 分工。repo 是唯一 source of truth，不需維護 Project Knowledge。
 
 ---
 
@@ -47,8 +48,7 @@
 | `tag-badge-usage-guideline.md` | Tag/Badge 使用規範 | Claude, 設計師 |
 | `token-migration-map.md` | 舊 token 遷移對照 | 工程師 |
 | `create-text-styles.js` | Figma Scripter 腳本（130 Text Styles） | Figma plugin |
-| `design-system-viewer-live.html` | 即時 viewer（fetch JSON） | Kay（瀏覽器開） |
-| `design-system-viewer.html` | 快照 viewer（內嵌 JSON） | Kay（離線看） |
+| `ruten-design-system.html` | Design System viewer（內嵌 JSON） | Kay（瀏覽器開） |
 
 ---
 
@@ -121,25 +121,18 @@ Owned（有自己的 comp/ token）| Slot Override（Compound 覆寫子元件）
 8. REPORT   列出：改了哪些檔案、沒改哪些、validation 結果、是否需要跑 Figma 腳本
 ```
 
-### §6a. Cowork 任務類型與平行執行
+### §6a. 任務類型
 
-**可直接在 Cowork 執行的任務（不需 Chat 討論）：**
-- 已確認 spec 的 token 寫入 JSON + validate + sync
-- Usage Guideline 撰寫（spec 已定稿時）
-- Figma Scripter 腳本產出（token 已定稿時）
-- 衍生檔同步：`python3 sync-derived-files.py --root .`
-- 檔案整理、重構、cleanup
+Cowork（Opus）負責所有工作，不再區分 Chat / Cowork：
 
-**需要 Chat 先討論再交 Cowork 的任務：**
 - 新元件 spec 定義（功能類別 + 組合深度 + token 表格）
-- 設計決策灰色地帶（邊界案例、跨品牌差異）
-- token 路徑設計、元件邊界釐清
-
-**研究 / 調查任務（Cowork 可獨立執行）：**
+- 設計決策（邊界案例、跨品牌差異、token 路徑設計）
+- Token 寫入 JSON + validate + sync
+- Usage Guideline 撰寫
+- Figma Scripter 腳本產出
 - Figma 截圖分析（get_screenshot + get_design_context）
-- Token 盤點（統計現有 token 使用狀況）
-- Validation 報告 + 修復建議
-- 衍生檔一致性檢查
+- 研究 / 調查 / 驗證
+- 衍生檔同步、檔案整理
 
 **平行執行原則：**
 多個 Cowork session 可同時跑不衝突的任務。但同時修改 `design-system-all.json` 的任務不能平行（會產生 merge conflict）。
@@ -256,20 +249,23 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 每個新 component 照這個流程走（決策規則詳見 `component-governance.md` §7）：
 
 ```
-=== Chat 負責（CLASSIFY + INSPECT + SPEC）===
+=== Cowork（Opus）全流程 ===
 1. 決策分類      component-governance.md → 功能類別 + 組合深度
 2. Figma 截圖    get_design_context / get_screenshot
-3. 定義 token    完整 token 表格（path, $value, $description），交給 Cowork
-
-=== Cowork 負責（WRITE → VERIFY）===
+3. 定義 token    完整 token 表格（path, $value, $description）
 4. 寫入 JSON     design-system-all.json
 5. 驗證 JSON     python3 validate-design-system.py --root .
 6. 同步衍生檔    python3 sync-derived-files.py --root .
 7. Usage Guideline  為每個新 component 寫 {component}-usage-guideline.md
-8. Figma 匯入    Thierry overlay import（不刪 collection）
-9. Figma binding  get_variable_defs 抽樣驗證 alias chain
-10. 完整驗證     跑 §7a 清單 12 項全 PASS
-11. REPORT       改了什麼、沒改什麼、驗證結果、交付物清單
+8. Scripter 腳本  為每個新 component 寫 Figma Scripter 腳本
+9. REPORT        改了什麼、沒改什麼、驗證結果、交付物清單
+
+=== Kay 負責 ===
+10. Figma 匯入   Thierry overlay import（不刪 collection）
+11. 跑 Scripter   在 Figma 執行 Scripter 腳本建 Component
+12. 視覺驗證     截圖比對設計稿
+13. Binding 抽查  Cowork 用 get_variable_defs 抽樣驗證 alias chain
+14. 完整驗證     Cowork 跑 §7a 清單 12 項全 PASS
 ```
 
 ---
