@@ -2,7 +2,7 @@
 
 > 更新：2026-03-18
 > 範圍：分類館首頁 19 個 component
-> 目前：642 tokens (ref 159 + sys 168 + comp 315) + 130 Text Styles
+> 目前：651 tokens (ref 159 + sys 168 + comp 324) + 130 Text Styles
 > 策略決策見 COWORK_INSTRUCTIONS.md §9-10
 > Component 治理見 component-governance.md
 
@@ -15,7 +15,7 @@
 | # | Component | 類別 | 深度 | Tokens | 狀態 | 待做 |
 |---|-----------|------|------|--------|------|------|
 | 1 | ProductCard | Display | Compound | 51 | ✅ Binding 大致完成 | 轉 Main Component + Variants |
-| 2 | Button | Action | Primitive | 64 | ✅ Figma Component 48 variants (4 role × 4 size × 3 form) | — |
+| 2 | Button | Action | Primitive | 66 | ✅ Figma Component 48 variants (4 role × 4 size × 3 form) | — |
 | 3 | Tab | Navigation | Primitive | 33 | ✅ Figma Component 24 variants (2 emphasis × 4 size × 3 state) | — |
 | 4 | Tag (Filter) | Feedback | Primitive | 74 | ✅ 清理完成 | 無舊路徑殘留（2026-03-17 驗證） |
 | 5 | Tag (Display) | Feedback | Primitive | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |

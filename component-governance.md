@@ -197,7 +197,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 
 | Component | 功能類別 | Tokens | 狀態 | 說明 |
 |-----------|---------|--------|------|------|
-| Button | Action | 64 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
+| Button | Action | 66 | ✅ Done | sm/md/lg/xl × primary/secondary/ghost × states |
 | Link | Action | — | 🔲 Future | text link, underline/no-underline |
 | Tab | Navigation | 33 | ✅ Done | sm/md/lg/xl × active/inactive/hover + secondary emphasis |
 | Tag | Feedback | 74 | ✅ Done | filter/display/action × sm/md/lg/xl |

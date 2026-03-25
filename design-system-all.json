@@ -4740,6 +4740,11 @@
               ],
               "com.figma.isOverride": true
             }
+          },
+          "border-color": {
+            "$type": "color",
+            "$value": "{sys.color.secondary}",
+            "$description": "Secondary button hover border. Matches hover bg (no visible border)."
           }
         },
         "pressed": {
@@ -4847,6 +4852,11 @@
             "$type": "color",
             "$value": "{comp.button.secondary.default.text-color}",
             "$description": "Secondary button icon color. Aliases text-color (Ant Design currentColor pattern). White on brand orange."
+          },
+          "border-width": {
+            "$type": "number",
+            "$value": "{sys.border.width.none}",
+            "$description": "Secondary button default border width. 0 — filled style has no visible border."
           }
         }
       },
@@ -7105,11 +7115,6 @@
       }
     },
     "section-header": {
-      "icon-size": {
-        "$type": "number",
-        "$value": "{sys.sizing.icon-md}",
-        "$description": "SectionHeader leading icon size. 24px. Decorative brand icon before title."
-      },
       "icon-text-gap": {
         "$type": "number",
         "$value": "{sys.spacing.2xs}",
@@ -7135,10 +7140,54 @@
         "$value": "{sys.spacing.md}",
         "$description": "SectionHeader horizontal padding. 16px. Aligns with page-level content padding."
       },
-      "height": {
+      "md": {
+        "icon-size": {
+          "$type": "number",
+          "$value": "{sys.sizing.icon-md}",
+          "$description": "Leading icon size for mobile/app. 24px."
+        },
+        "title-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.title.sm.size}",
+          "$description": "Title font size for mobile/app. 16px."
+        },
+        "title-line-height": {
+          "$type": "number",
+          "$value": "{sys.typography.title.sm.line-height}",
+          "$description": "Title line height for mobile/app. 24px."
+        },
+        "height": {
+          "$type": "number",
+          "$value": "{sys.sizing.icon-md}",
+          "$description": "Row min-height for mobile/app. 24px. Aliases icon-md — height matches leading icon for single-line vertical centering. May diverge if subtitle or padding-v is added later."
+        }
+      },
+      "lg": {
+        "icon-size": {
+          "$type": "number",
+          "$value": "{sys.sizing.icon-lg}",
+          "$description": "Leading icon size for PC. 32px."
+        },
+        "title-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.title.lg.size}",
+          "$description": "Title font size for PC. 20px."
+        },
+        "title-line-height": {
+          "$type": "number",
+          "$value": "{sys.typography.title.lg.line-height}",
+          "$description": "Title line height for PC. 30px."
+        },
+        "height": {
+          "$type": "number",
+          "$value": "{sys.sizing.icon-lg}",
+          "$description": "Row min-height for PC. 32px. Aliases icon-lg — height matches leading icon for single-line vertical centering."
+        }
+      },
+      "title-font-weight": {
         "$type": "number",
-        "$value": "{sys.sizing.icon-md}",
-        "$description": "SectionHeader row height. 24px. Matches icon size and title line-height for single-line vertical alignment."
+        "$value": "{sys.typography.font-weight.semibold}",
+        "$description": "Title font weight. Semibold 600. Consistent across all sizes."
       }
     },
     "section-module": {

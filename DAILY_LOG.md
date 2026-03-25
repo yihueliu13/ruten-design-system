@@ -5,33 +5,87 @@
 
 ---
 
-
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-24（二）18:55 自動更新）
+## 🔄 目前狀態（2026-03-25（三）自動站會）
 
-**Token：642** (ref 159 + sys 168 + comp 315) + 130 Text Styles
-**Validation：33 PASS / 1 FAIL** ⚠️
+**Token：644** (ref 159 + sys 168 + comp 317) + 130 Text Styles
+**Validation：32 PASS / 0 FAIL** ✅
 **Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ · Sprint 3 🔄 (0/3) · Sprint 4 🔄 (1/4) · Sprint 5 🔄 (1/3) · Sprint 6 🔄 (0/3)
 
-**下一步（從 EXECUTION_PLAN）：**
+**下一步：**
 - #9 SectionHeader（出現頻率最高）
 - #10 NavigationBar + #11 SearchBar（頁面骨架上）
 - #12 BottomNav（頁面骨架下）
 
-**今日 commits：1 筆**
-- `3befa31` docs: 建立 DAILY_LOG.md 分類分層工作日誌
+**今日 commits：0 筆**（等待 Kay 確認後執行）
 <!-- STATUS:END -->
 
-## 2026-03-24（二） — 收工（sync-daily-log.py --close）
+## 2026-03-25（三） — 每日站會
+
+### 1. 昨日完成（2026-03-24）
+- [x] `3befa31` docs: 建立 DAILY_LOG.md 分類分層工作日誌
+- [x] `3cf67e5` fix: Button secondary +2 tokens (border-width, hover border-color) — 644 total
+  - 新增 `comp/button/secondary/default/border-width` → `{sys.border.width.none}`
+  - 新增 `comp/button/secondary/hover/border-color` → `{sys.color.secondary}`
+  - 衍生檔同步完成（SKILL.md, component-governance.md, EXECUTION_PLAN.md, CLAUDE.md, COWORK_INSTRUCTIONS.md）
+  - Figma：Kay 已在 Scripter 建立 8 個缺的 Variable，ruten collection = 644 ✅
+- **Sprint 進度：** Sprint 0–2 全部完成；Sprint 3–6 尚未開始新項目
+- **Token 變動：** design-system-all.json +2 tokens（Button secondary），無刪除
+
+### 2. Validation 結果
+- **32 PASS / 0 FAIL** ✅
+- 所有檢查項通過：JSON 語法、alias 完整性、無跳層引用、衍生檔同步、Text Styles 130 baseline
+
+### 3. 今日工作項目（按 EXECUTION_PLAN Sprint 3 順序）
+
+| # | 項目 | 類型 | 可否 Cowork 直接執行 |
+|---|------|------|---------------------|
+| 9 | SectionHeader | 新元件 spec + token | ❌ 需 Chat 先討論 spec（功能類別 + 組合深度 + token 表格） |
+| 10 | NavigationBar (Top) | 新元件 spec + token | ❌ 需 Chat 先討論 spec |
+| 11 | SearchBar | 新元件 spec + token | ❌ 需 Chat 先討論 spec |
+| 12 | BottomNav | 新元件 spec + token | ❌ 需 Chat 先討論 spec |
+
+**說明：** Sprint 3 的四個元件（#9, #10, #11, #12）都是全新定義，需要在 Chat 先討論 spec 定稿後，Cowork 再執行寫入 JSON + validate + sync + Figma 腳本。
+
+### 4. Blocked 項目
+| 項目 | Blocked 原因 |
+|------|-------------|
+| Sprint 3 全部 (#9–#12) | 等待 Chat spec 討論定稿 |
+
+### 5. 建議
+- Kay 可在 Chat 開始 #9 SectionHeader 的 spec 討論（出現頻率最高，影響面最大）
+- SectionHeader 確認後 Cowork 可立即執行：寫入 ~12 tokens → validate → sync → Figma 腳本
+- 如果 Kay 想先做可直接執行的項目，#8 Badge（Sprint 4）的 token 已完成，可以直接建 Figma Main Component
+
+---
+
+## 2026-03-24（二） — 收工
 
 ### 1. 今日完成
 - [x] `3befa31` docs: 建立 DAILY_LOG.md 分類分層工作日誌
+- [x] `3cf67e5` fix: Button secondary +2 tokens (border-width, hover border-color) — 644 total
+  - Token A：`comp/button/secondary/default/border-width` → `{sys.border.width.none}`
+  - Token B：`comp/button/secondary/hover/border-color` → `{sys.color.secondary}`
+  - 衍生檔同步：SKILL.md, component-governance.md, EXECUTION_PLAN.md, CLAUDE.md, COWORK_INSTRUCTIONS.md
+  - Figma：Kay 已在 Scripter 建立 8 個缺的 Variable，ruten collection = 644 ✅
+
+**原定計畫項目（未執行）：**
+- #9 SectionHeader（出現頻率最高）
+- #10 NavigationBar + #11 SearchBar（頁面骨架上）
+- #12 BottomNav（頁面骨架下）
 
 ### 2. Token 狀態
-- 目前：642 tokens (ref 159 + sys 168 + comp 315)
-- Validation：**33 PASS / 1 FAIL**
-- 今日變動檔案（1 個）：
-  - `DAILY_LOG.md`
+- 目前：644 tokens (ref 159 + sys 168 + comp 317)
+- Button：64 → **66**（+2）
+- Validation：**32 PASS / 0 FAIL** ✅
+- 今日變動檔案（7 個）：
+  - `design-system-all.json`（+2 tokens）
+  - `SKILL.md`（token 數字同步）
+  - `component-governance.md`（token 數字同步）
+  - `EXECUTION_PLAN.md`（token 數字同步）
+  - `CLAUDE.md`（token 數字同步）
+  - `COWORK_INSTRUCTIONS.md`（token 數字同步）
+  - `DAILY_LOG.md`（新建）
 
 ### 3. 明日工作順序（建議，等 Kay 確認）
 1. #9 SectionHeader（出現頻率最高）
@@ -45,97 +99,7 @@
 ### 4. Blocked 項目
 | 項目 | Blocked 原因 |
 |------|-------------|
-| （Claude 補充已知 blocked） | — |
-
-
----
-
-## 2026-03-24（二）
-
-### 1. Token 架構
-
-- **現況**
-  - ref 159 / sys 166 / comp 311，共 636 tokens
-  - 三層 alias 方向（comp → sys → ref）穩定運作
-  - controlHeight 9 級體系已定義完成
-- **今日變更**
-  - （無變更）
-- **待解決**
-  - Sprint 3 元件（SectionHeader / NavigationBar / SearchBar / BottomNav）token 尚未進入 Figma binding
-
-### 2. Component 進度
-
-- **已完成（Sprint 0–2）**
-  - ProductCard（51 tokens）— 步驟 10 Binding 大致完成
-  - Button（60 tokens）— 48 variants（4 role × 4 size × 3 form），步驟 11 視覺驗證
-  - Tab（33 tokens）— 24 variants（2 emphasis × 4 size × 3 state），步驟 11 視覺驗證
-  - Tag Filter / Display / Promo（74 tokens）— 步驟 12 交付驗證 ✅
-  - Icon（8 tokens）— 476 icons，步驟 12 交付驗證 ✅
-  - Avatar（11 tokens）— 12 variants，步驟 11 視覺驗證
-  - Thumbnail（11 tokens）— 12 variants，步驟 11 視覺驗證
-- **Token 已完成、待建 Figma Component**
-  - Badge（11 tokens）— 步驟 4 JSON 完成
-  - SectionHeader（7 tokens）— 步驟 4 JSON 完成
-  - NavigationBar（6 tokens）— 步驟 4 JSON 完成
-  - SearchBar（11 tokens）— 步驟 4 JSON 完成
-  - BottomNav（12 tokens）— 步驟 4 JSON 完成
-  - SectionModule（7 tokens）— 步驟 4 JSON 完成
-  - Divider（5 tokens）— 步驟 4 JSON 完成
-  - Banner（4 tokens）— 步驟 4 JSON 完成
-- **尚未開始**
-  - CategoryGrid — Pattern，用 sys/ token
-  - HorizontalScroll — Pattern，用 sys/ token
-  - QuickInfoBar — Pattern，步驟 1 需求確認
-
-### 3. Figma 操作
-
-- **Scripter 腳本**
-  - `scripter-01-tab.js` — Tab 12 variants + Tab Bar 2 variants ✅
-  - `scripter-02-button.js` — Button 32 variants ✅
-  - `scripter-03-avatar.js` — Avatar 12 variants ✅
-- **Variable 匯入**
-  - Thierry overlay import 流程穩定，不刪 Collection
-- **待執行**
-  - Sprint 3 元件的 Scripter 腳本尚未撰寫
-
-### 4. 文件 & Guideline
-
-- **已完成**
-  - `button-usage-guideline.md` — 4 role × 5 size × state × form × iconPosition × Wrapper
-  - `tab-usage-guideline.md` — 4 size × 3 state × 2 layout × 2 emphasis + 高度公式
-  - `avatar-usage-guideline.md` — 人/商家 only
-  - `thumbnail-usage-guideline.md` — IP/主題/分類，Shopify Polaris 模式
-  - `tag-badge-usage-guideline.md` — Tag/Badge 使用規則
-- **待撰寫**
-  - Sprint 3 各元件 usage guideline（Badge 獨立、SectionHeader、NavigationBar、SearchBar、BottomNav）
-
-### 5. 驗證 & 品質
-
-- **validate-design-system.py**
-  - 最近一次執行：PASS
-- **sync-derived-files.py**
-  - 衍生檔 token 數字已同步
-- **待處理**
-  - Button / Tab / Avatar / Thumbnail 尚需完成步驟 12（完整交付驗證 12 項清單）
-
-### 6. 決策 & 備忘
-
-- **鎖定決策（不可更改）**
-  - `label-2xs` = 8px、`body-md-alt` = 13px（legacy）
-  - 價格顏色 = `sys/color/price`（紅色，非品牌橘）
-  - icon-color 和 text-color 分開
-  - base-4 以下 hardcode 值需註解
-  - Mono 已移除
-- **今日決策**
-  - 建立 DAILY_LOG.md 分類分層結構
-
----
-
-### 📋 明日工作順序
-
-1. 執行 Button / Tab / Avatar / Thumbnail 步驟 12 完整交付驗證
-2. Sprint 3 啟動：SectionHeader + NavigationBar Scripter 腳本撰寫
-3. Badge Figma Component 建置規劃
+| （無） | — |
 
 ---
 
