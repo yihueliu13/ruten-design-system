@@ -1,8 +1,8 @@
 # Ruten Design System — Component 治理規則
 
-> 版本：v1.2.0
+> 版本：v1.3.0
 > 建立：2026-03-18
-> 更新：2026-03-20（Thumbnail component added + token count update）
+> 更新：2026-03-25（新增 §2 組成層級 Design System Hierarchy）
 > 狀態：已確認
 > 適用對象：AI Agent、UX 設計師、前端工程師
 
@@ -20,7 +20,89 @@
 
 ---
 
-## 2. 三維分類體系
+## 2. 組成層級（Design System Hierarchy）
+
+設計系統像樂高一樣，有明確的組成層級。從最小的設計基礎到完整頁面，共五層：
+
+```
+Foundation → Primitive → Compound → Pattern → Page
+   基礎        基礎元件     組合元件     佈局模式    頁面
+```
+
+### 五層定義
+
+| 層級 | 定義 | 在設計系統裡是什麼 | Token 規則 | Figma 表達 | Storybook 目錄 |
+|------|------|-------------------|-----------|-----------|---------------|
+| **Foundation** | 色彩、字型、間距、圓角、陰影等設計基礎 | ref + sys token | ref + sys 兩層 | Variable Collection + Text Styles | `Foundations/` |
+| **Primitive** | 最小可複用 UI 單元，不含其他 DS component | 獨立元件，擁有完整 token 集 | `comp/{name}/` 完整集 | Main Component + size Variants | `Components/{功能類別}/` |
+| **Compound** | 由 2+ Primitive 組合，跨頁面複用，有獨立功能 | 組合元件，管非獨立子元素屬性 | `comp/{name}/` 佈局 + 非獨立子元素 | Main Component + Variants | `Components/{功能類別}/` |
+| **Pattern** | 由 Component 組合成的頁面區域，不發布為 Library component | 佈局邏輯，無獨立視覺身份 | 只用 `sys/` token（不建 comp/） | Section frame（非 Main Component） | `Patterns/` |
+| **Page** | 完整頁面，由 Pattern + Component 組成 | 頁面級 frame，含真實內容 | `sys/grid` + `sys/spacing` | Page frame（375px / 768px） | `Pages/` |
+
+### 層級關係（由大到小）
+
+```
+Page 頁面
+ └── Pattern 佈局模式
+      └── Compound 組合元件
+           └── Primitive 基礎元件
+                └── Foundation 設計基礎（token）
+```
+
+### 露天的四個骨架元件在哪一層
+
+| 元件 | 層級 | 理由 |
+|------|------|------|
+| SearchBar | **Primitive** | 完整互動單元，不含其他 DS component，隨處可放 |
+| SectionHeader | **Compound** | Icon + Title 組合，有組合邏輯，頁面內重複出現 |
+| NavigationBar | **Compound** | SearchBar + Icons 組合，綁定頁面頂部，跨頁面複用 |
+| BottomNav | **Compound** | Icons + Badge + Center Button 組合，綁定頁面底部，跨頁面複用 |
+
+> **為什麼 NavigationBar / BottomNav 不是 Pattern？** 雖然它們綁定特定頁面位置（像 Carbon 的 UI Shell 歸 Pattern），但它們擁有自己的 `comp/` token、在 Figma 作為 Main Component 發布、跨頁面複用。依照我們的定義，有 `comp/` token + Main Component = Compound，沒有 = Pattern。位置固定只是使用方式，不改變組成層級。
+
+### 與業界設計系統的對照
+
+| 層級 | Ruten | Material Design 3 | Carbon (IBM) | Atlassian | Shopify Polaris |
+|------|-------|-------------------|-------------|-----------|----------------|
+| Foundation | ref + sys token | Styles | Themes | Foundations | Foundations |
+| Primitive | Primitive | Component | Component | Component | Component |
+| Compound | Compound | Component | Component | Component | Component |
+| Pattern | Pattern | — | Pattern | Pattern | Pattern |
+| Page | Page | — | — | — | — |
+
+> **業界差異**：多數設計系統不區分 Primitive 和 Compound，統稱 Component。露天因為 AI 驅動開發需要更精確的 token 規則區分（完整 token 集 vs 佈局 token + Slot Override），所以細分兩層。在 Storybook 中，Primitive 和 Compound 都放在 `Components/` 下，用功能類別分子目錄。
+
+### Storybook 目錄結構
+
+```
+Storybook/
+├── Foundations/              ← Foundation
+│   ├── Colors
+│   ├── Typography
+│   ├── Spacing
+│   ├── Grid
+│   └── Elevation
+├── Components/               ← Primitive + Compound
+│   ├── Action/               Button
+│   ├── Navigation/           Tab, SearchBar, NavigationBar, BottomNav
+│   ├── Display/              ProductCard, SectionModule, Banner
+│   ├── Layout/               Divider, SectionHeader
+│   ├── Feedback/             Tag, Badge
+│   ├── Input/                (Phase 2+)
+│   ├── Overlay/              (Phase 2+)
+│   └── Media/                Avatar, Thumbnail, Icon
+├── Patterns/                 ← Pattern
+│   ├── CategoryGrid
+│   ├── HorizontalScroll
+│   └── FormLayout
+└── Pages/                    ← Page
+    ├── 分類館首頁
+    └── 商品詳情頁
+```
+
+---
+
+## 3. 三維分類體系
 
 每個 component 用三個維度描述：
 
@@ -35,7 +117,7 @@
 
 ---
 
-## 3. 維度一：功能類別
+## 4. 維度一：功能類別
 
 按用途分類，對 e-commerce 全產品場景優化。八大類別：
 
@@ -69,11 +151,11 @@
 
 ---
 
-## 4. 維度二：組合深度
+## 5. 維度二：組合深度
 
 決定 token 規則和 RWD 策略。三層深度：
 
-### 4.1 Primitive（基礎元件）
+### 5.1 Primitive（基礎元件）
 
 **定義**：最小可複用單位，不包含其他 Design System component。
 
@@ -221,7 +303,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 
 > **狀態說明**：✅ Done = token 已定義 | 🔲 This week = 本週定義 | 🔲 Backlog = 有 UI 時再定義 | 🔲 Future = 規劃中
 
-### 4.2 Compound（組合元件）
+### 5.2 Compound（組合元件）
 
 **定義**：由 2 個以上 Primitive 組合而成，有獨立功能，在多個頁面或場景中複用。
 
@@ -233,7 +315,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
   - 沒有（如 BottomNav 的 tab item、NavigationBar 的 back arrow icon）→ Compound 直接管
 - 參考 Material Design 3 component token 做法：每個 component token 管該元件所有對外暴露的設計決策，不區分佈局與視覺
 - 允許 comp → comp 引用
-- **Slot Override**（規則 3a）：當**獨立**子 Primitive 在此 context 有特殊視覺需求時，允許定義覆寫 token（見第 5 節詳細說明）
+- **Slot Override**（規則 3a）：當**獨立**子 Primitive 在此 context 有特殊視覺需求時，允許定義覆寫 token（見第 6 節詳細說明）
 
 **RWD 規則**：
 - 可有 size variant（如 ProductCard sm/md）
@@ -272,7 +354,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 | Drawer (Side Panel) | Overlay | — | 🔲 Future | Header + scrollable Body |
 | Carousel | Display | — | 🔲 Future | Image × N + indicator dots |
 
-### 4.3 Pattern（佈局模式）
+### 5.3 Pattern（佈局模式）
 
 **定義**：由 Compound + Primitive 組合成的頁面區域。不在 Design System Library 中作為 Main Component 發布。
 
@@ -307,7 +389,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 
 ---
 
-## 5. 規則 3a：Slot Override
+## 6. 規則 3a：Slot Override
 
 ### 定義
 
@@ -363,7 +445,7 @@ AI 看到 `$description` 以 `"Slot override."` 開頭時：
 
 ---
 
-## 6. RWD 治理規則
+## 7. RWD 治理規則
 
 ### 各層級的 RWD 邊界
 
@@ -396,7 +478,7 @@ xl: 1200px （桌面大）
 
 ---
 
-## 7. 新增 Component 決策流程
+## 8. 新增 Component 決策流程
 
 每次遇到新的 UI 元素，走這個流程：
 
@@ -457,7 +539,7 @@ Step 5: 定義 RWD
 
 ---
 
-## 8. 邊界案例表
+## 9. 邊界案例表
 
 分類不明顯的 component，記錄決策理由供未來參考。
 
@@ -485,7 +567,7 @@ Step 5: 定義 RWD
 
 ---
 
-## 9. Token 擁有權
+## 10. Token 擁有權
 
 | 擁有權 | 說明 | 適用層級 |
 |--------|------|---------|
@@ -495,7 +577,7 @@ Step 5: 定義 RWD
 
 ---
 
-## 10. 給 AI Agent 的摘要
+## 11. 給 AI Agent 的摘要
 
 ```
 讀取 component 資訊時：
@@ -511,14 +593,14 @@ Step 5: 定義 RWD
    - Primitive/Compound: 切 size variant（sm/md/lg/xl）
    - Pattern: 用 CSS grid/media query
 5. 新 component 進來時：
-   - 先查 Registry（§4 的三張表）看有沒有已定義的
-   - 沒有 → 走決策流程（§7）
-   - 有邊界爭議 → 查邊界案例表（§8）
+   - 先查 Registry（§5 的三張表）看有沒有已定義的
+   - 沒有 → 走決策流程（§8）
+   - 有邊界爭議 → 查邊界案例表（§9）
 ```
 
 ---
 
-## 11. 與現有規則的關係
+## 12. 與現有規則的關係
 
 | 舊規則 | 新規則 | 狀態 |
 |--------|--------|------|
@@ -532,23 +614,23 @@ Step 5: 定義 RWD
 
 ---
 
-## 12. Source of Truth & Governance
+## 13. Source of Truth & Governance
 
 > 原 `design-system-governance.md` 內容整合於此（2026-03-23）
 
-### 12.1 Source of Truth
+### 13.1 Source of Truth
 
 **唯一真實來源：`design-system-all.json`**
 
 所有擴充、修正、命名調整、token alias、component mapping，一律先改 `design-system-all.json`。其他檔案都屬於衍生檔，不能先自行定義規則。如果衍生檔與 JSON 衝突，一律以 JSON 為準。
 
-### 12.2 Current Baseline
+### 13.2 Current Baseline
 
 See `design-system-all.json` for current counts. Run `python3 sync-derived-files.py` to update all derived file numbers.
 
 Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 
-### 12.3 Locked Decisions
+### 13.3 Locked Decisions
 
 - `label-2xs` = 8px
 - `body-md-alt` = 13px（legacy compatibility）
@@ -568,7 +650,7 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 - Figma Scripter 綁 fills/strokes 顏色的正確方法：`paint.boundVariables = { color: { type: "VARIABLE_ALIAS", id: var.id } }`，不能用 `setBoundVariable("fills", var, 0)`
 - 刪除 Variable Collection 再匯入會斷綁定 → 永遠用 overlay import
 
-### 12.4 Update Flow
+### 13.4 Update Flow
 
 1. Modify `design-system-all.json`
 2. Run `python3 validate-design-system.py --root .`

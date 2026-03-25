@@ -126,7 +126,7 @@ def build_issues(root: Path) -> list[Issue]:
     # --- Derived file checks ---
     skill = read_text(skill_path)
     comp_gov = read_text(comp_gov_path)
-    migration = read_text(migration_path)
+    migration = read_text_optional(migration_path)
     viewer_live = read_text_optional(viewer_live_path)
     script = read_text(script_path)
 
@@ -144,20 +144,23 @@ def build_issues(root: Path) -> list[Issue]:
     expect_contains(issues, comp_gov, "sys/color/price", comp_gov_path.name, "COMPGOV_PRICE", "Component governance documents price color decision.")
 
     # Migration map
-    if 'design-system-all.json' in migration and '唯一真實來源' in migration:
-        issues.append(Issue("PASS", "MIGRATION_SOT", "Migration map declares the source of truth.", migration_path.name))
-    else:
-        issues.append(Issue("FAIL", "MIGRATION_SOT", "Migration map does not clearly declare design-system-all.json as source of truth.", migration_path.name))
+    if migration:
+        if 'design-system-all.json' in migration and '唯一真實來源' in migration:
+            issues.append(Issue("PASS", "MIGRATION_SOT", "Migration map declares the source of truth.", migration_path.name))
+        else:
+            issues.append(Issue("FAIL", "MIGRATION_SOT", "Migration map does not clearly declare design-system-all.json as source of truth.", migration_path.name))
 
-    if ('body-md-alt' in migration or 'body/md-alt' in migration) and '13px' in migration:
-        issues.append(Issue("PASS", "MIGRATION_13PX", "Migration map uses body-md-alt for 13px.", migration_path.name))
-    else:
-        issues.append(Issue("FAIL", "MIGRATION_13PX", "Migration map does not clearly map 13px to body-md-alt.", migration_path.name))
+        if ('body-md-alt' in migration or 'body/md-alt' in migration) and '13px' in migration:
+            issues.append(Issue("PASS", "MIGRATION_13PX", "Migration map uses body-md-alt for 13px.", migration_path.name))
+        else:
+            issues.append(Issue("FAIL", "MIGRATION_13PX", "Migration map does not clearly map 13px to body-md-alt.", migration_path.name))
 
-    if 'comp/product-card/price-color' in migration and 'sys/color/price' in migration:
-        issues.append(Issue("PASS", "MIGRATION_PRICE", "Migration map points product-card price-color to sys/color/price.", migration_path.name))
+        if 'comp/product-card/price-color' in migration and 'sys/color/price' in migration:
+            issues.append(Issue("PASS", "MIGRATION_PRICE", "Migration map points product-card price-color to sys/color/price.", migration_path.name))
+        else:
+            issues.append(Issue("FAIL", "MIGRATION_PRICE", "Migration map does not clearly map product-card price-color to sys/color/price.", migration_path.name))
     else:
-        issues.append(Issue("FAIL", "MIGRATION_PRICE", "Migration map does not clearly map product-card price-color to sys/color/price.", migration_path.name))
+        issues.append(Issue("WARN", "MIGRATION_REMOVED", "token-migration-map.md removed (migration complete).", "—"))
 
     # Viewer checks (skip if file missing)
     if viewer_live is not None:

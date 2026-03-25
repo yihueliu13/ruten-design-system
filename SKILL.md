@@ -80,13 +80,26 @@ comp (311) → 元件綁定，AI/設計師主要操作層
 
 **Alias 方向固定**：comp → sys → ref，不跳層。comp → comp 引用合法（如 product-card/tag-brand → comp/tag/base）。
 
+### 組成層級（Design System Hierarchy）
+
+```
+Foundation → Primitive → Compound → Pattern → Page
+   基礎        基礎元件     組合元件     佈局模式    頁面
+```
+
+- **Foundation**：ref + sys token（色彩、字型、間距）→ Storybook `Foundations/`
+- **Primitive**：最小可複用 UI 單元 → `comp/` 完整集 → Storybook `Components/{功能類別}/`
+- **Compound**：2+ Primitive 組合 → `comp/` 佈局 + 非獨立子元素 → Storybook `Components/{功能類別}/`
+- **Pattern**：頁面區域佈局 → 只用 `sys/` token → Storybook `Patterns/`
+- **Page**：完整頁面 → `sys/grid` + `sys/spacing` → Storybook `Pages/`
+
 ### 元件分類（三維體系）
 
 - **功能類別**：Action | Display | Navigation | Feedback | Layout | Media | Input | Overlay
 - **組合深度**：Primitive（完整 comp/ token）| Compound（佈局 token + Slot Override）| Pattern（sys/ token only）
 - **Token 擁有權**：Owned | Slot Override | Inherited
 
-詳細規則、決策流程、Registry 見 `component-governance.md`。
+詳細規則、決策流程、Registry、Storybook 目錄結構見 `component-governance.md §2`。
 
 ### controlHeight 體系（9 級）
 
