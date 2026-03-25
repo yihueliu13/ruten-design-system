@@ -75,7 +75,7 @@ h2 .c{font-size:13px;font-weight:500;color:#9798A2;margin-left:8px}
 <h1>Ruten Design System</h1>
 <p class="sub">Component 預覽 — design-system-all.json 最新 token 值 · 2026-03-20</p>
 <!-- ===== BUTTON ===== -->
-<h2>Button <span class="c">60 tokens · Action × Primitive</span></h2>
+<h2>Button <span class="c">66 tokens · Action × Primitive</span></h2>
 <p class="d">四個 role（強調遞減）× 五個 size（含 xs pill）× 五個 state × 三個 form × border-width 三級 × status 語義色。</p>
 <div class="s"><div class="st">四個 Role — md / default</div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
@@ -338,19 +338,113 @@ Profile 頁面<br>
 </div>
 <div class="tr" style="margin-top:12px">參考 Shopify Polaris：Avatar = 人/商家，Thumbnail = 物件/商品。語義不同，token 結構相同。</div>
 </div>
+<!-- ===== SECTION HEADER ===== -->
+<h2>SectionHeader <span class="c">14 tokens · Layout × Compound</span></h2>
+<div class="s"><div class="st">Size Variant — md (M/App) vs lg (PC)</div>
+<div style="display:flex;gap:40px;margin-bottom:20px">
+<div style="flex:1">
+<div class="sl">md — Mobile / App（icon 24px · title 16px）</div>
+<div style="background:#FFF;border-radius:12px;padding:16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#FFD4A8,#FF963B);display:flex;align-items:center;justify-content:center;font-size:14px">🔥</div>
+<span style="font-size:16px;font-weight:600;color:#33343B;line-height:24px">熱門分類</span>
+</div>
+</div>
+</div>
+<div style="flex:1">
+<div class="sl">lg — PC（icon 32px · title 20px）</div>
+<div style="background:#FFF;border-radius:12px;padding:16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#FFD4A8,#FF963B);display:flex;align-items:center;justify-content:center;font-size:18px">🔥</div>
+<span style="font-size:20px;font-weight:600;color:#33343B;line-height:30px">熱門分類</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="s"><div class="st">四種 Layout</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<div class="sl">#1 icon + title / CTA「更多」</div>
+<div style="background:#FFF;border-radius:12px;padding:12px 16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#B8D4FF,#3B82F6);display:flex;align-items:center;justify-content:center;font-size:14px">✨</div>
+<span style="font-size:16px;font-weight:600;color:#33343B">初音未來</span>
+</div>
+<a style="font-size:14px;color:#33343B;border:1px solid #B9BABF;border-radius:9999px;padding:4px 16px;text-decoration:none">更多</a>
+</div>
+</div>
+</div>
+<div>
+<div class="sl">#2 icon + title / 日期區間（橘底）</div>
+<div style="background:#FFA348;border-radius:12px;padding:12px 16px">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:14px">🏆</div>
+<span style="font-size:16px;font-weight:600;color:#FFF">熱銷排行榜</span>
+</div>
+<span style="font-size:10px;font-weight:500;color:#FFF">2026.03.16 ~ 2026.03.22</span>
+</div>
+</div>
+</div>
+<div>
+<div class="sl">#3 title only / CTA「更多」</div>
+<div style="background:#FFF;border-radius:12px;padding:12px 16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<span style="font-size:16px;font-weight:600;color:#33343B">推薦商品</span>
+<a style="font-size:14px;color:#33343B;border:1px solid #B9BABF;border-radius:9999px;padding:4px 16px;text-decoration:none">更多</a>
+</div>
+</div>
+</div>
+<div>
+<div class="sl">#4 title only / 無</div>
+<div style="background:#FFF;border-radius:12px;padding:12px 16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center">
+<span style="font-size:16px;font-weight:600;color:#33343B">大家都在搜</span>
+</div>
+</div>
+</div>
+</div>
+<div class="tr" style="margin-top:8px">leadingIcon = show/hide · trailingSlot = none / Button ghost / text frame · 背景透明跟隨父容器</div>
+</div>
+<div class="s"><div class="st">背景色規則 — SectionHeader 本身透明</div>
+<div style="display:flex;gap:20px">
+<div style="flex:1">
+<div class="sl">白底（default）→ title-color（dark grey）</div>
+<div style="background:#FFF;border-radius:12px;padding:12px 16px;border:1px solid #EBECF3">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#FFD4A8,#FF963B);display:flex;align-items:center;justify-content:center;font-size:14px">⭐</div>
+<span style="font-size:16px;font-weight:600;color:#33343B">優質賣家</span>
+</div>
+</div>
+<div class="tr">title-color = sys/color/on-surface = #33343B</div>
+</div>
+<div style="flex:1">
+<div class="sl">橘底（brand surface）→ title-color-inverse（white）</div>
+<div style="background:#FFA348;border-radius:12px;padding:12px 16px">
+<div style="display:flex;align-items:center;gap:4px">
+<div style="width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:14px">🏆</div>
+<span style="font-size:16px;font-weight:600;color:#FFF">熱銷排行榜</span>
+</div>
+</div>
+<div class="tr">title-color-inverse = sys/color/on-surface-brand = #FFFFFF</div>
+</div>
+</div>
+</div>
 <!-- ===== TOKEN STATUS ===== -->
-<h2>Token <span class="c">636 total</span></h2>
+<h2>Token <span class="c">651 total</span></h2>
 <div class="s">
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px">
 <div style="text-align:center;padding:16px;background:#FFF8F1;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#FF963B">159</div><div style="font-size:12px;color:#9798A2">ref</div></div>
-<div style="text-align:center;padding:16px;background:#E5EEFF;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#3B82F6">166</div><div style="font-size:12px;color:#9798A2">sys</div></div>
-<div style="text-align:center;padding:16px;background:#DBFFF6;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#00B79C">311</div><div style="font-size:12px;color:#9798A2">comp</div></div>
-<div style="text-align:center;padding:16px;background:#F6F7FE;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#161619">636</div><div style="font-size:12px;color:#9798A2">total</div></div>
+<div style="text-align:center;padding:16px;background:#E5EEFF;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#3B82F6">168</div><div style="font-size:12px;color:#9798A2">sys</div></div>
+<div style="text-align:center;padding:16px;background:#DBFFF6;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#00B79C">324</div><div style="font-size:12px;color:#9798A2">comp</div></div>
+<div style="text-align:center;padding:16px;background:#F6F7FE;border-radius:12px"><div style="font-size:28px;font-weight:800;color:#161619">651</div><div style="font-size:12px;color:#9798A2">total</div></div>
 </div>
 <div class="st">comp/ token 數</div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:13px">
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>tag</span><strong>74</strong></div>
-<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span style="color:#FF963B;font-weight:600">button</span><strong style="color:#FF963B">60</strong></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span style="color:#FF963B;font-weight:600">button</span><strong style="color:#FF963B">66</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>product-card</span><strong>51</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span style="color:#FF963B;font-weight:600">tab</span><strong style="color:#FF963B">33</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>bottom-nav</span><strong>12</strong></div>
@@ -359,7 +453,7 @@ Profile 頁面<br>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>badge</span><strong>11</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>search-bar</span><strong>11</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>icon</span><strong>8</strong></div>
-<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>section-header</span><strong>7</strong></div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>section-header</span><strong>14</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>section-module</span><strong>7</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>nav-bar</span><strong>6</strong></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F6F7FE"><span>divider</span><strong>5</strong></div>
