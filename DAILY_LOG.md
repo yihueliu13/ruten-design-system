@@ -6,19 +6,90 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-25（三）自動站會）
+## 🔄 目前狀態（2026-03-25（三）19:29 自動更新）
 
-**Token：644** (ref 159 + sys 168 + comp 317) + 130 Text Styles
-**Validation：32 PASS / 0 FAIL** ✅
+**Token：649** (ref 159 + sys 168 + comp 322) + 130 Text Styles
+**Validation：30 PASS / 1 FAIL** ⚠️
 **Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ · Sprint 3 🔄 (0/3) · Sprint 4 🔄 (1/4) · Sprint 5 🔄 (1/3) · Sprint 6 🔄 (0/3)
 
 **下一步：**
+- #
+- 9
+- 10
+
+**Blocked：**
+- Sprint 3 全部 (#9–#12) — 等待 Chat spec 討論定稿
+
+**今日 commits：14 筆**
+- `b0979e7` feat: add Template layer to Design System Hierarchy (6 layers)
+- `6ded9e2` fix: repair 5 broken section-header token aliases, remove 2 line-height tokens
+- `49f3246` docs: add Figma page naming mapping (Global=ref, Semantic=sys)
+- ...（共 14 筆）
+<!-- STATUS:END -->
+
+## 2026-03-25（三） — 收工（sync-daily-log.py --close）
+
+### 1. 今日完成
+- [x] `15fdc1d` SectionHeader 定義
+- [x] `1554e36` docs: add SectionHeader & NavigationBar usage guidelines
+- [x] `5111eb0` Html view
+- [x] `7366a81` no message
+- [x] `2ab93af` sync: SectionHeader token count 7→14 + total 651
+- [x] `74f7ad4` sync: SectionHeader 7→14 + total 651 + validate adapt to ruten-design-system.html
+- [x] `83d97ae` sync: SectionHeader 7→14 + total 651 + validate fix + add PK-SYNC step
+- [x] `a8e180e` chore: consolidate workflow + remove obsolete files
+- [x] `df02cf1` 這一個 commit 包含 8 個變更：6 個更新 + 2 個刪除。
+- [x] `1ff77f7` chore: remove static preview and completed scripter scripts
+- [x] `115b460` feat: add Design System Hierarchy (§2) to component governance
+- [x] `b0979e7` feat: add Template layer to Design System Hierarchy (6 layers)
+- [x] `6ded9e2` fix: repair 5 broken section-header token aliases, remove 2 line-height tokens
+- [x] `49f3246` docs: add Figma page naming mapping (Global=ref, Semantic=sys)
+
+**原定計畫項目：**
+- #
+- 9
+- 10
+- 11
+- 12
+
+### 2. Token 狀態
+- 目前：649 tokens (ref 159 + sys 168 + comp 322)
+- Validation：**30 PASS / 1 FAIL**
+- 今日變動檔案（22 個）：
+  - `"Ruten \350\250\255\350\250\210\347\263\273\347\265\261/navigation-bar-usage-guideline.md"`
+  - `"Ruten \350\250\255\350\250\210\347\263\273\347\265\261/section-header-usage-guideline.md"`
+  - `CLAUDE.md`
+  - `COWORK_INSTRUCTIONS.md`
+  - `DAILY_LOG.md`
+  - `EXECUTION_PLAN.md`
+  - `SKILL.md`
+  - `component-governance.md`
+  - `design-system-all.json`
+  - `design-system-hierarchy.html`
+  - `design-system-viewer-live.html`
+  - `design-system-viewer-review.html`
+  - `design-system-viewer-snapshot.html`
+  - `navigation-bar-usage-guideline.md`
+  - `ruten-design-system.html`
+  - ...（共 22 個）
+
+### 3. 明日工作順序（建議，等 Kay 確認）
+1. #
+2. 9
+3. 10
+
+### 如果有空才做
 - #9 SectionHeader（出現頻率最高）
 - #10 NavigationBar + #11 SearchBar（頁面骨架上）
-- #12 BottomNav（頁面骨架下）
 
-**今日 commits：0 筆**（等待 Kay 確認後執行）
-<!-- STATUS:END -->
+### 4. Blocked 項目
+| 項目 | Blocked 原因 |
+|------|-------------|
+| Sprint 3 全部 (#9–#12) | 等待 Chat spec 討論定稿 |
+| （Claude 補充已知 blocked） | — |
+
+
+---
 
 ## 2026-03-25（三） — 每日站會
 
