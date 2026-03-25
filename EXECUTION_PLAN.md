@@ -27,7 +27,7 @@
 
 | 優先 | # | Component | 類別 | 深度 | 出現位置 | 預估 tokens |
 |------|---|-----------|------|------|----------|-------------|
-| P1 | 9 | SectionHeader | Layout | Compound | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | ~12 |
+| P1 | 9 | SectionHeader | Layout | Compound | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | 14 ✅ |
 | P1 | 10 | NavigationBar (Top) | Navigation | Compound | 頂部橘色導航列 | ~10 |
 | P1 | 11 | SearchBar | Navigation | Primitive | 頂部搜尋框（嵌在 NavBar 內） | ~10 |
 | P1 | 12 | BottomNav | Navigation | Compound | 底部五 tab 導航 | ~12 |

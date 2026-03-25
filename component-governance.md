@@ -250,7 +250,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 | Component | 功能類別 | Tokens | 狀態 | 組成 |
 |-----------|---------|--------|------|------|
 | ProductCard | Display | 51 | ✅ Done | Image + Tag + Badge + 文字 + 價格 |
-| SectionHeader | Layout | 7 | ✅ Done | Icon + 標題文字 (+副標/日期) |
+| SectionHeader | Layout | 14 | ✅ Done | Icon + 標題文字 (+副標/日期) |
 | SectionModule | Display | 7 | ✅ Done | SectionHeader + Slot A (filter) + Slot B (content) + Footer |
 | NavigationBar | Navigation | 6 | ✅ Done | SearchBar + Icon × 2 |
 | BottomNav | Navigation | 12 | ✅ Done | Icon × 5 + Badge + 文字 + center button |
