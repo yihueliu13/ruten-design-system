@@ -4,7 +4,7 @@
 > **日期**: 2026-03-25
 > **狀態**: 已定稿
 > **依據**: design-system-all.json（唯一真實來源）
-> **分類**: Layout × Compound × Owned（12 tokens）
+> **分類**: Layout × Compound × Owned（14 tokens）
 
 ---
 
@@ -130,6 +130,8 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
 | comp/section-header/md/height | {sys.sizing.icon-md} | 24px | Row min-height for mobile/app. 24px. Aliases icon-md — height matches leading icon for single-line vertical centering. |
 | comp/section-header/lg/icon-size | {sys.sizing.icon-lg} | 32px | Leading icon size for PC. 32px. |
 | comp/section-header/lg/title-font-size | {sys.typography.title.lg} | 18px | Title font size for PC. 18px. |
+| comp/section-header/cta-text-color | {sys.color.on-surface-variant} | #73747B | Slot override. CTA button text and icon color on light surface. Neutral grey. Overrides Button ghost default orange to reduce visual weight. |
+| comp/section-header/cta-text-color-inverse | {sys.color.on-surface-brand} | #FFFFFF | Slot override. CTA button text and icon color on brand surface. White. Use on orange background sections like leaderboard. |
 | comp/section-header/lg/height | {sys.sizing.icon-lg} | 32px | Row min-height for PC. 32px. Aliases icon-lg — height matches leading icon for single-line vertical centering. |
 
 ---
@@ -152,7 +154,10 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
    />
 4. Leading icon 是 image slot，不是 Icon component：
    不走 icon-color token，圖片自帶顏色
-5. 右側 CTA 走 Button ghost token，SectionHeader 不管 CTA 樣式
+5. 右側 CTA 用 Button ghost instance，但文字/icon 顏色走 Slot Override：
+   - 白底 → comp/section-header/cta-text-color（neutral grey #73747B）
+   - 橘底 → comp/section-header/cta-text-color-inverse（white #FFFFFF）
+   - Button 的 background、border、padding 仍繼承 Button master token
 6. font-weight 固定 Semibold 600，不可覆寫
 7. padding-h = 16px，與頁面 content padding 對齊
 ```
@@ -165,3 +170,4 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
 |------|------|------|
 | v1.0.0 | 2026-03-25 | 初始版本。14 tokens。 |
 | v1.1.0 | 2026-03-26 | 修正至 12 tokens：移除 md/lg title-line-height（由 Text Style 管理）、修正 alias 路徑（font-weight → weight、title.sm.size → title.sm）、修正 font-size 解析值（md 14px、lg 18px）。 |
+| v1.2.0 | 2026-03-26 | 新增 2 Slot Override tokens（cta-text-color、cta-text-color-inverse），total 14 tokens。CTA button 文字/icon 顏色走 Slot Override 而非繼承 Button ghost 橘色。 |

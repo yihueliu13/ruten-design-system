@@ -67,7 +67,7 @@ Figma Variables → Text Styles（130）
 - 單一 Collection，用 `/` 分群組
 - alias 方向固定：comp → sys → ref，不跳層
 - comp → comp 引用合法（如 product-card/tag-brand → comp/tag/base）
-- 目前：649 tokens + 130 Text Styles
+- 目前：651 tokens + 130 Text Styles
 
 ### 元件分類（v2 三維體系）
 

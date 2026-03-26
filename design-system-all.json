@@ -7140,6 +7140,16 @@
         "$value": "{sys.spacing.md}",
         "$description": "SectionHeader horizontal padding. 16px. Aligns with page-level content padding."
       },
+      "cta-text-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-variant}",
+        "$description": "Slot override. CTA button text and icon color on light surface. Neutral grey. Overrides Button ghost default orange to reduce visual weight."
+      },
+      "cta-text-color-inverse": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "Slot override. CTA button text and icon color on brand surface. White. Use on orange background sections like leaderboard."
+      },
       "md": {
         "icon-size": {
           "$type": "number",
