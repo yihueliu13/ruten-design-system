@@ -671,6 +671,11 @@
         "$type": "number",
         "$value": 52,
         "$description": "52px. Base sizing unit."
+      },
+      "2": {
+        "$type": "number",
+        "$value": 8,
+        "$description": "⚠️ RAW VALUE — sizing 2 = 8px. Do not use directly."
       }
     },
     "z-index": {
@@ -2675,6 +2680,16 @@
         "$type": "number",
         "$value": "{ref.sizing.24}",
         "$description": "96px. Avatar 2x-large. Use for category index hero thumbnails."
+      },
+      "badge-dot": {
+        "$type": "number",
+        "$value": "{ref.sizing.2}",
+        "$description": "8px. Badge dot diameter. Use for small notification dot indicators."
+      },
+      "badge-corner": {
+        "$type": "number",
+        "$value": "{ref.sizing.7}",
+        "$description": "28px. Corner badge size. Use for promo corner badges and overlays."
       }
     },
     "radius": {
@@ -5858,7 +5873,7 @@
       },
       "action": {
         "border-radius": {
-          "$value": 999,
+          "$value": "{sys.radius.full}",
           "$description": "Action tag border-radius. 999px pill shape. Consistent across all brands for dismissible and navigational action tags.",
           "$type": "number"
         },
@@ -5912,8 +5927,8 @@
         },
         "size": {
           "$type": "number",
-          "$value": 28,
-          "$description": "Promo corner size. 28×28px square badge.",
+          "$value": "{sys.sizing.badge-corner}",
+          "$description": "Promo corner size. 28px via sizing/badge-corner. Square corner badge overlay.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14510",
             "com.figma.scopes": [
@@ -6074,7 +6089,7 @@
         "width": {
           "$type": "number",
           "$value": 109,
-          "$description": "Card width for sm (mobile) size. 109px for compact product grid.",
+          "$description": "Card width for sm (mobile). 109px hardcoded — derived from (375 - 2×padding - 2×gap) / 3. Not on base-4 scale.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14430",
             "com.figma.scopes": [
@@ -6124,7 +6139,7 @@
         "aspect-ratio": {
           "$type": "string",
           "$value": "1/1",
-          "$description": "Image aspect ratio. Square for product thumbnails.",
+          "$description": "Image aspect ratio. 1/1 CSS string for square product thumbnails. No sys equivalent.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14432",
             "com.figma.scopes": [
@@ -6137,7 +6152,7 @@
         "size": {
           "$type": "number",
           "$value": 109,
-          "$description": "Image size for sm card. 109×109 square.",
+          "$description": "Image size for sm card. 109px hardcoded — matches container width. Not on base-4 scale.",
           "$extensions": {
             "com.figma.variableId": "VariableID:17:14433",
             "com.figma.scopes": [
@@ -6726,8 +6741,8 @@
     "badge": {
       "dot": {
         "size": {
-          "$value": 8,
-          "$description": "Badge dot size. 8px diameter. For NEW indicators on quick-access icons.",
+          "$value": "{sys.sizing.badge-dot}",
+          "$description": "Badge dot size. 8px via sizing/badge-dot. Use for NEW notification indicators on quick-access icons.",
           "$type": "number"
         },
         "color": {
@@ -6738,8 +6753,8 @@
       },
       "count": {
         "min-size": {
-          "$value": 16,
-          "$description": "Badge count min size. 16px. Minimum diameter for number badges.",
+          "$value": "{sys.sizing.control-height.xs}",
+          "$description": "Badge count minimum diameter. 16px via control-height/xs. Use for circular number badges on icons.",
           "$type": "number"
         },
         "font-size": {
@@ -6763,7 +6778,7 @@
           "$type": "string"
         },
         "border-radius": {
-          "$value": 999,
+          "$value": "{sys.radius.full}",
           "$description": "Badge count border-radius. 999px pill/circle. Always fully rounded.",
           "$type": "number"
         },
@@ -6775,12 +6790,12 @@
       },
       "offset-x": {
         "$value": -4,
-        "$description": "Badge position offset-x. -4px. Overlaps parent element's top-right corner.",
+        "$description": "Badge position offset-x. -4px hardcoded — negative value, no sys equivalent. Overlaps parent top-right corner.",
         "$type": "number"
       },
       "offset-y": {
         "$value": -4,
-        "$description": "Badge position offset-y. -4px. Overlaps parent element's top-right corner.",
+        "$description": "Badge position offset-y. -4px hardcoded — negative value, no sys equivalent. Overlaps parent top-right corner.",
         "$type": "number"
       }
     },
