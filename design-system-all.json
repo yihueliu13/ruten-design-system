@@ -7132,8 +7132,13 @@
       },
       "subtitle-color": {
         "$type": "color",
+        "$value": "{sys.color.on-surface-variant}",
+        "$description": "SectionHeader subtitle color on light surface. Neutral grey. Use for date range or secondary info text."
+      },
+      "subtitle-color-inverse": {
+        "$type": "color",
         "$value": "{sys.color.on-surface-brand}",
-        "$description": "SectionHeader subtitle color. White. Use for date range or secondary info on brand surface."
+        "$description": "SectionHeader subtitle color on brand surface. White. Use for date range or secondary info on orange background sections."
       },
       "padding-h": {
         "$type": "number",
@@ -7149,6 +7154,16 @@
         "$type": "color",
         "$value": "{sys.color.on-surface-brand}",
         "$description": "Slot override. CTA button text and icon color on brand surface. White. Use on orange background sections like leaderboard."
+      },
+      "icon-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface}",
+        "$description": "Slot override. Leading icon vector fill on light surface. Dark grey. Overrides Icon comp default to match SectionHeader title color."
+      },
+      "icon-color-inverse": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "Slot override. Leading icon vector fill on brand/dark surface. White. Use on orange background sections."
       },
       "md": {
         "icon-size": {

@@ -2,10 +2,10 @@
 
 ## What this is
 Multi-brand design system for Ruten e-commerce (露天市集 / 一抽入魂 / 預購市場).
-Single source of truth: `design-system-all.json` (651 tokens + 130 Text Styles).
+Single source of truth: `design-system-all.json` (654 tokens + 130 Text Styles).
 
 ## Architecture
-Single Figma Collection, three tiers: `ref(159) → sys(168) → comp(324)`.
+Single Figma Collection, three tiers: `ref(159) → sys(168) → comp(327)`.
 Alias direction: comp → sys → ref. Never skip tiers. comp → comp is allowed.
 Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 

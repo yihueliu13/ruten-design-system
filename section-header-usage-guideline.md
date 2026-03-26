@@ -4,7 +4,7 @@
 > **日期**: 2026-03-25
 > **狀態**: 已定稿
 > **依據**: design-system-all.json（唯一真實來源）
-> **分類**: Layout × Compound × Owned（14 tokens）
+> **分類**: Layout × Compound × Owned（17 tokens）
 
 ---
 
@@ -122,7 +122,10 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
 | comp/section-header/icon-text-gap | {sys.spacing.2xs} | 4px | Gap between icon and title text. 4px. |
 | comp/section-header/title-color | {sys.color.on-surface} | #33343B | SectionHeader title color. Dark grey. Use on white/light surface sections. |
 | comp/section-header/title-color-inverse | {sys.color.on-surface-brand} | #FFFFFF | SectionHeader title color on brand surface. White. Use on orange background sections like leaderboard. |
-| comp/section-header/subtitle-color | {sys.color.on-surface-brand} | #FFFFFF | SectionHeader subtitle color. White. Use for date range or secondary info on brand surface. |
+| comp/section-header/subtitle-color | {sys.color.on-surface-variant} | #73747B | SectionHeader subtitle color on light surface. Neutral grey. Use for date range or secondary info text. |
+| comp/section-header/subtitle-color-inverse | {sys.color.on-surface-brand} | #FFFFFF | SectionHeader subtitle color on brand surface. White. Use for date range or secondary info on orange background sections. |
+| comp/section-header/icon-color | {sys.color.on-surface} | #33343B | Slot override. Leading icon vector fill on light surface. Dark grey. Overrides Icon comp default to match SectionHeader title color. |
+| comp/section-header/icon-color-inverse | {sys.color.on-surface-brand} | #FFFFFF | Slot override. Leading icon vector fill on brand/dark surface. White. Use on orange background sections. |
 | comp/section-header/padding-h | {sys.spacing.md} | 16px | SectionHeader horizontal padding. 16px. Aligns with page-level content padding. |
 | comp/section-header/title-font-weight | {sys.typography.weight.semibold} | 600 | Title font weight. Semibold 600. Consistent across all sizes. |
 | comp/section-header/md/icon-size | {sys.sizing.icon-md} | 24px | Leading icon size for mobile/app. 24px. |
@@ -139,26 +142,31 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
 ## 12. AI Agent 指引
 
 ```
-1. SectionHeader 背景永遠透明，文字色由父容器決定：
-   - 白底 → comp/section-header/title-color
-   - 橘底 → comp/section-header/title-color-inverse
+1. SectionHeader 有 surface=light|dark variant：
+   - surface=light：白/淺色背景，深色文字
+   - surface=dark：品牌橘背景，白色文字
 2. 尺寸選擇：
    - Mobile / App → md（icon 24px, title 14px, height 24px）
    - PC → lg（icon 32px, title 18px, height 32px）
 3. 結構：
    <SectionHeader
-     leadingIcon={show|hide}
+     leadingIcon={IconInstance}  // Instance Swap，可從 icon library 選
      title="區塊標題"
      trailingSlot={none|ButtonGhost|TextFrame}
      size={md|lg}
+     surface={light|dark}
    />
-4. Leading icon 是 image slot，不是 Icon component：
-   不走 icon-color token，圖片自帶顏色
-5. 右側 CTA 用 Button ghost instance，但文字/icon 顏色走 Slot Override：
-   - 白底 → comp/section-header/cta-text-color（neutral grey #73747B）
-   - 橘底 → comp/section-header/cta-text-color-inverse（white #FFFFFF）
-   - Button 的 background、border、padding 仍繼承 Button master token
-6. font-weight 固定 Semibold 600，不可覆寫
+4. Leading icon 是 Instance Swap component property：
+   - 預設 solid/event-hot，可換任意 icon
+   - 向量 fill 走 icon-color / icon-color-inverse（隨 surface 自動切換）
+   - 也可上傳 3D / 自訂圖片（override fill 為 image）
+5. 右側 CTA 用 Button ghost instance，文字/icon 顏色走 Slot Override：
+   - light → cta-text-color（neutral grey #73747B）
+   - dark → cta-text-color-inverse（white #FFFFFF）
+   - Button background、border、padding 仍繼承 Button master token
+6. Typography 綁定 Variable：
+   - title fontSize → comp/section-header/md|lg/title-font-size
+   - title fontWeight → comp/section-header/title-font-weight（Semibold 600）
 7. padding-h = 16px，與頁面 content padding 對齊
 ```
 
@@ -171,3 +179,4 @@ SectionHeader 本身透明，文字顏色由父容器背景決定：
 | v1.0.0 | 2026-03-25 | 初始版本。14 tokens。 |
 | v1.1.0 | 2026-03-26 | 修正至 12 tokens：移除 md/lg title-line-height（由 Text Style 管理）、修正 alias 路徑（font-weight → weight、title.sm.size → title.sm）、修正 font-size 解析值（md 14px、lg 18px）。 |
 | v1.2.0 | 2026-03-26 | 新增 2 Slot Override tokens（cta-text-color、cta-text-color-inverse），total 14 tokens。CTA button 文字/icon 顏色走 Slot Override 而非繼承 Button ghost 橘色。 |
+| v1.3.0 | 2026-03-26 | 新增 surface=light\|dark variant（8→16），新增 icon-color/icon-color-inverse/subtitle-color-inverse 3 tokens，subtitle-color 改為 on-surface-variant（灰），leadingIcon 從 RECTANGLE → Icon Instance Swap，title typography 綁定 Variable。Total 17 tokens。 |
