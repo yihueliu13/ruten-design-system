@@ -310,8 +310,8 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 | Tag | Feedback | 74 | ✅ Done | filter/display/action × sm/md/lg/xl |
 | Badge | Feedback | 11 | ✅ Done | dot/count |
 | Icon | Media | 8 | ✅ Done | xs/sm/md/lg × size + color |
-| Avatar | Media | 11 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
-| Thumbnail | Media | 11 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
+| Avatar | Media | 19 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
+| Thumbnail | Media | 19 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
 | Divider | Layout | 5 | ✅ Done | hairline/default/heavy thickness |
 | SearchBar | Navigation | 11 | ✅ Done | default/focus × pill shape |
 | TextField | Input | — | 🔲 Backlog | default/focus/error/disabled × label + helper text |

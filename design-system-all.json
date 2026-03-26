@@ -6832,6 +6832,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-xs}",
           "$description": "Avatar xs size. 24px. Use for inline mentions, compact lists."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.2xs}",
+          "$description": "Avatar xs fallback font-size. Use for initial letter text at xs size."
         }
       },
       "sm": {
@@ -6839,6 +6844,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-sm}",
           "$description": "Avatar sm size. 32px. Use for comment authors, chat bubbles."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.xs}",
+          "$description": "Avatar sm fallback font-size. Use for initial letter text at sm size."
         }
       },
       "md": {
@@ -6846,6 +6856,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-md}",
           "$description": "Avatar md size. 40px. Use for navigation bar, list items."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.md}",
+          "$description": "Avatar md fallback font-size. Use for initial letter text at md size."
         }
       },
       "lg": {
@@ -6853,6 +6868,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-lg}",
           "$description": "Avatar lg size. 48px. Use for seller info, profile sections."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.lg}",
+          "$description": "Avatar lg fallback font-size. Use for initial letter text at lg size."
         }
       },
       "xl": {
@@ -6860,6 +6880,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-xl}",
           "$description": "Avatar xl size. 80px. Use for featured topic grid, seller highlights."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.headline.sm}",
+          "$description": "Avatar xl fallback font-size. Use for initial letter text at xl size."
         }
       },
       "2xl": {
@@ -6867,6 +6892,11 @@
           "$type": "number",
           "$value": "{sys.sizing.avatar-2xl}",
           "$description": "Avatar 2xl size. 96px. Use for category index hero thumbnails."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.headline.md}",
+          "$description": "Avatar 2xl fallback font-size. Use for initial letter text at 2xl size."
         }
       },
       "border-radius": {
@@ -6897,6 +6927,18 @@
           "$value": "{sys.border.width.none}",
           "$description": "Avatar default border width. 0px. No border in default state."
         }
+      },
+      "fallback": {
+        "font-weight": {
+          "$type": "number",
+          "$value": "{sys.typography.weight.semibold}",
+          "$description": "Avatar fallback text font-weight. Semibold (600). Use for initial letter when no image."
+        },
+        "text-color": {
+          "$type": "color",
+          "$value": "{sys.color.on-surface-variant}",
+          "$description": "Avatar fallback text color. Grey. Use for initial letter on neutral background."
+        }
       }
     },
     "thumbnail": {
@@ -6905,6 +6947,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-xs}",
           "$description": "Thumbnail xs size. 24px. Use for compact grids, inline category icons."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.2xs}",
+          "$description": "Thumbnail xs fallback font-size. Use for placeholder text at xs size."
         }
       },
       "sm": {
@@ -6912,6 +6959,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-sm}",
           "$description": "Thumbnail sm size. 32px. Use for small category lists."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.xs}",
+          "$description": "Thumbnail sm fallback font-size. Use for placeholder text at sm size."
         }
       },
       "md": {
@@ -6919,6 +6971,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-md}",
           "$description": "Thumbnail md size. 40px. Use for standard category grids."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.md}",
+          "$description": "Thumbnail md fallback font-size. Use for placeholder text at md size."
         }
       },
       "lg": {
@@ -6926,6 +6983,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-lg}",
           "$description": "Thumbnail lg size. 48px. Use for featured category entries."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.lg}",
+          "$description": "Thumbnail lg fallback font-size. Use for placeholder text at lg size."
         }
       },
       "xl": {
@@ -6933,6 +6995,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-xl}",
           "$description": "Thumbnail xl size. 80px. Use for featured topic grid (焦點主題), IP selector."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.headline.sm}",
+          "$description": "Thumbnail xl fallback font-size. Use for placeholder text at xl size."
         }
       },
       "2xl": {
@@ -6940,6 +7007,11 @@
           "$type": "dimension",
           "$value": "{sys.sizing.avatar-2xl}",
           "$description": "Thumbnail 2xl size. 96px. Use for hero category thumbnails."
+        },
+        "fallback-font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.headline.md}",
+          "$description": "Thumbnail 2xl fallback font-size. Use for placeholder text at 2xl size."
         }
       },
       "border-radius": {
@@ -6969,6 +7041,18 @@
           "$type": "dimension",
           "$value": "{sys.border.width.none}",
           "$description": "Thumbnail default border width. 0px. No border in default state."
+        }
+      },
+      "fallback": {
+        "font-weight": {
+          "$type": "number",
+          "$value": "{sys.typography.weight.semibold}",
+          "$description": "Thumbnail fallback text font-weight. Semibold (600). Use for placeholder text when no image."
+        },
+        "text-color": {
+          "$type": "color",
+          "$value": "{sys.color.on-surface-variant}",
+          "$description": "Thumbnail fallback text color. Grey. Use for placeholder text on neutral background."
         }
       }
     },
@@ -7029,6 +7113,16 @@
           "$value": "{sys.border.width.focus}",
           "$description": "SearchBar focused state border width. 2px. Thicker border to indicate active focus."
         }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": "{sys.typography.body.md}",
+        "$description": "SearchBar placeholder/input font-size. 14px body-md. Use for search input text."
+      },
+      "font-weight": {
+        "$type": "number",
+        "$value": "{sys.typography.weight.regular}",
+        "$description": "SearchBar placeholder/input font-weight. Regular (400). Use for search input text."
       }
     },
     "nav-bar": {
@@ -7061,6 +7155,26 @@
         "$type": "number",
         "$value": "{sys.spacing.sm}",
         "$description": "Gap between NavigationBar child elements. 12px."
+      },
+      "title-font-size": {
+        "$type": "number",
+        "$value": "{sys.typography.title.md}",
+        "$description": "NavigationBar page title font-size. 16px title-md. Use for layout=title variant."
+      },
+      "title-font-weight": {
+        "$type": "number",
+        "$value": "{sys.typography.weight.semibold}",
+        "$description": "NavigationBar page title font-weight. Semibold (600). Use for layout=title variant."
+      },
+      "search-font-size": {
+        "$type": "number",
+        "$value": "{comp.search-bar.font-size}",
+        "$description": "NavigationBar search placeholder font-size. Aliases SearchBar font-size. Use for layout=search variant."
+      },
+      "search-font-weight": {
+        "$type": "number",
+        "$value": "{comp.search-bar.font-weight}",
+        "$description": "NavigationBar search placeholder font-weight. Aliases SearchBar font-weight. Use for layout=search variant."
       }
     },
     "bottom-nav": {
@@ -7109,6 +7223,21 @@
           "$type": "color",
           "$value": "{sys.color.primary}",
           "$description": "BottomNav active tab label color. Brand orange."
+        },
+        "font-size": {
+          "$type": "number",
+          "$value": "{sys.typography.label.xs}",
+          "$description": "BottomNav item label font-size. 10px label-xs. Use for all nav item labels."
+        },
+        "font-weight": {
+          "$type": "number",
+          "$value": "{sys.typography.weight.medium}",
+          "$description": "BottomNav item label font-weight. Medium (500). Use for inactive nav item labels."
+        },
+        "font-weight-active": {
+          "$type": "number",
+          "$value": "{sys.typography.weight.semibold}",
+          "$description": "BottomNav active item label font-weight. Semibold (600). Use for the currently selected nav item."
         }
       },
       "center-button": {

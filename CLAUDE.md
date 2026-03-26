@@ -2,10 +2,10 @@
 
 ## What this is
 Multi-brand design system for Ruten e-commerce (露天市集 / 一抽入魂 / 預購市場).
-Single source of truth: `design-system-all.json` (657 tokens + 130 Text Styles).
+Single source of truth: `design-system-all.json` (682 tokens + 130 Text Styles).
 
 ## Architecture
-Single Figma Collection, three tiers: `ref(160) → sys(170) → comp(327)`.
+Single Figma Collection, three tiers: `ref(160) → sys(170) → comp(352)`.
 Alias direction: comp → sys → ref. Never skip tiers. comp → comp is allowed.
 Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 
@@ -21,6 +21,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 - Tertiary button border-color = sys/color/primary (orange, not outline grey)
 - Never delete Figma Variable Collection and re-import (breaks bindings)
 - Mono removed from SOT and Text Styles
+- **Typography Variable Binding**: ALL text nodes in Figma Components MUST bind 4 properties to Variables: fontFamily, fontWeight, fontSize, fills. Zero hardcode tolerance. See SKILL.md §3a for full rules, audit table, and exceptions.
 
 ## Workflow for every task
 ```
