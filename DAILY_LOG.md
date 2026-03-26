@@ -6,7 +6,7 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-25（三）19:29 自動更新）
+## 🔄 目前狀態（2026-03-26（四）09:59 自動更新）
 
 **Token：649** (ref 159 + sys 168 + comp 322) + 130 Text Styles
 **Validation：30 PASS / 1 FAIL** ⚠️
@@ -19,13 +19,21 @@
 
 **Blocked：**
 - Sprint 3 全部 (#9–#12) — 等待 Chat spec 討論定稿
-
-**今日 commits：14 筆**
-- `b0979e7` feat: add Template layer to Design System Hierarchy (6 layers)
-- `6ded9e2` fix: repair 5 broken section-header token aliases, remove 2 line-height tokens
-- `49f3246` docs: add Figma page naming mapping (Global=ref, Semantic=sys)
-- ...（共 14 筆）
 <!-- STATUS:END -->
+
+## 2026-03-25（三） — 自動補錄（sync-daily-log.py）
+
+### 1. Git 活動紀錄（自動擷取）
+- （僅備份/日誌 commits，無實質變更）
+
+**備份/日誌：**
+- `f2291cc` log: 2026-03-25 daily close
+
+### 2. 變動檔案（1 個）
+- `DAILY_LOG.md`
+
+
+---
 
 ## 2026-03-25（三） — 收工（sync-daily-log.py --close）
 
