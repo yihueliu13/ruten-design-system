@@ -56,9 +56,9 @@ Typography 在 Figma 用 Text Styles（130 個），在 JSON 保留為 semantic 
 | 6 | 驗證 | Cowork | `python3 validate-design-system.py --root .` PASS | FAIL → 修 JSON 重跑 |
 | 7 | 衍生檔同步 | Cowork | `python3 sync-derived-files.py --root .` | — |
 | 8 | Usage Guideline | Cowork | `{component}-usage-guideline.md` | 發現 token 缺漏 → 回步驟 4 |
-| 9 | Figma Variable 匯入 | Kay | **新 Variable → Scripter 腳本**（Cowork 產出，Kay 貼到 Figma 執行）；**既有 Variable 更新 → Thierry overlay import** | Scripter 報 failed → 檢查 alias target 是否存在 |
-| 10 | Figma Component 建置 | Kay + Cowork | Scripter 腳本 → Kay 在 Figma 執行 | 視覺不對 → 回步驟 4 |
-| 11 | Variable Binding | Kay | comp/ token 綁到 Figma Component 屬性 | — |
+| 9 | Figma Variable 匯入 | Kay | **新 Variable → Scripter 腳本**（Cowork 產出，Kay 貼到 Figma 執行）；**既有 Variable 更新 → Thierry overlay import**。⚠️ Cowork **必須在對話中直接貼出完整可複製的 Scripter 腳本**，不要只指向 repo 檔案。 | Scripter 報 failed → 檢查 alias target 是否存在 |
+| 10 | Figma Component 建置 | Kay + Cowork | Scripter 腳本 → Kay 在 Figma 執行。⚠️ Cowork **必須在對話中直接貼出完整可複製的 Scripter 腳本**。 | 視覺不對 → 回步驟 4 |
+| 11 | Variable Binding | Kay + Cowork | Scripter 腳本綁定 comp/ token 到 Figma Component 屬性。⚠️ Cowork **必須在對話中直接貼出完整可複製的 Scripter 腳本**。 | — |
 | 12 | 視覺驗證 | Kay | 截圖比對設計稿 | — |
 | 13 | 完整交付驗證 | Cowork | §7a 12 項清單全 PASS | 任一 FAIL → 回步驟 4 |
 | 14 | Governance 登錄 | Cowork | component-governance.md Registry 更新 | — |
