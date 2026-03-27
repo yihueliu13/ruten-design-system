@@ -7820,6 +7820,50 @@
           ],
           "com.figma.isOverride": true
         }
+      },
+      "background-default": {
+        "$type": "color",
+        "$value": "{sys.color.surface}",
+        "$description": "NavigationBar background for inner pages. White. Use for surface=default variant (product detail, auction, etc.).",
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.isOverride": true
+        }
+      },
+      "icon-color-default": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface}",
+        "$description": "NavigationBar icon color on white background. Dark grey. Use for surface=default variant.",
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.isOverride": true
+        }
+      },
+      "title-color": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface-brand}",
+        "$description": "NavigationBar title color on brand background. White. Use for surface=brand variant with layout=title.",
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.isOverride": true
+        }
+      },
+      "title-color-default": {
+        "$type": "color",
+        "$value": "{sys.color.on-surface}",
+        "$description": "NavigationBar title color on white background. Dark grey. Use for surface=default variant with layout=title.",
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.isOverride": true
+        }
       }
     },
     "bottom-nav": {
