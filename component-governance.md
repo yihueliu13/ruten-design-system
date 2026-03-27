@@ -731,3 +731,47 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 | label-2xs 9px vs 實際 8px | token 與設計不一致 | 改成 8px |
 | 價格用紅色不是橘色 | 設計決策 | 新增 sys/color/price |
 | Mono 殘留 | Text Styles 與 source of truth 分裂 | 徹底移除 Mono |
+
+---
+
+## Appendix B: Decision Declarations（Sprint 3）
+
+> 2026-03-27 補做。Sprint 3 元件的 JSON 在 Decision Declaration 加入前已完成，
+> 此處為回溯補齊記錄，確認每個元件的設計決策無遺漏。
+
+### NavigationBar (#10)
+
+| 維度 | 決策 |
+|------|------|
+| 功能類別 | Navigation |
+| 組合深度 | Compound（SearchBar + Icons 組合） |
+| Token 擁有權 | Owned (10 tokens) + Slot Override (SearchBar) |
+| controlHeight | 3xl (48px)，不含 StatusBar |
+| 鎖定決策 | icon-color 獨立（不與 title 共用）✅ overlay import ✅ |
+| comp→comp 引用 | search-font-size → comp/search-bar/font-size, search-font-weight → comp/search-bar/font-weight |
+| 衝突檢查 | vs BottomNav（位置相反）、vs SearchBar（Slot Override 嵌入）、vs Tab（層級不同）→ 無衝突 |
+
+### SearchBar (#11)
+
+| 維度 | 決策 |
+|------|------|
+| 功能類別 | Navigation |
+| 組合深度 | Primitive（完整互動單元，不含其他 DS component） |
+| Token 擁有權 | Owned (13 tokens) |
+| controlHeight | default (32px)，嵌入 NavBar 48px 內垂直置中 |
+| 鎖定決策 | icon-color 未獨立（跟隨 placeholder-color），日後需分離再新增 token ✅ overlay import ✅ |
+| 被引用 | NavigationBar 的 search-font-size/weight 引用 comp/search-bar |
+| focus 狀態 | border-color → sys/color/primary (品牌橘), border-width → 2px |
+| 衝突檢查 | vs NavigationBar（Slot Override 關係）、vs TextField Phase 2+（功能類別不同）→ 無衝突 |
+
+### BottomNav (#12)
+
+| 維度 | 決策 |
+|------|------|
+| 功能類別 | Navigation |
+| 組合深度 | Compound（Icons + Badge + Center Button 組合） |
+| Token 擁有權 | Owned (15 tokens) + 未來 Slot Override (Badge) |
+| controlHeight | 容器 80px（非 controlHeight 體系，含 safe area）；center-button = xl (40px) |
+| 鎖定決策 | icon-color 隱含跟隨 text-color（同色），日後需分離再新增 ✅ overlay import ✅ |
+| 深色底設計 | background → sys/color/inverse-surface；text-color → primary-container（淺橘）；active → primary（品牌橘） |
+| 衝突檢查 | vs NavigationBar（位置互補）、vs Tab（全局 vs 頁內）、vs Badge（Slot Override）→ 無衝突 |

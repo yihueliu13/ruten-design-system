@@ -6,7 +6,7 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-26（四）19:51 自動更新）
+## 🔄 目前狀態（2026-03-27（五）11:17 自動更新）
 
 **Token：682** (ref 160 + sys 170 + comp 352) + 130 Text Styles
 **Validation：30 PASS / 1 FAIL** ⚠️
@@ -20,12 +20,35 @@
 **Blocked：**
 - Sprint 3 全部 (#9–#12) — 等待 Chat spec 討論定稿
 
-**今日 commits：5 筆**
-- `37bb1cd` feat(section-header): surface=light|dark variants + full Variable binding + icon Instance Swap
-- `85c2899` fix(tokens): eliminate 5 comp-layer hardcodes with proper alias chain
-- `1fafdfd` feat: typography Variable binding for ALL 8 components + SKILL.md §3a rules
-- ...（共 5 筆）
+**今日 commits：1 筆**
+- `3616d7b` feat(skill): add Decision Declaration step + remove PK dependency
 <!-- STATUS:END -->
+
+## 2026-03-27（五） — 自動補錄（sync-daily-log.py）
+
+### 1. Git 活動紀錄（自動擷取）
+- [x] `3616d7b` feat(skill): add Decision Declaration step + remove PK dependency
+
+### 2. 變動檔案（2 個）
+- `SKILL.md`
+- `ruten-ds-architecture.jsx`
+
+
+---
+
+## 2026-03-26（四） — 自動補錄（sync-daily-log.py）
+
+### 1. Git 活動紀錄（自動擷取）
+- （僅備份/日誌 commits，無實質變更）
+
+**備份/日誌：**
+- `3293303` log: 2026-03-26 daily close
+
+### 2. 變動檔案（1 個）
+- `DAILY_LOG.md`
+
+
+---
 
 ## 2026-03-26（四） — 收工（sync-daily-log.py --close）
 
