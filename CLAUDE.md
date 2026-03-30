@@ -23,14 +23,57 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 - Mono removed from SOT and Text Styles
 - **Typography Variable Binding**: ALL text nodes in Figma Components MUST bind 4 properties to Variables: fontFamily, fontWeight, fontSize, fills. Zero hardcode tolerance. See SKILL.md §3a for full rules, audit table, and exceptions.
 
-## Workflow for every task
+## 目錄結構
+
 ```
-1. PLAN     — state what you'll do, which files change
-2. DO       — edit design-system-all.json
-3. CHECK    — python3 tool/validate-design-system.py --root .
-4. SYNC     — python3 tool/sync-derived-files.py --root .
-5. REPORT   — list changed files, unchanged files, validation result
-6. PUSH     — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
+root/
+├── design-system-all.json       ← 唯一 SOT
+├── CLAUDE.md / SKILL.md / COWORK_INSTRUCTIONS.md  ← 進入點
+├── ref/        架構治理（governance, icon inventory）
+├── guideline/  元件使用規範（12 份）
+├── script/     Figma Scripter 腳本
+├── tool/       Python CLI（validate / sync）
+├── viewer/     瀏覽器視覺化
+└── ops/        計畫 + 日報
+```
+
+## Workflow 路由
+
+依任務類型決定讀哪些檔案，不需要全讀：
+
+### A. 新增 / 修改 token
+```
+讀：ref/component-governance.md（分類規則 + 鎖定決策）
+改：design-system-all.json
+跑：tool/validate → tool/sync
+產出（如需要）：guideline/{component}.md + script/{name}.js
+```
+
+### B. 寫 guideline / Scripter 腳本
+```
+讀：同類 guideline/ 或 script/ 一份當範例（不全讀）
+讀：SOT 裡該元件的 token（用 grep 定位，不讀整份 JSON）
+產出：guideline/ 或 script/ 裡的新檔案
+```
+
+### C. 每日啟動 / 收工
+```
+啟動：python3 tool/sync-daily-log.py --root . --write → 讀 ops/DAILY_LOG.md
+收工：python3 tool/sync-daily-log.py --root . --close --commit
+```
+
+### D. 查進度 / 排工作
+```
+讀：ops/EXECUTION_PLAN.md + ops/DAILY_LOG.md
+不讀：SOT、ref/、guideline/（跟進度無關）
+```
+
+### 通用收尾（每次任務都跑）
+```
+1. CHECK  — python3 tool/validate-design-system.py --root .
+2. SYNC   — python3 tool/sync-derived-files.py --root .
+3. REPORT — list changed files, unchanged files, validation result
+4. PUSH   — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
 ```
 
 ## Rules

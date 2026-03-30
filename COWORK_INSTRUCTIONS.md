@@ -237,15 +237,7 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 
 ---
 
-## 12. Connectors
-
-- ✅ Figma（MCP 操作）
-- ✅ Notion（文件發布，按需推送，非即時同步）
-- ✅ Google Drive（檔案同步）
-
----
-
-## 13. 新增元件的標準流程
+## 12. 新增元件的標準流程
 
 每個新 component 照這個流程走（決策規則詳見 `ref/component-governance.md` §7）：
 
@@ -271,13 +263,9 @@ Figma Plugin：Rename It, Scripter, Thierry（Variable import）, Figma Make
 
 ---
 
-## 14. 當前進度快照
+## 13. 進度查詢
 
-| Phase | 狀態 | 說明 |
-|-------|------|------|
-| 4a Icon System | ✅ | 完成 |
-| 1 Figma UI Kit | 🔄 進行中 | 636 tokens, 15 元件 token 完成, 19 元件盤點完成 |
-| 2 Engineering Output | ⏳ | Vue/RN component, Storybook |
-| 3 Multi-brand | ⏳ | Ichiban/Resell mode, Dark mode |
+進度數字會變動，不寫死在本文件。查進度一律讀 ops/ 即時檔案：
 
-詳細待辦、Phase 2-4 路線圖、技術債見 `ops/EXECUTION_PLAN.md`。
+- **元件進度 + Sprint 狀態** → `ops/EXECUTION_PLAN.md`
+- **每日工作記錄** → `ops/DAILY_LOG.md`
