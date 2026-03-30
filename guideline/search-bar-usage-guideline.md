@@ -4,7 +4,7 @@
 > **日期**: 2026-03-19
 > **狀態**: 已定稿
 > **依據**: design-system-all.json（唯一真實來源）
-> **分類**: Navigation × Primitive × Owned（11 tokens）
+> **分類**: Navigation × Primitive × Owned（13 tokens）
 
 ---
 
@@ -43,6 +43,8 @@ SearchBar 是搜尋輸入框元件，pill 形狀，嵌在 NavigationBar 內。Na
 | comp/search-bar/icon-gap | {sys.spacing.sm} | 12px | Gap between left icon and input field. 12px. |
 | comp/search-bar/focus/border-color | {sys.color.primary} | Brand orange | SearchBar focused state border color. Brand orange. |
 | comp/search-bar/focus/border-width | {sys.border.width.focus} | 2px | SearchBar focused state border width. 2px. |
+| comp/search-bar/font-size | {sys.typography.body.md} | 14px | SearchBar placeholder/input font-size. 14px body-md. |
+| comp/search-bar/font-weight | {sys.typography.weight.regular} | 400 | SearchBar placeholder/input font-weight. Regular (400). |
 
 ---
 
@@ -107,3 +109,4 @@ SearchBar 是 NavigationBar 的核心子 Primitive。在 NavigationBar 內：
 | 版本 | 日期 | 變更 |
 |------|------|------|
 | v1.0.0 | 2026-03-19 | 初始版本。11 tokens：height + background + border (3) + padding-h + placeholder + icon (2) + focus (2)。 |
+| v1.1.0 | 2026-03-27 | 新增 font-size + font-weight tokens → 13 tokens。Figma Component Scripter 建立。 |

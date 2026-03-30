@@ -2,10 +2,10 @@
 
 ## What this is
 Multi-brand design system for Ruten e-commerce (露天市集 / 一抽入魂 / 預購市場).
-Single source of truth: `design-system-all.json` (682 tokens + 130 Text Styles).
+Single source of truth: `design-system-all.json` (686 tokens + 130 Text Styles).
 
 ## Architecture
-Single Figma Collection, three tiers: `ref(160) → sys(170) → comp(352)`.
+Single Figma Collection, three tiers: `ref(160) → sys(170) → comp(356)`.
 Alias direction: comp → sys → ref. Never skip tiers. comp → comp is allowed.
 Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 
@@ -27,14 +27,14 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 ```
 1. PLAN     — state what you'll do, which files change
 2. DO       — edit design-system-all.json
-3. CHECK    — python3 validate-design-system.py --root .
-4. SYNC     — python3 sync-derived-files.py --root .
+3. CHECK    — python3 tool/validate-design-system.py --root .
+4. SYNC     — python3 tool/sync-derived-files.py --root .
 5. REPORT   — list changed files, unchanged files, validation result
 6. PUSH     — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
 ```
 
 ## Rules
-- **每次 git commit 前必跑 `python3 validate-design-system.py --root .`**，不管改的是不是 SOT
+- **每次 git commit 前必跑 `python3 tool/validate-design-system.py --root .`**，不管改的是不是 SOT
 - Every new token MUST have $description (imperative style)
 - Description template: "[What]. Use for [contexts]. Do NOT use for [anti-patterns]."
 - comp layer: never hardcode color or value, always alias to sys
@@ -49,14 +49,14 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 
 ## Key files
 - `design-system-all.json` — SOT, edit this first
-- `validate-design-system.py` — run after every JSON change
-- `sync-derived-files.py` — auto-update token counts in derived files
+- `tool/validate-design-system.py` — run after every JSON change
+- `tool/sync-derived-files.py` — auto-update token counts in derived files
+- `tool/sync-daily-log.py` — DAILY_LOG 全生命週期管理（--write 啟動 / --close 收工 / dry-run 查看）
 - `SKILL.md` — token architecture rules (skill trigger)
-- `component-governance.md` — component classification, locked decisions, architecture decisions log
-- `EXECUTION_PLAN.md` — 19 component list, sprint order, Phase 2-4 roadmap, tech debt
-- `DAILY_LOG.md` — daily standup log, 頂部有固定「目前狀態」區塊
-- `sync-daily-log.py` — DAILY_LOG 全生命週期管理（--write 啟動 / --close 收工 / dry-run 查看）
-- `create-text-styles.js` — Figma Scripter script (130 Text Styles)
+- `ref/component-governance.md` — component classification, locked decisions, architecture decisions log
+- `ops/EXECUTION_PLAN.md` — 19 component list, sprint order, Phase 2-4 roadmap, tech debt
+- `ops/DAILY_LOG.md` — daily standup log, 頂部有固定「目前狀態」區塊
+- `script/create-text-styles.js` — Figma Scripter script (130 Text Styles)
 
 ## Brands
 | Brand | Primary | HEX |
@@ -70,8 +70,8 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 ## 每日啟動流程
 
 每天第一次對話時，自動執行：
-1. 跑 `python3 sync-daily-log.py --root . --write` 同步 git 歷史到 DAILY_LOG
-2. 讀 `DAILY_LOG.md` 最新一天的「明日工作順序」
+1. 跑 `python3 tool/sync-daily-log.py --root . --write` 同步 git 歷史到 DAILY_LOG
+2. 讀 `ops/DAILY_LOG.md` 最新一天的「明日工作順序」
 3. 照那個順序開始工作，不要自己重排
 4. 如果 DAILY_LOG 沒有明日順序，問 Kay 再開始
 
@@ -86,7 +86,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 當 Kay 說「收工」「寫日報」「結束」時，執行：
 
 ```bash
-python3 sync-daily-log.py --root . --close --commit
+python3 tool/sync-daily-log.py --root . --close --commit
 ```
 
 腳本自動完成：
@@ -95,7 +95,7 @@ python3 sync-daily-log.py --root . --close --commit
 3. **變動檔案** — 列出今天改過的所有檔案
 4. **明日建議** — 從原定計畫未完成項 + EXECUTION_PLAN 下一個 Sprint 自動排序
 5. **Blocked** — 預留欄位，Claude 或 Kay 手動補充
-6. **寫入 + commit** — 自動寫入 DAILY_LOG.md 頂部 + git commit
+6. **寫入 + commit** — 自動寫入 ops/DAILY_LOG.md 頂部 + git commit
 
 > **Claude 的額外職責：** 腳本跑完後，Claude **必須**：
 > 1. 比對今天 commit 內容，確認明日建議沒有列出已完成的項目

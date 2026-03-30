@@ -75,10 +75,10 @@ def build_issues(root: Path) -> list[Issue]:
 
     json_path = root / "design-system-all.json"
     skill_path = root / "SKILL.md"
-    comp_gov_path = root / "component-governance.md"
-    migration_path = root / "token-migration-map.md"
-    viewer_live_path = root / "ruten-design-system.html"
-    script_path = root / "create-text-styles.js"
+    comp_gov_path = root / "ref" / "component-governance.md"
+    migration_path = root / "ref" / "token-migration-map.md"
+    viewer_live_path = root / "viewer" / "ruten-design-system.html"
+    script_path = root / "script" / "create-text-styles.js"
 
     data = load_json(json_path)
     leaves = flatten_token_leaves(data)

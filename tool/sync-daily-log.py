@@ -206,7 +206,7 @@ def get_token_counts(cwd: Path) -> dict | None:
 
 def run_validation(cwd: Path) -> tuple[int, int]:
     """Run validate-design-system.py and return (pass_count, fail_count)."""
-    script = cwd / "validate-design-system.py"
+    script = cwd / "tool" / "validate-design-system.py"
     if not script.exists():
         return (0, 0)
 
@@ -259,7 +259,7 @@ def get_sprint_progress(cwd: Path) -> tuple[list[str], list[str]]:
 
     Returns (completed_sprints, next_items).
     """
-    ep_path = cwd / "EXECUTION_PLAN.md"
+    ep_path = cwd / "ops" / "EXECUTION_PLAN.md"
     if not ep_path.exists():
         return ([], [])
 
@@ -611,7 +611,7 @@ def write_history_to_daily_log(daily_log_path: Path, blocks: list[str]) -> None:
 def git_commit_daily_log(cwd: Path, mode: str) -> None:
     """Stage and commit DAILY_LOG.md."""
     today = datetime.now().strftime("%Y-%m-%d")
-    run_git(["add", "DAILY_LOG.md"], cwd)
+    run_git(["add", "ops/DAILY_LOG.md"], cwd)
     msg = f"log: {today} daily {mode}"
     run_git(["commit", "-m", msg], cwd)
     print(f"📝 git commit: {msg}")
@@ -644,7 +644,7 @@ examples:
     args = parser.parse_args()
 
     cwd = Path(args.root).resolve()
-    daily_log = cwd / "DAILY_LOG.md"
+    daily_log = cwd / "ops" / "DAILY_LOG.md"
 
     # === --close mode ===
     if args.close:

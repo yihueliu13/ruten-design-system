@@ -98,7 +98,7 @@ def sync_skill_md(root: Path, ref: int, sys_: int, comp: int, total: int, dry_ru
 def sync_component_governance(root: Path, ref: int, sys_: int, comp: int, total: int,
                                comp_detail: dict[str, int], dry_run: bool) -> int:
     """Update component-governance.md — Baseline numbers + Primitive/Compound Registry token counts."""
-    filepath = root / "component-governance.md"
+    filepath = root / "ref" / "component-governance.md"
     replacements = [
         # §12.2 Baseline — patterns like "ref: 159" "sys: 166" "comp: 311" "total: 636"
         (r"(- ref: )\d+", rf"\g<1>{ref}"),
@@ -122,7 +122,7 @@ def sync_component_governance(root: Path, ref: int, sys_: int, comp: int, total:
 def sync_execution_plan(root: Path, ref: int, sys_: int, comp: int, total: int,
                          comp_detail: dict[str, int], dry_run: bool) -> int:
     """Update EXECUTION_PLAN.md — top summary + component table token counts."""
-    filepath = root / "EXECUTION_PLAN.md"
+    filepath = root / "ops" / "EXECUTION_PLAN.md"
     replacements = [
         # Top summary: "目前：636 tokens (ref 159 + sys 166 + comp 311)"
         (r"(目前：)\d+( tokens \(ref )\d+( \+ sys )\d+( \+ comp )\d+(\))",

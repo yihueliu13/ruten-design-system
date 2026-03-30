@@ -313,7 +313,7 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 | Avatar | Media | 19 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
 | Thumbnail | Media | 19 | ✅ Done | xs/sm/md/lg/xl/2xl × circle + active border |
 | Divider | Layout | 5 | ✅ Done | hairline/default/heavy thickness |
-| SearchBar | Navigation | 11 | ✅ Done | default/focus × pill shape |
+| SearchBar | Navigation | 13 | ✅ Done | default/focus × pill shape + font tokens |
 | TextField | Input | — | 🔲 Backlog | default/focus/error/disabled × label + helper text |
 | Checkbox | Input | — | 🔲 Backlog | default/checked/indeterminate × disabled |
 | Radio | Input | — | 🔲 Backlog | default/selected × disabled |
@@ -359,8 +359,8 @@ comp/bottom-nav/center-button/size → {sys.sizing.control-height.xl} (40px)
 | ProductCard | Display | 51 | ✅ Done | Image + Tag + Badge + 文字 + 價格 |
 | SectionHeader | Layout | 14 | ✅ Done | Icon + 標題文字 (+副標/日期) |
 | SectionModule | Display | 7 | ✅ Done | SectionHeader + Slot A (filter) + Slot B (content) + Footer |
-| NavigationBar | Navigation | 6 | ✅ Done | SearchBar + Icon × 2 |
-| BottomNav | Navigation | 12 | ✅ Done | Icon × 5 + Badge + 文字 + center button |
+| NavigationBar | Navigation | 15 | ✅ Done | SearchBar + Icon × 2 + surface/layout variants + font tokens |
+| BottomNav | Navigation | 15 | ✅ Done | Icon × 5 + Badge + 文字 + center button + font tokens |
 | Banner (Container) | Display | 4 | ✅ Done | 固定外框，Content 為 Pattern |
 | Form Field | Input | — | 🔲 Backlog | TextField/Select + Label + HelperText + ErrorText |
 | Modal | Overlay | — | 🔲 Backlog | Header + Body + Footer (Button × 2) |
@@ -652,7 +652,7 @@ Step 5: 定義 RWD
 
 ### 13.2 Current Baseline
 
-See `design-system-all.json` for current counts. Run `python3 sync-derived-files.py` to update all derived file numbers.
+See `design-system-all.json` for current counts. Run `python3 tool/sync-derived-files.py --root .` to update all derived file numbers.
 
 Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 
@@ -679,8 +679,8 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 ### 13.4 Update Flow
 
 1. Modify `design-system-all.json`
-2. Run `python3 validate-design-system.py --root .`
-3. Run `python3 sync-derived-files.py` to update derived file numbers
+2. Run `python3 tool/validate-design-system.py --root .`
+3. Run `python3 tool/sync-derived-files.py --root .` to update derived file numbers
 4. Fix any remaining issues
 5. Rebuild snapshot / zip only after validation passes
 
@@ -689,13 +689,13 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 | 衍生檔 | 同步內容 |
 |--------|---------|
 | `SKILL.md` | Token 總數 |
-| `component-governance.md` | Baseline + Registry 數字 |
-| `EXECUTION_PLAN.md` | 頂部總數 + 元件表 |
+| `ref/component-governance.md` | Baseline + Registry 數字 |
+| `ops/EXECUTION_PLAN.md` | 頂部總數 + 元件表 |
 | `CLAUDE.md` | 架構描述數字 |
 | `token-migration-map.md` | 舊→新 token mapping |
 | `design-system-viewer-live.html` | 直接 fetch JSON（自動同步） |
 | `design-system-viewer.html` | 快照（需手動更新） |
-| `create-text-styles.js` | Scripter script |
+| `script/create-text-styles.js` | Scripter script |
 
 ---
 

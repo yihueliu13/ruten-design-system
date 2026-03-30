@@ -2,7 +2,7 @@
 
 > 更新：2026-03-18
 > 範圍：分類館首頁 19 個 component
-> 目前：682 tokens (ref 160 + sys 170 + comp 352) + 130 Text Styles
+> 目前：686 tokens (ref 160 + sys 170 + comp 356) + 130 Text Styles
 > 策略決策見 COWORK_INSTRUCTIONS.md §9-10
 > Component 治理見 component-governance.md
 
