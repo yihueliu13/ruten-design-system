@@ -21,22 +21,22 @@
 | 5 | Tag (Display) | Feedback | Primitive | 含 #4 | ✅ 邊界確認 | product-card/tag-* 與 comp/tag 邊界清晰（2026-03-17 驗證） |
 | 6 | Tag (Promo Corner) | Feedback | Primitive | 含 #4 | ✅ | — |
 | 7 | Icon | Media | Primitive | 8 | ✅ 476 icons, vector fill bound to Variable | — |
-| 8 | Badge | Feedback | Primitive | 11 | ✅ Token 完成 | 建 Figma Main Component (dot/count) |
+| 8 | Badge | Feedback | Primitive | 11 | ✅ Figma Component 2 variants (dot/count) | — |
 
 ### B. 需全新定義 token（按執行優先序）
 
 | 優先 | # | Component | 類別 | 深度 | 出現位置 | 預估 tokens |
 |------|---|-----------|------|------|----------|-------------|
-| P1 | 9 | SectionHeader | Layout | Compound | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | 14 ✅ |
-| P1 | 10 | NavigationBar (Top) | Navigation | Compound | 頂部橘色導航列 | ~10 |
-| P1 | 11 | SearchBar | Navigation | Primitive | 頂部搜尋框（嵌在 NavBar 內） | ~10 |
-| P1 | 12 | BottomNav | Navigation | Compound | 底部五 tab 導航 | ~12 |
-| P2 | 13 | CategoryGrid | Layout | Pattern | 熱門分類 icon+文字 快捷入口 | 0（用 sys/） |
-| P2 | 14 | HorizontalScroll | Layout | Pattern | 大家都在玩 / 焦點主題 橫滑 | 0（用 sys/） |
-| P2 | 15 | SectionModule | Display | Compound | 區塊容器（SectionHeader + Slots + Footer） | 7 ✅ |
-| P3 | 16 | QuickInfoBar | Layout | Pattern | 保障購物（評價/出貨/退貨） | 0（用 sys/） |
-| P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | ~3 |
-| P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | 4 ✅ |
+| P1 | 9 | SectionHeader | Layout | Compound | 🔥熱門分類 / 大家都在玩 等 (8+ 次) | 17 ✅ Figma 16 variants |
+| P1 | 10 | NavigationBar (Top) | Navigation | Compound | 頂部橘色導航列 | 14 ✅ Figma 6 variants |
+| P1 | 11 | SearchBar | Navigation | Primitive | 頂部搜尋框（嵌在 NavBar 內） | 13 ✅ Figma 2 variants |
+| P1 | 12 | BottomNav | Navigation | Compound | 底部五 tab 導航 | 15 ✅ Figma Component |
+| P2 | 13 | CategoryGrid | Layout | Pattern | 熱門分類 icon+文字 快捷入口 | 0 ✅ Pattern layout |
+| P2 | 14 | HorizontalScroll | Layout | Pattern | 大家都在玩 / 焦點主題 橫滑 | 0 ✅ Pattern layout |
+| P2 | 15 | SectionModule | Display | Compound | 區塊容器（SectionHeader + Slots + Footer） | 7 ✅ Figma Component |
+| P3 | 16 | QuickInfoBar | Layout | Pattern | 保障購物（評價/出貨/退貨） | 0 ✅ Pattern layout |
+| P3 | 17 | Divider | Layout | Primitive | 各區塊間分隔線 | 5 ✅ Figma 3 variants |
+| P3 | 18 | Banner | Display | Compound (Container) + Pattern (Content) | 廣告輪播區 | 5 ✅ Figma Component |
 | P3 | 19 | Avatar (Round) | Media | Primitive | 圓形角色圖 | ✅ Figma Component 12 variants |
 | 20 | Thumbnail | Display | Primitive | 圖片縮圖卡 | ✅ Figma Component 12 variants |
 
@@ -92,20 +92,21 @@ Chat 下一個元件（或回來修正）
 - [x] #20 Thumbnail：Figma Component 12 variants ✅
 
 ### Sprint 3：全局骨架元件（Chat 討論 + Cowork 執行）
-- [ ] #9 SectionHeader（出現頻率最高）
-- [ ] #10 NavigationBar + #11 SearchBar（頁面骨架上）
-- [ ] #12 BottomNav（頁面骨架下）
+- [x] #9 SectionHeader：Figma Component 16 variants (layout×size×surface) ✅ 2026-03-30
+- [x] #10 NavigationBar：Figma Component 6 variants (surface×layout) ✅ 2026-03-30
+- [x] #11 SearchBar：Figma Component 2 variants (state=default|focus) ✅ 2026-03-30
+- [x] #12 BottomNav：Figma Component (5 tabs + center button) ✅ 2026-03-30
 
 ### Sprint 4：P2 首頁內容元件 + Badge
-- [ ] #8 Badge：Main Component (dot/count)
-- [ ] #13 CategoryGrid
-- [ ] #14 HorizontalScroll
-- [x] #15 SectionModule（token 完成 7 tokens）
+- [x] #8 Badge：Figma Component 2 variants (type=dot|count) ✅ 2026-03-30
+- [x] #13 CategoryGrid：Pattern layout (2×4 grid) ✅ 2026-03-30
+- [x] #14 HorizontalScroll：Pattern layout (scrollable cards) ✅ 2026-03-30
+- [x] #15 SectionModule：Figma Component (6 slots container) ✅ 2026-03-30
 
 ### Sprint 5：P3 剩餘元件
-- [ ] #16 QuickInfoBar
-- [ ] #17 Divider
-- [x] #18 Banner Container（token 完成 4 tokens）
+- [x] #16 QuickInfoBar：Pattern layout (3-column info bar) ✅ 2026-03-30
+- [x] #17 Divider：Figma Component 3 variants (hairline|default|heavy) ✅ 2026-03-30
+- [x] #18 Banner：Figma Component (container + contentSlot) ✅ 2026-03-30
 
 ### Sprint 6：Variable Binding 審核 + Library 發布
 - [ ] 所有元件 binding 完整度審核

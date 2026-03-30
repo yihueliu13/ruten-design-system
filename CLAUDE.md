@@ -29,7 +29,7 @@ Typography: Text Styles in Figma, tokens in JSON for AI/engineering.
 root/
 ├── design-system-all.json       ← 唯一 SOT
 ├── CLAUDE.md / SKILL.md / COWORK_INSTRUCTIONS.md  ← 進入點
-├── ref/        架構治理（governance, icon inventory）
+├── ref/        架構治理（governance, icon inventory, token-lifecycle）
 ├── guideline/  元件使用規範（12 份）
 ├── script/     Figma Scripter 腳本
 ├── tool/       Python CLI（validate / sync）
@@ -43,10 +43,9 @@ root/
 
 ### A. 新增 / 修改 token
 ```
-讀：ref/component-governance.md（分類規則 + 鎖定決策）
-改：design-system-all.json
-跑：tool/validate → tool/sync
-產出（如需要）：guideline/{component}.md + script/{name}.js
+→ 直接照 ref/token-lifecycle.md 的 5 Phase 走，不需要額外看其他流程
+  Phase 1 需求研究 → Phase 2 定義 SOT → Phase 3 Guideline → Phase 4 Figma → Phase 5 收尾
+  驗證 + 同步已包含在 lifecycle 內，通用收尾不重複跑
 ```
 
 ### B. 寫 guideline / Scripter 腳本
@@ -68,7 +67,7 @@ root/
 不讀：SOT、ref/、guideline/（跟進度無關）
 ```
 
-### 通用收尾（每次任務都跑）
+### 通用收尾（非 token 任務時跑；token 任務已包含在 lifecycle Phase 5）
 ```
 1. CHECK  — python3 tool/validate-design-system.py --root .
 2. SYNC   — python3 tool/sync-derived-files.py --root .
@@ -159,3 +158,5 @@ python3 tool/sync-daily-log.py --root . --close --commit
 - 永遠不要建議「收工」或結束工作，除非 Kay 主動說
 - 讀 DAILY_LOG 的「明日工作順序」時，如果 Kay 已確認過就直接照做，不要重排
 - 每天的工作順序由 Kay 最終決定，Claude 只提供建議
+- **語言規則**：所有執行流程說明、回報、任務描述一律使用**繁體中文**，不使用英文
+- **Scripter 交付規則**：產出 Scripter 腳本後，必須把完整腳本內容直接貼在對話中讓 Kay copy，不要只告知檔案路徑要求 Kay 自己去 repo 找。Kay 的工作流程是：看到腳本 → 直接複製 → 貼到 Figma Scripter 執行

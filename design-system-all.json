@@ -2380,8 +2380,8 @@
       },
       "badge-dot": {
         "$type": "number",
-        "$value": "{ref.sizing.2}",
-        "$description": "8px. Badge dot diameter. Use for small notification dot indicators.",
+        "$value": 6,
+        "$description": "6px. Badge dot diameter. Off base-4 grid, aligned with MD3 (6dp) and Ant Design (6px) industry standard. Use for small notification dot indicators.",
         "$extensions": {
           "com.figma.scopes": [
             "ALL_SCOPES"
@@ -6925,7 +6925,7 @@
       "dot": {
         "size": {
           "$value": "{sys.sizing.badge-dot}",
-          "$description": "Badge dot size. 8px via sizing/badge-dot. Use for NEW notification indicators on quick-access icons.",
+          "$description": "Badge dot size. 6px via sizing/badge-dot (MD3/Ant Design standard). Use for NEW notification indicators on quick-access icons.",
           "$type": "number",
           "$extensions": {
             "com.figma.scopes": [

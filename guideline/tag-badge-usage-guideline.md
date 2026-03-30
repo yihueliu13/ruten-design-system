@@ -285,7 +285,7 @@ comp/badge/{property}
 
 | Token path | 說明 |
 |-----------|------|
-| `comp/badge/dot/size` | 圓點尺寸（8px） |
+| `comp/badge/dot/size` | 圓點尺寸（6px，對齊 MD3/Ant Design 業界標準） |
 | `comp/badge/dot/color` | 圓點顏色（error red） |
 | `comp/badge/count/min-size` | 數字 badge 最小尺寸（16px） |
 | `comp/badge/count/font-size` | 數字字型大小 |
