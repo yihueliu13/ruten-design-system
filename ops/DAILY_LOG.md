@@ -6,25 +6,79 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-30（一）10:11 自動更新）
+## 🔄 目前狀態（2026-03-30（一）19:06 自動更新）
 
 **Token：686** (ref 160 + sys 170 + comp 356) + 130 Text Styles
-**Validation：30 PASS / 1 FAIL** ⚠️
-**Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ · Sprint 3 🔄 (0/3) · Sprint 4 🔄 (1/4) · Sprint 5 🔄 (1/3) · Sprint 6 🔄 (0/3)
+**Validation：29 PASS / 0 FAIL** ✅
+**Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ · Sprint 3 ✅ · Sprint 4 ✅ · Sprint 5 ✅ · Sprint 6 🔄 (0/3)
 
 **下一步：**
-- #
-- 9
-- 10
+- Sprint 6：Variable scoping（隱藏 ref 層）
+- Sprint 6：建立正式 Library 檔 → Publish
+- Phase 2：Engineering Output（tokens.css / tokens.ts）
 
 **Blocked：**
-- Sprint 3 全部 (#9–#12) — 等待 Chat spec 討論定稿
+- 無
 
-**今日 commits：3 筆**
-- `50954d0` refactor: restructure project into 6 subdirectories
-- `87efac5` chore: remove Cowork mount artifact, update gitignore
+**今日 commits：5 筆**
 - `b01d7e5` refactor: slim SKILL/COWORK, add workflow routing to CLAUDE.md
+- `a21b120` feat(nav-bar): add layout=action variant, confirm desktop header as separate component
+- `1b844ce` feat(lifecycle): add token-lifecycle.md, fix badge dot 8→6px, typography binding
+- ...（共 5 筆）
 <!-- STATUS:END -->
+
+## 2026-03-30（一） — 收工（sync-daily-log.py --close）
+
+### 1. 今日完成
+- [x] `50954d0` refactor: restructure project into 6 subdirectories
+- [x] `87efac5` chore: remove Cowork mount artifact, update gitignore
+- [x] `b01d7e5` refactor: slim SKILL/COWORK, add workflow routing to CLAUDE.md
+- [x] `a21b120` feat(nav-bar): add layout=action variant, confirm desktop header as separate component
+- [x] `1b844ce` feat(lifecycle): add token-lifecycle.md, fix badge dot 8→6px, typography binding
+
+**本日額外完成（Figma MCP 直接操作，無 git commit）：**
+- 全 8 Component typography 4 項綁定（fontFamily/fontSize/fontWeight/fills）— 41 text nodes
+- SectionModule slot 重新命名（Slot A/B/C）+ cap-height padding 修正
+- SectionModule paddingTop/Bottom 綁定 cap-height
+- SearchBar height + icon-size 綁定
+- BottomNav 5 icon size 綁定
+- Badge dot 尺寸 Figma Variable 8→6px（對齊 MD3/Ant Design）
+- 全 8 Component binding 完整度審核通過（646 bindings，0 缺漏）
+- 15 個 Page name 加 ✅ 標記
+
+### 2. Token 狀態
+- 目前：686 tokens (ref 160 + sys 170 + comp 356)
+- Validation：**29 PASS / 0 FAIL** ✅
+- 今日變動檔案（60 個）：
+  - `"Ruten \350\250\255\350\250\210\347\263\273\347\265\261/skill-restructure-proposal.jsx"`
+  - `CLAUDE.md`
+  - `COWORK_INSTRUCTIONS.md`
+  - `DAILY_LOG.md`
+  - `EXECUTION_PLAN.md`
+  - `SKILL.md`
+  - `avatar-usage-guideline.md`
+  - `banner-usage-guideline.md`
+  - `bottom-nav-usage-guideline.md`
+  - `button-usage-guideline.md`
+  - `component-governance.md`
+  - `create-text-styles.js`
+  - `design-system-all.json`
+  - `design-system-hierarchy.html`
+  - `divider-usage-guideline.md`
+  - ...（共 60 個）
+
+### 3. 明日工作順序（建議，等 Kay 確認）
+1. Sprint 6：Variable scoping（隱藏 ref 層，只暴露 sys + comp）
+2. Sprint 6：建立正式 Library 檔 → Publish
+3. Phase 2：Engineering Output（tokens.css / tokens.ts 轉換）
+
+### 4. Blocked 項目
+| 項目 | Blocked 原因 |
+|------|-------------|
+| 無 | — |
+
+
+---
 
 ## 2026-03-30（一） — 自動補錄（sync-daily-log.py）
 
