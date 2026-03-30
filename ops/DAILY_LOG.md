@@ -6,7 +6,7 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-27（五）20:18 自動更新）
+## 🔄 目前狀態（2026-03-30（一）10:11 自動更新）
 
 **Token：686** (ref 160 + sys 170 + comp 356) + 130 Text Styles
 **Validation：30 PASS / 1 FAIL** ⚠️
@@ -20,12 +20,44 @@
 **Blocked：**
 - Sprint 3 全部 (#9–#12) — 等待 Chat spec 討論定稿
 
-**今日 commits：6 筆**
-- `c2719b8` feat(nav-bar): add surface=default variant + update guideline to v2.0
-- `cd1d853` feat(nav-bar): add Scripter for NavigationBar Component Set (4 variants)
-- `1d4134f` feat(nav-bar): add Scripter for Variable binding + update SKILL.md delivery rule
-- ...（共 6 筆）
+**今日 commits：3 筆**
+- `50954d0` refactor: restructure project into 6 subdirectories
+- `87efac5` chore: remove Cowork mount artifact, update gitignore
+- `b01d7e5` refactor: slim SKILL/COWORK, add workflow routing to CLAUDE.md
 <!-- STATUS:END -->
+
+## 2026-03-30（一） — 自動補錄（sync-daily-log.py）
+
+### 1. Git 活動紀錄（自動擷取）
+- [x] `50954d0` refactor: restructure project into 6 subdirectories
+- [x] `b01d7e5` refactor: slim SKILL/COWORK, add workflow routing to CLAUDE.md
+- [x] `87efac5` chore: remove Cowork mount artifact, update gitignore
+
+### 2. 變動檔案（59 個）
+- `"Ruten \350\250\255\350\250\210\347\263\273\347\265\261/skill-restructure-proposal.jsx"`
+- `CLAUDE.md`
+- `COWORK_INSTRUCTIONS.md`
+- `DAILY_LOG.md`
+- `EXECUTION_PLAN.md`
+- `SKILL.md`
+- `avatar-usage-guideline.md`
+- `banner-usage-guideline.md`
+- `bottom-nav-usage-guideline.md`
+- `button-usage-guideline.md`
+- `component-governance.md`
+- `create-text-styles.js`
+- `design-system-hierarchy.html`
+- `divider-usage-guideline.md`
+- `guideline/avatar-usage-guideline.md`
+- `guideline/banner-usage-guideline.md`
+- `guideline/bottom-nav-usage-guideline.md`
+- `guideline/button-usage-guideline.md`
+- `guideline/divider-usage-guideline.md`
+- `guideline/navigation-bar-usage-guideline.md`
+- ...（共 58 個檔案）
+
+
+---
 
 ## 2026-03-27（五） — 收工（sync-daily-log.py --close）
 

@@ -113,6 +113,7 @@ root/
 ## 每日啟動流程
 
 每天第一次對話時，自動執行：
+0. 跑 `date '+%Y-%m-%d %A'` 確認今天日期（Cowork session 不一定帶日期資訊）
 1. 跑 `python3 tool/sync-daily-log.py --root . --write` 同步 git 歷史到 DAILY_LOG
 2. 讀 `ops/DAILY_LOG.md` 最新一天的「明日工作順序」
 3. 照那個順序開始工作，不要自己重排

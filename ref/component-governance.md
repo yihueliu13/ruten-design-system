@@ -744,12 +744,14 @@ Text Styles: 130 (CH/PingFang TC 65 + EN/SF Pro 65, Mono removed)
 | 維度 | 決策 |
 |------|------|
 | 功能類別 | Navigation |
-| 組合深度 | Compound（SearchBar + Icons 組合） |
-| Token 擁有權 | Owned (10 tokens) + Slot Override (SearchBar) |
+| 組合深度 | Compound（SearchBar + Icons + Button Slot 組合） |
+| Token 擁有權 | Owned (14 tokens) + Slot Override (SearchBar, Button) |
 | controlHeight | 3xl (48px)，不含 StatusBar |
-| 鎖定決策 | icon-color 獨立（不與 title 共用）✅ overlay import ✅ |
+| layout variant | search（嵌入 SearchBar）/ title（頁面標題）/ action（嵌入 CTA Button Slot） |
+| surface variant | brand（橘底 + 白色 icon/text）/ default（白底 + 深灰 icon/text） |
+| 鎖定決策 | icon-color 獨立（不與 title 共用）✅ overlay import ✅ SearchBar 背景純白（非半透明）✅ 桌面版 Header 獨立 component，不與 NavBar 共用 ✅ |
 | comp→comp 引用 | search-font-size → comp/search-bar/font-size, search-font-weight → comp/search-bar/font-weight |
-| 衝突檢查 | vs BottomNav（位置相反）、vs SearchBar（Slot Override 嵌入）、vs Tab（層級不同）→ 無衝突 |
+| 衝突檢查 | vs BottomNav（位置相反）、vs SearchBar（Slot Override 嵌入）、vs Tab（層級不同）、vs DesktopHeader（平台不同）→ 無衝突 |
 
 ### SearchBar (#11)
 
