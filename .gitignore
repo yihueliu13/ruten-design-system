@@ -24,3 +24,6 @@ __pycache__/
 # Validation output (generated, not source)
 design-system-validation-report.txt
 Ruten 設計系統/
+
+# Claude Code local settings (per-machine, not source)
+.claude/settings.local.json
