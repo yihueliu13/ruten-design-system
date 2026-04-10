@@ -6,26 +6,38 @@
 ---
 
 <!-- STATUS:BEGIN -->
-## 🔄 目前狀態（2026-03-30（一）19:06 自動更新）
+## 🔄 目前狀態（2026-04-08（三）14:08 自動更新）
 
 **Token：686** (ref 160 + sys 170 + comp 356) + 130 Text Styles
-**Validation：29 PASS / 0 FAIL** ✅
+**Validation：30 PASS / 1 FAIL** ⚠️
 **Sprint：** Sprint 0 ✅ · Sprint 1 ✅ · Sprint 2 ✅ · Sprint 3 ✅ · Sprint 4 ✅ · Sprint 5 ✅ · Sprint 6 🔄 (0/3)
 
 **下一步：**
-- Sprint 6：Variable scoping（隱藏 ref 層）
+- Sprint 6：Variable scoping（隱藏 ref 層，只暴露 sys + comp）
 - Sprint 6：建立正式 Library 檔 → Publish
-- Phase 2：Engineering Output（tokens.css / tokens.ts）
+- Phase 2：Engineering Output（tokens.css / tokens.ts 轉換）
 
 **Blocked：**
-- 無
-
-**今日 commits：5 筆**
-- `b01d7e5` refactor: slim SKILL/COWORK, add workflow routing to CLAUDE.md
-- `a21b120` feat(nav-bar): add layout=action variant, confirm desktop header as separate component
-- `1b844ce` feat(lifecycle): add token-lifecycle.md, fix badge dot 8→6px, typography binding
-- ...（共 5 筆）
+- 無 — —
 <!-- STATUS:END -->
+
+## 2026-03-30（一） — 自動補錄（sync-daily-log.py）
+
+### 1. Git 活動紀錄（自動擷取）
+- [x] `c64bb5b` chore: add Scripter scripts + daily close 2026-03-30
+
+### 2. 變動檔案（8 個）
+- `ops/DAILY_LOG.md`
+- `script/scripter-05-navigation-bar.js`
+- `script/scripter-09-badge.js`
+- `script/scripter-10-section-header.js`
+- `script/scripter-11-section-module.js`
+- `script/scripter-12-banner.js`
+- `script/scripter-13-divider.js`
+- `script/scripter-14-missing-variables.js`
+
+
+---
 
 ## 2026-03-30（一） — 收工（sync-daily-log.py --close）
 
