@@ -75,6 +75,10 @@ root/
 4. PUSH   — git commit + push 完成後，列出本次 commit 包含的所有檔案清單
 ```
 
+## 驗證定義
+- /verify = 確認 token 輸出格式正確（CSS / Tailwind / DTCG JSON）+ 與 Figma Variables 一致
+- /review 重點看：token 命名規則一致性、DTCG 格式正確性、三品牌（露天/Ichiban/Resell）覆蓋完整
+
 ## Rules
 - **每次 git commit 前必跑 `python3 tool/validate-design-system.py --root .`**，不管改的是不是 SOT
 - Every new token MUST have $description (imperative style)
